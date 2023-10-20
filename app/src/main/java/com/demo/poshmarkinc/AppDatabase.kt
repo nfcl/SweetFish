@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.demo.poshmarkinc.logic.dao.GoodsDao
+import com.demo.poshmarkinc.logic.dao.UserDao
 
 /**
  * 使用单例模式的数据库类
@@ -12,8 +14,10 @@ import androidx.room.RoomDatabase
  *
  * entities 用于指定数据库包含了哪些Dao实体类(表)
  */
-@Database(version = 0, entities = [])
+@Database(version = 0, entities = [UserDao::class, GoodsDao::class])
 abstract class AppDatabase : RoomDatabase() {
+
+    abstract fun userDao(): UserDao
 
     companion object {
 
