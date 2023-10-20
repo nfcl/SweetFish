@@ -14,7 +14,9 @@ import androidx.room.PrimaryKey
 @Entity
 data class User(
     var name: String,
-    var sex: Boolean
+    var sex: Boolean,
+    var account: String,
+    var password: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
