@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PoshmarkInc"
+rootProject.name = "SweetFish"
 include(":app")
  

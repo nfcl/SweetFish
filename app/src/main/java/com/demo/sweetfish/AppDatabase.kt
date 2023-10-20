@@ -1,11 +1,11 @@
-package com.demo.poshmarkinc
+package com.demo.sweetfish
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.demo.poshmarkinc.logic.dao.GoodsDao
-import com.demo.poshmarkinc.logic.dao.UserDao
+import com.demo.sweetfish.logic.dao.GoodsDao
+import com.demo.sweetfish.logic.dao.UserDao
 
 /**
  * 使用单例模式的数据库类

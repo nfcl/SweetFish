@@ -1,4 +1,4 @@
-package com.demo.poshmarkinc.ui.homePage
+package com.demo.sweetfish.ui.homePage
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
-import com.example.poshmarkinc.R
+import com.example.sweetfish.R
 
 /**
  * 主页的底部导航栏控件

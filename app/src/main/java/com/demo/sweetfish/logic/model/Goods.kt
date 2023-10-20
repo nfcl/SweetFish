@@ -1,4 +1,4 @@
-package com.demo.poshmarkinc.logic.model
+package com.demo.sweetfish.logic.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

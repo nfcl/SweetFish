@@ -1,4 +1,4 @@
-package com.demo.poshmarkinc
+package com.demo.sweetfish
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -9,7 +9,7 @@ import android.content.Context
  *
  *  用于获取程序运行时的context等
  */
-class PoshmarkIncApplication : Application() {
+class SweetFishApplication : Application() {
 
     companion object {
         @SuppressLint("StaticFieldLeak")

@@ -1,4 +1,4 @@
-package com.example.poshmarkinc
+package com.example.sweetfish
 
 import org.junit.Test
 

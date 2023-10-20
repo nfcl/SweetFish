@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.poshmarkinc"
+    namespace = "com.example.sweetfish"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.poshmarkinc"
+        applicationId = "com.example.sweetfish"
         minSdk = 32
         targetSdk = 33
         versionCode = 1
