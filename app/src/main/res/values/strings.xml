@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">PoshmarkInc</string>
+    <string name="app_name_en">Sweet fish</string>
+    <string name="app_name_ch">甜鱼</string>
+    <string name="userPageButtonName_ch">我的</string>
 </resources>
