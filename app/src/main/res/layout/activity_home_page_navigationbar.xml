@@ -15,7 +15,8 @@
         <Button
             android:id="@+id/HomePageButton"
             android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:backgroundTint="@color/primary" />
 
         <TextView
             android:layout_width="match_parent"
@@ -52,7 +53,8 @@
         <Button
             android:id="@+id/UserPageButton"
             android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:backgroundTint="@color/primary" />
 
         <TextView
             android:layout_width="match_parent"
