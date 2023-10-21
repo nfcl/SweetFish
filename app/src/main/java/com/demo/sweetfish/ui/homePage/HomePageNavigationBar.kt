@@ -19,8 +19,8 @@ import com.example.sweetfish.R
 class HomePageNavigationBar(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     private val homePageButton: Button
-    private val userPageButton: ImageView
-    private val goodsPublishPageButton: Button
+    private val userPageButton: Button
+    private val goodsPublishPageButton: ImageView
 
     init {
         LayoutInflater.from(context).inflate(R.layout.activity_home_page_navigationbar, this)
