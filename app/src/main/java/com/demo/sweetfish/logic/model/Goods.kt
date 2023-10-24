@@ -1,51 +1,40 @@
 package com.demo.sweetfish.logic.model
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.Drawable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.ByteArrayOutputStream
-import java.sql.Blob
 
 @Entity
 data class Goods(
     var title: String,
     var price: Double,
     var sellerId: Long,
-    private var previewPicBlob: Blob
+    var previewPic: ByteArray
 ) {
 
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
 
-    /**
-     * 获得预览图片
-     * @return 返回一个[Drawable]作为图片对象
-     */
-    fun getPreviewPic(): Drawable? {
-        return Drawable.createFromStream(previewPicBlob.binaryStream, "img")
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Goods
+
+        if (title != other.title) return false
+        if (price != other.price) return false
+        if (sellerId != other.sellerId) return false
+        if (!previewPic.contentEquals(other.previewPic)) return false
+        if (id != other.id) return false
+
+        return true
     }
 
-    /**
-     * 设置预览图片
-     * @param drawable 设置的头像图片
-     */
-    fun setPreviewPic(drawable: Drawable?) {
-        if (drawable == null) {
-            return
-        }
-        val bitmap = Bitmap
-            .createBitmap(
-                drawable.intrinsicWidth,
-                drawable.intrinsicHeight,
-                Bitmap.Config.ARGB_8888
-            )
-        val canvas = Canvas(bitmap)
-        drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
-        drawable.draw(canvas)
-        val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        previewPicBlob.setBytes(0, stream.toByteArray())
+    override fun hashCode(): Int {
+        var result = title.hashCode()
+        result = 31 * result + price.hashCode()
+        result = 31 * result + sellerId.hashCode()
+        result = 31 * result + previewPic.contentHashCode()
+        result = 31 * result + id.hashCode()
+        return result
     }
 }

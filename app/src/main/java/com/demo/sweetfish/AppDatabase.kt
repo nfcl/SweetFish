@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.demo.sweetfish.logic.dao.GoodsDao
 import com.demo.sweetfish.logic.dao.UserDao
+import com.demo.sweetfish.logic.model.Goods
+import com.demo.sweetfish.logic.model.User
 
 /**
  * 使用单例模式的数据库类
@@ -14,10 +16,12 @@ import com.demo.sweetfish.logic.dao.UserDao
  *
  * entities 用于指定数据库包含了哪些Dao实体类(表)
  */
-@Database(version = 0, entities = [UserDao::class, GoodsDao::class])
+@Database(version = 1, entities = [User::class, Goods::class])
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+
+    abstract fun goodsDao(): GoodsDao
 
     companion object {
 

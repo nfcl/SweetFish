@@ -1,13 +1,7 @@
 package com.demo.sweetfish.logic.model
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.Drawable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.ByteArrayOutputStream
-import java.sql.Blob
-
 
 /**
  * 用户类
@@ -18,7 +12,7 @@ import java.sql.Blob
  * @property sex        性别
  * @property account    账号
  * @property password   密码
- * @property avatarBlob 头像的二进制数据
+ * @property avatarPic 头像的二进制数据
  */
 @Entity
 data class User(
@@ -26,38 +20,34 @@ data class User(
     var sex: Boolean,
     var account: String,
     var password: String,
-    private var avatarBlob: Blob
+    var avatarPic: ByteArray
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
 
-    /**
-     * 获得头像图片
-     * @return 返回一个[Drawable]作为图片对象
-     */
-    fun getAvatar(): Drawable? {
-        return Drawable.createFromStream(avatarBlob.binaryStream, "img")
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as User
+
+        if (name != other.name) return false
+        if (sex != other.sex) return false
+        if (account != other.account) return false
+        if (password != other.password) return false
+        if (!avatarPic.contentEquals(other.avatarPic)) return false
+        if (id != other.id) return false
+
+        return true
     }
 
-    /**
-     * 设置头像图片
-     * @param drawable 设置的头像图片
-     */
-    fun setAvatar(drawable: Drawable?) {
-        if (drawable == null) {
-            return
-        }
-        val bitmap = Bitmap
-            .createBitmap(
-                drawable.intrinsicWidth,
-                drawable.intrinsicHeight,
-                Bitmap.Config.ARGB_8888
-            )
-        val canvas = Canvas(bitmap)
-        drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
-        drawable.draw(canvas)
-        val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        avatarBlob.setBytes(0, stream.toByteArray())
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + sex.hashCode()
+        result = 31 * result + account.hashCode()
+        result = 31 * result + password.hashCode()
+        result = 31 * result + avatarPic.contentHashCode()
+        result = 31 * result + id.hashCode()
+        return result
     }
 }
