@@ -43,8 +43,15 @@ interface UserDao {
      * 通过Id查找用户信息
      * @return 找到的用户信息,如果没找到则返回null
      */
-    @Query("select * from User where id = :id")
+    @Query("select * from User where id=:id")
     fun findById(id: Long): User?
+
+    /**
+     * 通过账号和密码查询用户信息(登录)
+     * @return 找到的用户信息,如果没找到则返回null
+     */
+    @Query("select * from User where account=:account and password=:password")
+    fun findByAccountAndPassword(account: String, password: String): User?
 
     /**
      * 通过name查找拥有相似名称的用户信息
