@@ -8,14 +8,12 @@ import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
 interface GoodsWithSellerInfoDao {
 
     @Query(
-        """ select 
-                Goods.id as goodsId,
-                Goods.title as goodsTitle,
+        """ select Goods.id as goodsId,Goods.title as goodsTitle,
                 Goods.price as goodsPrice,
                 Goods.previewPic as goodsPreviewPic,
-                User.id as userId,
-                User.name as userName,
-                User.avatarPic as userAvatarPic 
+                User.id as sellerId,
+                User.name as sellerName,
+                User.avatarPic as sellerAvatarPic 
             from 
                 Goods,User 
             where 
@@ -29,9 +27,9 @@ interface GoodsWithSellerInfoDao {
                 Goods.title as goodsTitle,
                 Goods.price as goodsPrice,
                 Goods.previewPic as goodsPreviewPic,
-                User.id as userId,
-                User.name as userName,
-                User.avatarPic as userAvatarPic 
+                User.id as sellerId,
+                User.name as sellerName,
+                User.avatarPic as sellerAvatarPic 
             from 
                 Goods inner join User on Goods.sellerId=User.id 
             where 
