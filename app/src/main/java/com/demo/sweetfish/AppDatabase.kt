@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.demo.sweetfish.logic.dao.GoodsDao
+import com.demo.sweetfish.logic.dao.GoodsWithSellerInfoDao
 import com.demo.sweetfish.logic.dao.UserDao
 import com.demo.sweetfish.logic.model.Goods
 import com.demo.sweetfish.logic.model.User
@@ -22,6 +23,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
     abstract fun goodsDao(): GoodsDao
+
+    abstract fun goodsWithSellerInfoDao(): GoodsWithSellerInfoDao
 
     companion object {
 
