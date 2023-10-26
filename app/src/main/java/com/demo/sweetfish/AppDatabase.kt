@@ -31,14 +31,14 @@ abstract class AppDatabase : RoomDatabase() {
         private var instance: AppDatabase? = null
 
         @Synchronized
-        fun getDatabase(context: Context): AppDatabase {
+        fun getDatabase(context: Context = SweetFishApplication.context): AppDatabase {
             //如果已经存在instance则直接返回即可
             instance?.let {
                 return it
             }
             //否则重新连接到数据库生成instance并返回
             return Room.databaseBuilder(
-                context.applicationContext,
+                context,
                 AppDatabase::class.java,
                 "app_database"
             ).build().apply {
