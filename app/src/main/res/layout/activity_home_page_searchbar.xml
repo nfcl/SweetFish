@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="50dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,9 +13,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginVertical="5dp"
+            android:layout_marginVertical="2dp"
             android:layout_marginStart="25dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="2dp"
             android:gravity="center">
 
             <EditText
@@ -31,11 +31,11 @@
             <Button
                 android:id="@+id/SearchButton_Button"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="80dp"
+                android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/activity_home_page_searchbutton_background"
                 android:text="搜索"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
