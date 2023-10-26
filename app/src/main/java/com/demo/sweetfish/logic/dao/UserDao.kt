@@ -11,12 +11,19 @@ import com.demo.sweetfish.logic.model.User
 interface UserDao {
 
     /**
-     * 插入一条新的User信息
-     * @param user 新的用户信息
+     * 插入一条新的用户信息
+     * @param user 新用户信息
      * @return 新用户的Id
      */
     @Insert
     fun insert(user: User): Long
+
+    /**
+     * 插入列表内的所有用户信息
+     * @param userList 新用户信息列表
+     */
+    @Insert
+    fun insert(userList: List<User>)
 
     /**
      * 更改用户的信息
@@ -27,7 +34,7 @@ interface UserDao {
 
     /**
      * 查找所有的用户信息
-     * @return 所有用户信息的列表
+     * @return 包含所有用户信息的列表
      */
     @Query("select * from User")
     fun findAll(): List<User>
@@ -44,7 +51,7 @@ interface UserDao {
      * @return 返回一个包含拥有相似名称的用户信息列表
      */
     @Query("select * from user where name like :name")
-    fun findByName(name: String): List<User>
+    fun findLikeName(name: String): List<User>
 
     /**
      * 删除用户
@@ -52,5 +59,11 @@ interface UserDao {
      */
     @Delete
     fun delete(user: User)
+
+    /**
+     * 删除所有用户
+     */
+    @Query("delete from User")
+    fun deleteAll()
 
 }

@@ -19,6 +19,13 @@ interface GoodsDao {
     fun insert(goods: Goods): Long
 
     /**
+     * 插入列表内所有新商品信息
+     * @param goodsList 新商品信息列表
+     */
+    @Insert
+    fun insert(goodsList: List<Goods>)
+
+    /**
      * 更新商品信息
      * @param newGoods 更新后的商品信息
      */
@@ -54,7 +61,7 @@ interface GoodsDao {
      * @return 返回一个包含所有拥有相似名称的商品信息的列表
      */
     @Query("select * from goods where title like :title")
-    fun findByGoodsTitle(title: String): List<Goods>
+    fun findLikeGoodsTitle(title: String): List<Goods>
 
     /**
      * 删除一条商品信息
@@ -62,5 +69,11 @@ interface GoodsDao {
      */
     @Delete
     fun delete(goods: Goods)
+
+    /**
+     * 删除所有商品信息
+     */
+    @Query("delete from Goods")
+    fun deleteAll()
 
 }
