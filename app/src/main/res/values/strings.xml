@@ -3,4 +3,16 @@
     <string name="app_name_cn">甜鱼</string>
     <string name="userPageButtonName_cn">我的</string>
     <string name="infomationPageButtonName_cn">消息</string>
+    <string name="activity_home_page_goodlist_item_seller_name">商家名称</string>
+    <string name="activity_home_page_goodlist_item_goods_price">￥商品价格</string>
+    <string name="activity_home_page_goodlist_item_goods_name">商品名称</string>
+    <string name="activity_home_page_goodlist_item_goods_preview_description">商品预览图</string>
+    <string name="activity_home_page_userpageview_username_example">用户昵称</string>
+    <string name="activity_home_page_userpageview_favorites">收藏</string>
+    <string name="activity_home_page_userpageview_history">历史浏览</string>
+    <string name="activity_home_page_userpageview_follow">关注</string>
+    <string name="activity_home_page_userpageview_mybargain">我的交易</string>
+    <string name="activity_home_page_userpageview_mypublish">我发布的 0</string>
+    <string name="activity_home_page_userpageview_mysold">我卖出的 0</string>
+    <string name="activity_home_page_userpageview_mybought">我买到的 0</string>
 </resources>
