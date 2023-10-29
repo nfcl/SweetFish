@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <com.demo.sweetfish.ui.homePage.RoundImageView
+        <com.demo.sweetfish.ui.component.RoundImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/activity_home_page_userpageview_avatartestpic"

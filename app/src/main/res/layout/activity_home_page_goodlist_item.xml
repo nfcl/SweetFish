@@ -46,7 +46,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.demo.sweetfish.ui.homePage.RoundImageView
+        <com.demo.sweetfish.ui.component.RoundImageView
             android:id="@+id/SellerAvatarImage"
             android:layout_width="16dp"
             android:layout_height="16dp"

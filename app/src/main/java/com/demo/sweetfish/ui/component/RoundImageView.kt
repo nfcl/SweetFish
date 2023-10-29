@@ -1,4 +1,4 @@
-package com.demo.sweetfish.ui.homePage
+package com.demo.sweetfish.ui.component
 
 import android.content.Context
 import android.graphics.Canvas
