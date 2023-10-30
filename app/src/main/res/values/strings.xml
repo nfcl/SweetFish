@@ -15,4 +15,6 @@
     <string name="activity_home_page_userpageview_mypublish">我发布的 0</string>
     <string name="activity_home_page_userpageview_mysold">我卖出的 0</string>
     <string name="activity_home_page_userpageview_mybought">我买到的 0</string>
+    <string name="activity_personal_user_page_follow">+ 关注</string>
+    <string name="activity_personal_user_page_edit">编辑资料</string>
 </resources>

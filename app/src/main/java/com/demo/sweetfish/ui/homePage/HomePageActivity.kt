@@ -1,11 +1,18 @@
 package com.demo.sweetfish.ui.homePage
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.logic.model.Goods
 import com.demo.sweetfish.logic.model.User
+import com.demo.sweetfish.ui.tradePage.MyBoughtActivity
+import com.demo.sweetfish.ui.tradePage.MyPublishActivity
+import com.demo.sweetfish.ui.tradePage.MySoldActivity
+import com.demo.sweetfish.ui.userPage.personal.PersonalUserPageActivity
 import com.example.sweetfish.R
 import org.jetbrains.annotations.TestOnly
 import utils.DrawableUtils
@@ -69,7 +76,22 @@ class HomePageActivity : AppCompatActivity() {
     }
 
     private fun initUserPage(userPageView: View) {
-
+        userPageView.findViewById<TextView>(R.id.HomePageUserPageViewUserNameText)
+            .setOnClickListener {
+                startActivity(Intent(this, PersonalUserPageActivity::class.java))
+            }
+        userPageView.findViewById<LinearLayout>(R.id.HomePageUserPageViewMyPublishButton)
+            .setOnClickListener {
+                startActivity(Intent(this, MyPublishActivity::class.java))
+            }
+        userPageView.findViewById<LinearLayout>(R.id.HomePageUserPageViewMySoldButton)
+            .setOnClickListener {
+                startActivity(Intent(this, MySoldActivity::class.java))
+            }
+        userPageView.findViewById<LinearLayout>(R.id.HomePageUserPageViewMyBoughtButton)
+            .setOnClickListener {
+                startActivity(Intent(this, MyBoughtActivity::class.java))
+            }
     }
 
     /**

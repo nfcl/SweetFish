@@ -10,7 +10,19 @@
         android:label="@string/app_name_en"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.SweetFish">
+        <activity
+            android:name="com.demo.sweetfish.ui.tradePage.MyPublishActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.demo.sweetfish.ui.tradePage.MySoldActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.demo.sweetfish.ui.tradePage.MyBoughtActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.demo.sweetfish.ui.userPage.personal.PersonalUserPageActivity"
+            android:exported="true" />
         <activity
             android:name="com.demo.sweetfish.ui.homePage.HomePageActivity"
             android:exported="true">
