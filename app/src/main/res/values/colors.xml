@@ -7,6 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colo_bac">#f8f8f8</color>
+    <color name="colo_yellow">#FEC62E</color>
+    <color name="colo_red">#E53935</color>
+    <color name="text_black">#4E5157</color>
+    <color name="color_link">#f0f0f0</color>
+    <color name="colo_money">#ff4757</color>
+    <color name="colo_white">#fff</color>
+    <color name="text_main1">#838895</color>
+    <color name="text_main">#49496a</color>
 <!--    <color name="primary">#27E3D0</color>-->
     <color name="primary">#FEE50F</color>
     <color name="UserPageTagLayoutItemSelectBackground">#FDE60F</color>

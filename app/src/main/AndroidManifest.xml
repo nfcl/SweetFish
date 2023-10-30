@@ -12,6 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SweetFish">
         <activity
+            android:name="com.demo.sweetfish.ui.goodsPublishPage.GoodsPublishPageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.demo.sweetfish.ui.registerPage.RegisterPageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.demo.sweetfish.ui.loginPage.LoginPageActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.demo.sweetfish.ui.tradePage.MyPublishActivity"
             android:exported="false" />
         <activity
@@ -22,15 +36,10 @@
             android:exported="false" />
         <activity
             android:name="com.demo.sweetfish.ui.userPage.personal.PersonalUserPageActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name="com.demo.sweetfish.ui.homePage.HomePageActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

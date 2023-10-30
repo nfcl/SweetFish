@@ -17,4 +17,5 @@
     <string name="activity_home_page_userpageview_mybought">我买到的 0</string>
     <string name="activity_personal_user_page_follow">+ 关注</string>
     <string name="activity_personal_user_page_edit">编辑资料</string>
+    <string name="userRules"><![CDATA[我已经详细阅读并同意<隐私政策>和《用户协议》]]></string>
 </resources>

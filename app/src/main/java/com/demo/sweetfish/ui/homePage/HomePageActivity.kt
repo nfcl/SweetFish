@@ -2,13 +2,18 @@ package com.demo.sweetfish.ui.homePage
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.logic.model.Goods
+import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
 import com.demo.sweetfish.logic.model.User
+import com.demo.sweetfish.ui.goodsPublishPage.GoodsPublishPageActivity
 import com.demo.sweetfish.ui.tradePage.MyBoughtActivity
 import com.demo.sweetfish.ui.tradePage.MyPublishActivity
 import com.demo.sweetfish.ui.tradePage.MySoldActivity
@@ -17,6 +22,7 @@ import com.example.sweetfish.R
 import org.jetbrains.annotations.TestOnly
 import utils.DrawableUtils
 import utils.DrawableUtils.Companion.toBytes
+import java.lang.ref.WeakReference
 import java.time.Instant
 import kotlin.concurrent.thread
 import kotlin.math.abs
@@ -27,6 +33,7 @@ class HomePageActivity : AppCompatActivity() {
     companion object {
         const val HOME_PAGE: Int = 0
         const val USER_PAGE: Int = 1
+        const val GOODSLISTINIT: Int = 0x0001
     }
 
     private lateinit var viewPager: NoScrollViewPager
@@ -38,6 +45,33 @@ class HomePageActivity : AppCompatActivity() {
         initNavigation()
     }
 
+    private val weakHandler by lazy { WeakReferenceHandler(this) }
+
+    class WeakReferenceHandler(obj: HomePageActivity) : Handler(Looper.getMainLooper()) {
+        private val mRef: WeakReference<HomePageActivity> = WeakReference(obj)
+
+        override fun handleMessage(msg: Message) {
+            mRef.get()?.run {
+                when (msg.what) {
+                    GOODSLISTINIT -> {
+                        val goodsList: HomePageGoodsList =
+                            homePageView.findViewById(R.id.HomePageGoodsList)
+                        val goodsData = msg.obj as List<GoodsWithSellerInfo>
+                        goodsList.setGoodsList(
+                            goodsData
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        //退出页面时，置空所以的Message
+        weakHandler.removeCallbacksAndMessages(null)
+        super.onDestroy()
+    }
+
     private fun initNavigation() {
         val navigationBar: HomePageNavigationBar = findViewById(R.id.HomePageNavigationBar)
         navigationBar.setHomePageButtonOnClickListener {
@@ -45,6 +79,9 @@ class HomePageActivity : AppCompatActivity() {
         }
         navigationBar.setUserPageButtonOnClickListener {
             viewPager.setCurrentItem(USER_PAGE, false)
+        }
+        navigationBar.setGoodsPublishPageButtonOnClickListener {
+            startActivity(Intent(this, GoodsPublishPageActivity::class.java))
         }
     }
 
@@ -63,15 +100,18 @@ class HomePageActivity : AppCompatActivity() {
         viewPager.adapter = HomePageViewPagerAdapter(viewList)
     }
 
+    private lateinit var homePageView: View
+
     private fun initHomePage(homePageView: View) {
         fun initGoodsList() {
-            val goodsList: HomePageGoodsList = homePageView.findViewById(R.id.HomePageGoodsList)
             thread {
-                goodsList.setGoodsList(
-                    AppDatabase.getDatabase().goodsWithSellerInfoDao().findAll()
-                )
+                val msg: Message = Message()
+                msg.what = GOODSLISTINIT
+                msg.obj = AppDatabase.getDatabase().goodsWithSellerInfoDao().findAll()
+                weakHandler.sendMessage(msg)
             }
         }
+        this.homePageView = homePageView
         initGoodsList()
     }
 
