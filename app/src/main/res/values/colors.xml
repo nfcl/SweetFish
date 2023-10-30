@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 <!--    <color name="primary">#27E3D0</color>-->
     <color name="primary">#FEE50F</color>
+    <color name="UserPageTagLayoutItemSelectBackground">#FDE60F</color>
+    <color name="UserPageTagLayoutItemUnSelectBackground">#F0F0F0</color>
+    <color name="UserPageTagLayoutItemSelectText">#000000</color>
+    <color name="UserPageTagLayoutItemUnSelectText">#A2A2A2</color>
 </resources>
