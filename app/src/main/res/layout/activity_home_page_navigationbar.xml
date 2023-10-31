@@ -4,6 +4,7 @@
     android:layout_height="60dp"
     android:layout_gravity="bottom"
     android:background="@color/white"
+    android:baselineAligned="false"
     android:gravity="center_vertical">
 
     <LinearLayout
@@ -13,11 +14,11 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <Button
+        <ImageView
             android:id="@+id/HomePageButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/primary" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/activity_home_page_navigation_goodsicon_select" />
 
         <TextView
             android:layout_width="match_parent"
@@ -51,11 +52,11 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <Button
+        <ImageView
             android:id="@+id/UserPageButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/primary" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/activity_home_page_navigation_usericon_unselect" />
 
         <TextView
             android:layout_width="match_parent"

@@ -3,7 +3,6 @@ package com.demo.sweetfish.ui.homePage
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.example.sweetfish.R
@@ -18,8 +17,8 @@ import com.example.sweetfish.R
  */
 class HomePageNavigationBar(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
-    private val homePageButton: Button
-    private val userPageButton: Button
+    private val homePageButton: ImageView
+    private val userPageButton: ImageView
     private val goodsPublishPageButton: ImageView
 
     init {
@@ -30,14 +29,24 @@ class HomePageNavigationBar(context: Context, attrs: AttributeSet) : LinearLayou
     }
 
     fun setHomePageButtonOnClickListener(event: () -> Unit) {
-        homePageButton.setOnClickListener { event() }
+        homePageButton.setOnClickListener {
+            homePageButton.setImageResource(R.drawable.activity_home_page_navigation_goodsicon_select)
+            userPageButton.setImageResource(R.drawable.activity_home_page_navigation_usericon_unselect)
+            event()
+        }
     }
 
     fun setGoodsPublishPageButtonOnClickListener(event: () -> Unit) {
-        goodsPublishPageButton.setOnClickListener { event() }
+        goodsPublishPageButton.setOnClickListener {
+            event()
+        }
     }
 
     fun setUserPageButtonOnClickListener(event: () -> Unit) {
-        userPageButton.setOnClickListener { event() }
+        userPageButton.setOnClickListener {
+            userPageButton.setImageResource(R.drawable.activity_home_page_navigation_usericon_select)
+            homePageButton.setImageResource(R.drawable.activity_home_page_navigation_goodsicon_unselect)
+            event()
+        }
     }
 }
