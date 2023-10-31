@@ -6,25 +6,17 @@ import java.util.Date
 
 /**
  * @property content 消息内容
- * @property senderId 发送者Id
- * @property receiverId 接收者Id
  * @property sendTime 发送时间
+ * @property chatId 聊天记录Id
  */
 @Entity
 data class Message(
     val content: String,
-    val senderId: Long,
-    val receiverId: Long,
     val sendTime: Date,
+    val chatId: Long,
 ) {
 
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
-
-    fun foo() {
-        if (sendTime != Date()) {
-
-        }
-    }
 
 }
