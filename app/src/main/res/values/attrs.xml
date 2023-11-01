@@ -3,4 +3,7 @@
     <declare-styleable name="RoundImageView">
         <attr name="radius" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="TagLayout">
+        <attr name="item" format="reference" />
+    </declare-styleable>
 </resources>
