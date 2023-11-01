@@ -1,5 +1,8 @@
 package com.demo.sweetfish.logic.model
 
+import android.graphics.drawable.Drawable
+import utils.DrawableUtils
+
 data class GoodsWithSellerInfo(
     val goodsId: Long,
     val goodsTitle: String,
@@ -9,6 +12,11 @@ data class GoodsWithSellerInfo(
     val sellerName: String,
     val sellerAvatarPic: ByteArray,
 ) {
+
+    fun getSellerAvatar(): Drawable {
+        return DrawableUtils.createDrawableFromByteArray(sellerAvatarPic!!, "sellerAvatarPic")
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

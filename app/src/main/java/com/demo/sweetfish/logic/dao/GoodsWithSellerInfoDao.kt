@@ -8,16 +8,16 @@ import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
 interface GoodsWithSellerInfoDao {
 
     @Query(
-        """ select Goods.id as goodsId,Goods.title as goodsTitle,
+        """ select 
+                Goods.id as goodsId,
+                Goods.title as goodsTitle,
                 Goods.price as goodsPrice,
                 Goods.previewPic as goodsPreviewPic,
                 User.id as sellerId,
                 User.name as sellerName,
                 User.avatarPic as sellerAvatarPic 
             from 
-                Goods,User 
-            where 
-                Goods.sellerId=User.id"""
+                Goods inner join User on Goods.sellerId=User.id"""
     )
     fun findAll(): List<GoodsWithSellerInfo>
 

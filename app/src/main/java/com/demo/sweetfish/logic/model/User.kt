@@ -1,7 +1,9 @@
 package com.demo.sweetfish.logic.model
 
+import android.graphics.drawable.Drawable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import utils.DrawableUtils
 
 /**
  * 用户类
@@ -9,7 +11,7 @@ import androidx.room.PrimaryKey
  * 用于保存用户信息
  * @property id         唯一标识符
  * @property name       昵称
- * @property sex        性别
+ * @property sex        性别 true男 false女
  * @property account    账号
  * @property password   密码
  * @property avatarPic 头像的二进制数据
@@ -17,13 +19,17 @@ import androidx.room.PrimaryKey
 @Entity
 data class User(
     var name: String,
-    var sex: Boolean,
+    var sex: Boolean?,
     var account: String,
     var password: String,
-    var avatarPic: ByteArray
+    var avatarPic: ByteArray,
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
+
+    fun getSellerAvatar(): Drawable {
+        return DrawableUtils.createDrawableFromByteArray(avatarPic!!, "avatarPic")
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
