@@ -8,6 +8,7 @@ import com.demo.sweetfish.logic.dao.ChatInfoDao
 import com.demo.sweetfish.logic.dao.GoodsDao
 import com.demo.sweetfish.logic.dao.GoodsWithSellerInfoDao
 import com.demo.sweetfish.logic.dao.MessageDao
+import com.demo.sweetfish.logic.dao.RegisterDao
 import com.demo.sweetfish.logic.dao.UserDao
 import com.demo.sweetfish.logic.model.ChatInfo
 import com.demo.sweetfish.logic.model.Goods
@@ -33,6 +34,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun messageDao(): MessageDao
 
     abstract fun chatInfoDao(): ChatInfoDao
+
+    abstract fun registerDao(): RegisterDao
 
     companion object {
 
