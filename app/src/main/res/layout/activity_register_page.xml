@@ -28,21 +28,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="50dp"
-        android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="账号"
-            android:textSize="28dp" />
-
         <EditText
-            android:id="@+id/input_user_text"
-            android:layout_width="250dp"
+            android:id="@+id/RegisterPageUserAccountEdit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="账号"
+            android:hint=" 请输入账号"
             android:maxLines="1"
             android:textSize="25sp" />
 
@@ -51,42 +45,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginHorizontal="20dp"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="密码"
-            android:textSize="28sp" />
-
         <EditText
-            android:id="@+id/input_key_text"
-            android:layout_width="250dp"
+            android:id="@+id/RegisterPageUserPasswordEdit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="密码"
-            android:maxLines="1"
-            android:textSize="25sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="邮箱"
-            android:textSize="28sp" />
-
-        <EditText
-            android:id="@+id/email_text"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:hint="邮箱"
+            android:hint=" 请输入密码"
             android:maxLines="1"
             android:textSize="25sp" />
 
@@ -121,7 +86,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/register_button"
+        android:id="@+id/RegisterPageRegisterButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center"

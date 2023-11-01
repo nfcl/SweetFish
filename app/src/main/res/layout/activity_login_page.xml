@@ -35,52 +35,72 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="50dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="50dp"
-            android:text="账号"
-            android:textSize="28sp" />
-
         <EditText
-            android:id="@+id/input_user_text"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="50dp"
+            android:id="@+id/LoginPageUserAccountEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:background="@null"
             android:hint="账号"
             android:maxLines="1"
-            android:textSize="25sp" />
+            android:textColorHint="#A0A0A0"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:src="@drawable/activity_login_page_divideline" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="20dp"
         android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@drawable/icon_eye_close" />
+
+        <EditText
+            android:id="@+id/LoginPageUserPasswordEdit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="密码"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColorHint="#A0A0A0"
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:text="密码"
-            android:textSize="28sp" />
-
-        <EditText
-            android:id="@+id/input_key_text"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:hint="密码"
-            android:maxLines="1"
-            android:textSize="25sp" />
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="忘记密码"
+            android:textColor="#808080"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:src="@drawable/activity_login_page_divideline" />
 
     <LinearLayout
         android:layout_width="wrap_content"
