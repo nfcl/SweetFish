@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.demo.sweetfish.ui.searchPage.SearchPageHistoryTagLayoutItem xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/SearchPageHistoryTagLayoutItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:background="@drawable/shape_20dp_radius_rectangle"
+        android:backgroundTint="#E0E0E0"
+        android:gravity="center"
+        android:paddingHorizontal="12dp"
+        android:text="Demo"
+        android:textSize="16sp" />
+
+</com.demo.sweetfish.ui.searchPage.SearchPageHistoryTagLayoutItem>
