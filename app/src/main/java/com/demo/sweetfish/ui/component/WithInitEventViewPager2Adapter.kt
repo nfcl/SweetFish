@@ -1,4 +1,4 @@
-package com.demo.sweetfish.ui.userPage.personal
+package com.demo.sweetfish.ui.component
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.demo.sweetfish.SweetFishApplication
 import com.example.sweetfish.R
 
-class PersonalUserPageRelationViewPager2Adapter(
+class WithInitEventViewPager2Adapter(
     private val views: List<Pair<View, (View) -> Unit>>,
-) : RecyclerView.Adapter<PersonalUserPageRelationViewPager2Adapter.ViewHolder>() {
+) : RecyclerView.Adapter<WithInitEventViewPager2Adapter.ViewHolder>() {
+
     class ViewHolder(var view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(SweetFishApplication.context).inflate(
-            R.layout.activity_personal_user_page_userrelations_viewpage_framework, null
+            R.layout.viewpager2_framework, null
         )
         view.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
