@@ -1,9 +1,13 @@
 package com.demo.sweetfish.ui.searchPage
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import com.demo.sweetfish.ui.component.TagLayout
+import com.demo.sweetfish.ui.searchResultPage.SearchResultPageActivity
 import com.example.sweetfish.R
 
 class SearchPageActivity : AppCompatActivity() {
@@ -20,6 +24,13 @@ class SearchPageActivity : AppCompatActivity() {
     private fun initComponent() {
         val returnButton = findViewById<ImageView>(R.id.SearchPageReturnButton)
         returnButton.setOnClickListener { finish() }
+        val searchButton = findViewById<TextView>(R.id.SearchButton_Button)
+        val searchBarEditView = findViewById<EditText>(R.id.SearchContent_EditText)
+        searchButton.setOnClickListener {
+            val newIntent = Intent(this, SearchResultPageActivity::class.java)
+            newIntent.putExtra("SearchContent", searchBarEditView.text.toString())
+            startActivity(newIntent)
+        }
     }
 
     private fun testHistory() {
