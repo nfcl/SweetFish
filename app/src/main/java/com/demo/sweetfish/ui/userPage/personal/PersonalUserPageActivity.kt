@@ -9,6 +9,7 @@ import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.demo.sweetfish.SweetFishApplication
+import com.demo.sweetfish.ui.component.WithInitEventViewPager2Adapter
 import com.demo.sweetfish.ui.userPage.UserPageTagLayout
 import com.example.sweetfish.R
 import com.google.android.material.tabs.TabLayout
@@ -38,7 +39,7 @@ class PersonalUserPageActivity : AppCompatActivity() {
                 ), ::initRelationAppraiseView
             )
         )
-        viewPager.adapter = PersonalUserPageRelationViewPager2Adapter(views)
+        viewPager.adapter = WithInitEventViewPager2Adapter(views)
         val tabTextList: List<String> = listOf("宝贝", "评价")
         TabLayoutMediator(
             tabLayout, viewPager
