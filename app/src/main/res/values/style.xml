@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SearchResultPageTagLayout_Item_UnSelect_TextStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#AAAAAA</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="SearchResultPageTagLayout_Item_Select_TextStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>
