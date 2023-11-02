@@ -28,7 +28,7 @@ data class User(
     var id: Long = 0
 
     fun getSellerAvatar(): Drawable {
-        return DrawableUtils.createDrawableFromByteArray(avatarPic!!, "avatarPic")
+        return DrawableUtils.createDrawableFromByteArray(avatarPic, "avatarPic")
     }
 
     override fun equals(other: Any?): Boolean {

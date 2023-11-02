@@ -14,7 +14,7 @@ data class GoodsWithSellerInfo(
 ) {
 
     fun getSellerAvatar(): Drawable {
-        return DrawableUtils.createDrawableFromByteArray(sellerAvatarPic!!, "sellerAvatarPic")
+        return DrawableUtils.createDrawableFromByteArray(sellerAvatarPic, "sellerAvatarPic")
     }
 
     override fun equals(other: Any?): Boolean {
