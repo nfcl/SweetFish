@@ -50,6 +50,7 @@ dependencies {
     implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.room:room-common:2.1.0")
     implementation("androidx.room:room-ktx:2.1.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     kapt("androidx.room:room-compiler:2.1.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
