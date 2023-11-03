@@ -22,8 +22,13 @@ class TagLayout(context: Context, attrs: AttributeSet) : FlowLayout(context, att
         ta.recycle()
     }
 
-    fun init(tags: Map<String, String>, event: (String) -> Unit) {
+    fun setOnClickEvent(event: (key: String) -> Unit) {
         mOnClickEvent = event
+    }
+
+    fun init(tags: Map<String, String>) {
+        mTagMap.clear()
+        removeAllViews()
         for ((key, value) in tags) {
             addTag(key, value)
         }
@@ -37,7 +42,7 @@ class TagLayout(context: Context, attrs: AttributeSet) : FlowLayout(context, att
             .inflate(mItem, null) as TagLayoutItem
         newItem.setOnClickListener {
             select(key)
-            mOnClickEvent(key)
+            mOnClickEvent(value)
         }
         newItem.setText(value)
         this.addView(newItem)
