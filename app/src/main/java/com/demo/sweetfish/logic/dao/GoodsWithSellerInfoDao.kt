@@ -12,7 +12,7 @@ interface GoodsWithSellerInfoDao {
                 Goods.id as goodsId,
                 Goods.title as goodsTitle,
                 Goods.price as goodsPrice,
-                Goods.previewPic as goodsPreviewPic,
+                (select content from GoodsPreviewImage where goodsId=Goods.id order by id asc limit 1) as goodsPreviewPic,
                 User.id as sellerId,
                 User.name as sellerName,
                 User.avatarPic as sellerAvatarPic 
@@ -26,7 +26,7 @@ interface GoodsWithSellerInfoDao {
                 Goods.id as goodsId,
                 Goods.title as goodsTitle,
                 Goods.price as goodsPrice,
-                Goods.previewPic as goodsPreviewPic,
+                (select content from GoodsPreviewImage where goodsId=Goods.id order by id asc limit 1) as goodsPreviewPic,
                 User.id as sellerId,
                 User.name as sellerName,
                 User.avatarPic as sellerAvatarPic 
@@ -42,7 +42,7 @@ interface GoodsWithSellerInfoDao {
                 Goods.id as goodsId,
                 Goods.title as goodsTitle,
                 Goods.price as goodsPrice,
-                Goods.previewPic as goodsPreviewPic,
+                (select content from GoodsPreviewImage where goodsId=Goods.id order by id asc limit 1) as goodsPreviewPic,
                 User.id as sellerId,
                 User.name as sellerName,
                 User.avatarPic as sellerAvatarPic 

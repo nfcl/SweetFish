@@ -17,14 +17,12 @@ class HomePageActivityViewModel : ViewModel() {
     val goodsList: LiveData<List<GoodsWithSellerInfo>>
         get() = _goodsList
 
-    init {
-
+    fun refreshGoodsList() {
         thread {
             val goodsWithSellerInfoDao =
                 AppDatabase.getDatabase(SweetFishApplication.context).goodsWithSellerInfoDao()
             _goodsList.postValue(goodsWithSellerInfoDao.findAll())
         }
-
     }
 
     class HomePageActivityViewModelFactory() : ViewModelProvider.Factory {
