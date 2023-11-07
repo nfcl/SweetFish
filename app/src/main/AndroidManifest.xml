@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SweetFish">
         <activity
+            android:name="com.demo.sweetfish.ui.userPage.userInfoEdit.UserInfoEditPageActivity"
+            android:exported="false" />
+        <activity
             android:name="com.demo.sweetfish.ui.searchResultPage.SearchResultPageActivity"
             android:exported="false" />
         <activity

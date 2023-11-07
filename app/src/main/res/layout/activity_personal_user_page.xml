@@ -89,14 +89,15 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/PersonalUserPageEditInfoButton2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="20dp"
                             android:background="@drawable/activity_home_page_searchbutton_background"
+                            android:backgroundTint="#F0F0F0"
                             android:gravity="center"
                             android:paddingHorizontal="18dp"
                             android:paddingVertical="5dp"
-                            android:backgroundTint="#F0F0F0"
                             android:text="@string/activity_personal_user_page_edit"
                             android:textColor="@color/black"
                             android:textSize="20sp"
@@ -221,15 +222,16 @@
             android:gravity="end|center">
 
             <TextView
+                android:id="@+id/PersonalUserPageEditInfoButton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/activity_home_page_searchbutton_background"
                 android:backgroundTint="#F0F0F0"
-                android:text="@string/activity_personal_user_page_edit"
                 android:gravity="center"
                 android:paddingHorizontal="18dp"
                 android:paddingVertical="5dp"
+                android:text="@string/activity_personal_user_page_edit"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />

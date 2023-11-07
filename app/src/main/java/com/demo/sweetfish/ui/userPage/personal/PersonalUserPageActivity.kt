@@ -1,16 +1,19 @@
 package com.demo.sweetfish.ui.userPage.personal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.ui.component.WithInitEventViewPager2Adapter
 import com.demo.sweetfish.ui.userPage.UserPageTagLayout
+import com.demo.sweetfish.ui.userPage.userInfoEdit.UserInfoEditPageActivity
 import com.example.sweetfish.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -21,6 +24,17 @@ class PersonalUserPageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_personal_user_page)
         initViewPager()
         initNavigationBar()
+        initComponent()
+    }
+
+    private fun initComponent() {
+        findViewById<TextView>(R.id.PersonalUserPageEditInfoButton1).setOnClickListener { toEditInfoPage() }
+        findViewById<TextView>(R.id.PersonalUserPageEditInfoButton2).setOnClickListener { toEditInfoPage() }
+    }
+
+    private fun toEditInfoPage() {
+        val newIntent = Intent(this, UserInfoEditPageActivity::class.java)
+        startActivity(newIntent)
     }
 
     private fun initViewPager() {
