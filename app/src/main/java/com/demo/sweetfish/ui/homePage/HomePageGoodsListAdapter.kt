@@ -38,7 +38,7 @@ class HomePageGoodsListAdapter(
         holder.nameText.text = goods.goodsTitle
         holder.priceText.text = "￥${goods.goodsPrice}"
         holder.sellerAvatarImage.setImageDrawable(goods.sellerAvatarPic)
-        holder.sellerNameText.text = goods.sellerName
+        holder.sellerNameText.text = goods.sellerName ?: goods.sellerId.toString()
         holder.itemView.findViewById<LinearLayout>(R.id.GoodsInfoButton)
             .setOnClickListener { onGoodsClickEvent(goods) }
         holder.itemView.findViewById<LinearLayout>(R.id.SellerInfoButton)

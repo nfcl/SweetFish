@@ -17,7 +17,7 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class User(
-    var name: String,
+    var name: String?,
     var sex: Boolean?,
     var account: String,
     var password: String,

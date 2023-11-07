@@ -8,6 +8,6 @@ data class GoodsWithSellerInfo(
     val goodsPrice: Double,
     val goodsPreviewPic: Drawable,
     val sellerId: Long,
-    val sellerName: String,
+    val sellerName: String?,
     val sellerAvatarPic: Drawable,
 )
