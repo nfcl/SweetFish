@@ -21,7 +21,6 @@ import com.demo.sweetfish.ui.tradePage.MySoldActivity
 import com.demo.sweetfish.ui.userPage.personal.PersonalUserPageActivity
 import com.example.sweetfish.R
 import utils.DrawableUtils
-import utils.DrawableUtils.Companion.toBytes
 import java.time.Instant
 import kotlin.concurrent.thread
 import kotlin.math.abs
@@ -140,7 +139,7 @@ class HomePageActivity : AppCompatActivity() {
                             100, 100, intArrayOf(
                                 random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
                             )
-                        ).toBytes()
+                        )
                     )
                 )
             }
@@ -175,7 +174,7 @@ class HomePageActivity : AppCompatActivity() {
                             intArrayOf(
                                 random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
                             )
-                        ).toBytes()
+                        )
                     )
                 )
             }

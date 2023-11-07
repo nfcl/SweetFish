@@ -34,19 +34,10 @@ class HomePageGoodeListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val goods = goodsList[position]
-        val preview =
-            utils.DrawableUtils.createDrawableFromByteArray(
-                goods.goodsPreviewPic,
-                "img"
-            )
-        holder.previewImage.setImageDrawable(preview)
+        holder.previewImage.setImageDrawable(goods.goodsPreviewPic)
         holder.nameText.text = goods.goodsTitle
         holder.priceText.text = "￥${goods.goodsPrice}"
-        val avatar = utils.DrawableUtils.createDrawableFromByteArray(
-            goods.sellerAvatarPic,
-            "sellerAvatarPic"
-        )
-        holder.sellerAvatarImage.setImageDrawable(avatar)
+        holder.sellerAvatarImage.setImageDrawable(goods.sellerAvatarPic)
         holder.sellerNameText.text = goods.sellerName
         holder.itemView.findViewById<LinearLayout>(R.id.GoodsInfoButton)
             .setOnClickListener { onGoodsClickEvent(goods) }

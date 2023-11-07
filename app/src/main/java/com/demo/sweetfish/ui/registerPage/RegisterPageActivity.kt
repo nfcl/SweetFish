@@ -12,7 +12,6 @@ import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.dao.RegisterDao
 import com.demo.sweetfish.logic.model.User
 import com.example.sweetfish.R
-import utils.DrawableUtils.Companion.toBytes
 import kotlin.concurrent.thread
 
 class RegisterPageActivity : AppCompatActivity() {
@@ -47,7 +46,7 @@ class RegisterPageActivity : AppCompatActivity() {
                         null,
                         account,
                         password,
-                        ContextCompat.getDrawable(this, R.mipmap.ic_launcher)!!.toBytes()
+                        ContextCompat.getDrawable(this, R.mipmap.ic_launcher)!!
                     )
                 )
                 runOnUiThread {
