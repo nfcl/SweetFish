@@ -82,9 +82,9 @@ class HomePageActivity : AppCompatActivity() {
             val goodsList: RecyclerView = homePageView.findViewById(R.id.HomePageGoodsList)
             goodsList.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            goodsList.adapter = HomePageGoodeListAdapter(ArrayList())
+            goodsList.adapter = HomePageGoodsListAdapter(ArrayList())
             viewModel.goodsList.observe(this) { listData ->
-                goodsList.adapter = HomePageGoodeListAdapter(listData)
+                goodsList.adapter = HomePageGoodsListAdapter(listData)
             }
         }
 

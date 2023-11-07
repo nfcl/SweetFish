@@ -12,7 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
 import com.demo.sweetfish.ui.component.WithInitEventViewPager2Adapter
-import com.demo.sweetfish.ui.homePage.HomePageGoodeListAdapter
+import com.demo.sweetfish.ui.homePage.HomePageGoodsListAdapter
 import com.example.sweetfish.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -61,9 +61,9 @@ class SearchResultPageActivity : AppCompatActivity() {
         val goodsList: RecyclerView = goodsListView.findViewById(R.id.GoodsListView_RecyclerView)
         goodsList.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        goodsList.adapter = HomePageGoodeListAdapter(ArrayList<GoodsWithSellerInfo>())
+        goodsList.adapter = HomePageGoodsListAdapter(ArrayList<GoodsWithSellerInfo>())
         viewModel.goodsList.observe(this) { listData ->
-            goodsList.adapter = HomePageGoodeListAdapter(listData)
+            goodsList.adapter = HomePageGoodsListAdapter(listData)
         }
     }
 

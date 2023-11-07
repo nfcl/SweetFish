@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
 import com.example.sweetfish.R
 
-class HomePageGoodeListAdapter(
+class HomePageGoodsListAdapter(
     private val goodsList: List<GoodsWithSellerInfo>,
     private var onGoodsClickEvent: (goods: GoodsWithSellerInfo) -> Unit = {},
     private var onSellerClickEvent: (sellerId: Long) -> Unit = {},
 ) :
-    Adapter<HomePageGoodeListAdapter.ViewHolder>() {
+    Adapter<HomePageGoodsListAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val previewImage: ImageView = view.findViewById(R.id.GoodsPreviewImage)
