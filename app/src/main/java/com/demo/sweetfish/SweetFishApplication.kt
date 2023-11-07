@@ -3,6 +3,9 @@ package com.demo.sweetfish
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.demo.sweetfish.logic.model.User
 
 /**
@@ -16,7 +19,21 @@ class SweetFishApplication : Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
 
-        var loginUser: User? = null
+        private val mLoginUserId: MutableLiveData<Long> = MutableLiveData()
+
+        val loginUser: LiveData<User> =
+            Transformations.switchMap(mLoginUserId) { userId ->
+                AppDatabase.getDatabase().userDao().findById(userId)
+            }
+
+        fun setLoginUserId(id: Long) {
+            mLoginUserId.postValue(id)
+        }
+
+        fun forceRefreshUserInfo() {
+            mLoginUserId.postValue(mLoginUserId.value)
+        }
+
     }
 
     override fun onCreate() {

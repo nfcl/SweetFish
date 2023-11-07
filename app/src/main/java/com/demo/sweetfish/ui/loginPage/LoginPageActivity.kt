@@ -3,14 +3,12 @@ package com.demo.sweetfish.ui.loginPage
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.WorkerThread
 import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
-import com.demo.sweetfish.logic.model.User
 import com.demo.sweetfish.ui.homePage.HomePageActivity
 import com.demo.sweetfish.ui.registerPage.RegisterPageActivity
 import com.example.sweetfish.R
@@ -28,11 +26,11 @@ class LoginPageActivity : AppCompatActivity() {
     }
 
     private fun initComponent() {
-        findViewById<Button>(R.id.login_button).setOnClickListener(::onLoginButtonClick)
-        findViewById<Button>(R.id.register_button).setOnClickListener(::onRegisterButtonClick)
+        findViewById<Button>(R.id.login_button).setOnClickListener { onLoginButtonClick() }
+        findViewById<Button>(R.id.register_button).setOnClickListener { onRegisterButtonClick() }
     }
 
-    private fun onLoginButtonClick(view: View) {
+    private fun onLoginButtonClick() {
         thread {
             if (tryLogin()) {
                 runOnUiThread {
@@ -42,7 +40,7 @@ class LoginPageActivity : AppCompatActivity() {
         }
     }
 
-    private fun onRegisterButtonClick(view: View) {
+    private fun onRegisterButtonClick() {
         startActivity(Intent(this, RegisterPageActivity::class.java))
     }
 
@@ -63,14 +61,14 @@ class LoginPageActivity : AppCompatActivity() {
             return false
         }
         val userDao = AppDatabase.getDatabase().userDao()
-        val userInfo: User? = userDao.findByAccountAndPassword(account, password)
-        if (userInfo == null) {
+        val userId: Long? = userDao.findByAccountAndPassword(account, password)
+        if (userId == null) {
             runOnUiThread {
                 Toast.makeText(this, "账号或密码不正确", Toast.LENGTH_SHORT).show()
             }
             return false
         }
-        SweetFishApplication.loginUser = userInfo
+        SweetFishApplication.setLoginUserId(userId)
         return true
     }
 }
