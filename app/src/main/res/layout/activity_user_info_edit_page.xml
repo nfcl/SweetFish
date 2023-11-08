@@ -48,7 +48,7 @@
                 android:id="@+id/UserInfoEditPageAvatarEditButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
+                android:paddingVertical="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
+                android:paddingVertical="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -107,9 +107,10 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/UserInfoEditPageNameEditButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
+                android:paddingVertical="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -141,9 +142,10 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/UserInfoEditPageSexEditButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
+                android:paddingVertical="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -175,9 +177,10 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/UserInfoEditPagePositionEditButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
+                android:paddingVertical="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -197,6 +200,7 @@
                     android:src="@drawable/arrow_left" />
 
                 <TextView
+                    android:id="@+id/UserInfoEditPagePositionTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -208,9 +212,10 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/UserInfoEditPageDescribleEditButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
+                android:paddingVertical="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -230,6 +235,7 @@
                     android:src="@drawable/arrow_left" />
 
                 <TextView
+                    android:id="@+id/UserInfoEditPageDescribeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -241,9 +247,10 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/UserInfoEditPageHomePageBackgroundEditButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
+                android:paddingVertical="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -263,6 +270,7 @@
                     android:src="@drawable/arrow_left" />
 
                 <com.demo.sweetfish.ui.component.RoundImageView
+                    android:id="@+id/UserInfoEditPageBackgroundImageView"
                     android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"

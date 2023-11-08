@@ -16,10 +16,12 @@
     <color name="colo_white">#fff</color>
     <color name="text_main1">#838895</color>
     <color name="text_main">#49496a</color>
-<!--    <color name="primary">#27E3D0</color>-->
-    <color name="primary">#FEE50F</color>
+    <!--    <color name="primary">#27E3D0</color>-->
+    <color name="primary">#FFFEE50F</color>
     <color name="UserPageTagLayoutItemSelectBackground">#FDE60F</color>
     <color name="UserPageTagLayoutItemUnSelectBackground">#F0F0F0</color>
     <color name="UserPageTagLayoutItemSelectText">#000000</color>
     <color name="UserPageTagLayoutItemUnSelectText">#A2A2A2</color>
+    <color name="UserInfoEditPageSexDialogSelectTextColor">#FF000000</color>
+    <color name="UserInfoEditPageSexDialogUnSelectTextColor">#888888</color>
 </resources>
