@@ -82,13 +82,14 @@ class PersonalUserPageActivity : AppCompatActivity() {
         val navigation = findViewById<LinearLayout>(R.id.UserPageTopNavigationBar)
         val scrollView = findViewById<ScrollView>(R.id.UserPageScrollView)
         scrollView.setOnScrollChangeListener { _, _, newY, _, _ ->
-            val percent: Float = if (newY > 400) {
-                0f
-            } else {
-                1.0f - newY / 400.0f
+            val percent: Float = when {
+                newY < 200 -> 0f
+                newY > 400 -> 1f
+                else -> (newY - 200) / 200.0f
             }
             navigation.alpha = percent
         }
+        navigation.alpha = 0f
         navigation.findViewById<ImageView>(R.id.UserPageNavigationBarReturnButton)
             .setOnClickListener {
                 finish()
