@@ -131,10 +131,13 @@ class HomePageActivity : AppCompatActivity() {
             for (i in 1..num) {
                 result.add(
                     User(
-                        null,
-                        null,
                         i.toString(),
                         i.toString(),
+                        DrawableUtils.getGradientDrawable(
+                            100, 100, intArrayOf(
+                                random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
+                            )
+                        ),
                         DrawableUtils.getGradientDrawable(
                             100, 100, intArrayOf(
                                 random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF

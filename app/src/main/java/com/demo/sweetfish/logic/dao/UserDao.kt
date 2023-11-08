@@ -1,5 +1,6 @@
 package com.demo.sweetfish.logic.dao
 
+import android.graphics.drawable.Drawable
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
@@ -7,6 +8,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.demo.sweetfish.logic.model.User
+import com.demo.sweetfish.logic.model.UserPositionInfo
 
 @Dao
 interface UserDao {
@@ -26,12 +28,26 @@ interface UserDao {
     @Insert
     fun insert(userList: List<User>)
 
-    /**
-     * 更改用户的信息
-     * @param newUser 更新后的用户信息
-     */
     @Update
-    fun update(newUser: User)
+    fun update(user: User)
+
+    @Query("update user set name=:name where id=:id")
+    fun updateName(id: Long, name: String?)
+
+    @Query("update user set sex=:sex where id=:id")
+    fun updateSex(id: Long, sex: Boolean?)
+
+    @Query("update user set avatarPic=:avatar where id=:id")
+    fun updateAvatar(id: Long, avatar: Drawable)
+
+    @Query("update user set position=:position where id=:id")
+    fun updatePosition(id: Long, position: UserPositionInfo)
+
+    @Query("update user set describe=:describe where id=:id")
+    fun updateDescribe(id: Long, describe: String)
+
+    @Query("update user set background=:background where id=:id")
+    fun updateBackground(id: Long, background: Drawable)
 
     /**
      * 查找所有的用户信息

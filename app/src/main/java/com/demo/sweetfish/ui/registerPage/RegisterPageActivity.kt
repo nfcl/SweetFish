@@ -2,7 +2,6 @@ package com.demo.sweetfish.ui.registerPage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -26,10 +25,10 @@ class RegisterPageActivity : AppCompatActivity() {
     }
 
     private fun initComponent() {
-        findViewById<Button>(R.id.RegisterPageRegisterButton).setOnClickListener(::onRegisterButtonClick)
+        findViewById<Button>(R.id.RegisterPageRegisterButton).setOnClickListener { onRegisterButtonClick() }
     }
 
-    private fun onRegisterButtonClick(view: View) {
+    private fun onRegisterButtonClick() {
         val account: String = accountEdit.text.toString()
         val password: String = passwordEdit.text.toString()
         thread {
@@ -42,10 +41,9 @@ class RegisterPageActivity : AppCompatActivity() {
             } else {
                 AppDatabase.getDatabase(SweetFishApplication.context).userDao().insert(
                     User(
-                        "昵称未设置",
-                        null,
                         account,
                         password,
+                        ContextCompat.getDrawable(this, R.mipmap.ic_launcher)!!,
                         ContextCompat.getDrawable(this, R.mipmap.ic_launcher)!!
                     )
                 )

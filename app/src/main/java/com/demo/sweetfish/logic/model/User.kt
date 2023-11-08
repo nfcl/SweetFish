@@ -14,14 +14,19 @@ import androidx.room.PrimaryKey
  * @property account    账号
  * @property password   密码
  * @property avatarPic  头像
+ * @property position   位置
+ * @property describe   个人简介
  */
 @Entity
 data class User(
-    var name: String?,
-    var sex: Boolean?,
     var account: String,
     var password: String,
     var avatarPic: Drawable,
+    var background: Drawable,
+    var name: String? = null,
+    var sex: Boolean? = null,
+    var position: UserPositionInfo? = null,
+    var describe: String? = null,
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
