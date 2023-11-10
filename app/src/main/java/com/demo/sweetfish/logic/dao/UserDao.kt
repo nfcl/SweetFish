@@ -44,7 +44,7 @@ interface UserDao {
     fun updatePosition(id: Long, position: UserPositionInfo)
 
     @Query("update user set describe=:describe where id=:id")
-    fun updateDescribe(id: Long, describe: String)
+    fun updateDescribe(id: Long, describe: String?)
 
     @Query("update user set background=:background where id=:id")
     fun updateBackground(id: Long, background: Drawable)
