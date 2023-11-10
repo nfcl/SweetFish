@@ -51,7 +51,9 @@ class UserInfoEditPageActivity : AppCompatActivity() {
         val backgroundImageView: RoundImageView =
             findViewById(R.id.UserInfoEditPageBackgroundImageView)
         viewModel.userId.observe(this) { id -> idTextView.text = id.toString() }
-        viewModel.userName.observe(this) { name -> nameTextView.text = name }
+        viewModel.userName.observe(this) { name ->
+            nameTextView.text = name ?: "填写专属昵称，更容易被大家记住"
+        }
         viewModel.userSex.observe(this) { sex ->
             sexTextView.text = when (sex) {
                 null -> "选择性别"

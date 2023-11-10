@@ -15,8 +15,8 @@ class UserInfoEditPageActivityViewModel : ViewModel() {
     val userId: LiveData<Long> = Transformations.map(SweetFishApplication.loginUser) {
         it.id
     }
-    val userName: LiveData<String> = Transformations.map(SweetFishApplication.loginUser) {
-        it.name ?: "填写专属昵称，更容易被大家记住"
+    val userName: LiveData<String?> = Transformations.map(SweetFishApplication.loginUser) {
+        it.name
     }
     val userSex: LiveData<Boolean?> = Transformations.map(SweetFishApplication.loginUser) {
         it.sex
@@ -67,8 +67,14 @@ class UserInfoEditPageActivityViewModel : ViewModel() {
 
     @WorkerThread
     fun setDescribe(describe: String) {
+        val result = describe.trimIndent()
         AppDatabase.getDatabase().userDao().updateDescribe(
-            SweetFishApplication.loginUser.value!!.id, describe
+            SweetFishApplication.loginUser.value!!.id,
+            if (result == "") {
+                null
+            } else {
+                result
+            }
         )
         SweetFishApplication.forceRefreshUserInfo()
     }
