@@ -9,8 +9,10 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.demo.sweetfish.SweetFishApplication
+import com.demo.sweetfish.ui.component.RoundImageView
 import com.demo.sweetfish.ui.component.WithInitEventViewPager2Adapter
 import com.demo.sweetfish.ui.userPage.UserPageTagLayout
 import com.demo.sweetfish.ui.userPage.userInfoEdit.UserInfoEditPageActivity
@@ -19,6 +21,13 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class PersonalUserPageActivity : AppCompatActivity() {
+
+    private val viewModel: PersonalUserPageActivityViewModel by lazy {
+        ViewModelProvider(
+            this, PersonalUserPageActivityViewModel.UserPageActivityViewModelFactory()
+        )[PersonalUserPageActivityViewModel::class.java]
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_user_page)
@@ -30,6 +39,45 @@ class PersonalUserPageActivity : AppCompatActivity() {
     private fun initComponent() {
         findViewById<TextView>(R.id.PersonalUserPageEditInfoButton1).setOnClickListener { toEditInfoPage() }
         findViewById<TextView>(R.id.PersonalUserPageEditInfoButton2).setOnClickListener { toEditInfoPage() }
+        val userAvatarImageViewMain =
+            findViewById<RoundImageView>(R.id.UserPageUserAvatarImageViewMain)
+        val userAvatarImageViewTopNavigation =
+            findViewById<RoundImageView>(R.id.UserPageUserAvatarImageViewTopNavigation)
+        val userBackgroundImageView =
+            findViewById<ImageView>(R.id.UserPageUserBackgroundImageView)
+        val userNameTextViewMain = findViewById<TextView>(R.id.UserPageUserNameTextViewMain)
+        val userNameTextViewTopNavigation =
+            findViewById<TextView>(R.id.UserPageUserNameTextViewTopNavigation)
+        val userIdTextView =
+            findViewById<TextView>(R.id.UserPageUserIdTextView)
+        val userDescribeTextView =
+            findViewById<TextView>(R.id.UserPageUserDescribeTextView)
+        val userSexTextView =
+            findViewById<TextView>(R.id.UserPageUserSexTextView)
+        viewModel.userAvatar.observe(this) { avatar ->
+            userAvatarImageViewMain.setImageDrawable(avatar)
+            userAvatarImageViewTopNavigation.setImageDrawable(avatar)
+        }
+        viewModel.userName.observe(this) { name ->
+            userNameTextViewMain.text = name
+            userNameTextViewTopNavigation.text = name
+        }
+        viewModel.userBackground.observe(this) { background ->
+            userBackgroundImageView.setImageDrawable(
+                background
+            )
+        }
+        viewModel.userId.observe(this) { id -> userIdTextView.text = "ID $id" }
+        viewModel.userDescribe.observe(this) { describe ->
+            userDescribeTextView.text = describe ?: "这家伙很神秘，没有写个人简介"
+        }
+        viewModel.userSex.observe(this) { sex ->
+            userSexTextView.text = when (sex) {
+                null -> "秘密"
+                true -> "男生"
+                false -> "女生"
+            }
+        }
     }
 
     private fun toEditInfoPage() {

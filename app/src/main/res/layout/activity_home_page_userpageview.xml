@@ -17,8 +17,10 @@
         android:padding="10dp">
 
         <com.demo.sweetfish.ui.component.RoundImageView
+            android:id="@+id/HomePageUserPageViewUserAvatarImageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"
             app:radius="40dp" />
 

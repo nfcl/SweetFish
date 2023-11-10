@@ -13,6 +13,7 @@ import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.logic.model.Goods
 import com.demo.sweetfish.logic.model.GoodsPreviewImage
 import com.demo.sweetfish.logic.model.User
+import com.demo.sweetfish.ui.component.RoundImageView
 import com.demo.sweetfish.ui.goodsPublishPage.GoodsPublishPageActivity
 import com.demo.sweetfish.ui.searchPage.SearchPageActivity
 import com.demo.sweetfish.ui.tradePage.MyBoughtActivity
@@ -46,7 +47,8 @@ class HomePageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_page)
         initViewPager()
         initNavigation()
-        listTest()
+//        listTest()
+        viewModel.refreshGoodsList()
     }
 
     private fun initNavigation() {
@@ -103,10 +105,13 @@ class HomePageActivity : AppCompatActivity() {
     }
 
     private fun initUserPage(userPageView: View) {
-        userPageView.findViewById<TextView>(R.id.HomePageUserPageViewUserNameText)
-            .setOnClickListener {
-                startActivity(Intent(this, PersonalUserPageActivity::class.java))
-            }
+        val userNameTextView =
+            userPageView.findViewById<TextView>(R.id.HomePageUserPageViewUserNameText)
+        val userAvatarImageView =
+            userPageView.findViewById<RoundImageView>(R.id.HomePageUserPageViewUserAvatarImageView)
+        userNameTextView.setOnClickListener {
+            startActivity(Intent(this, PersonalUserPageActivity::class.java))
+        }
         userPageView.findViewById<LinearLayout>(R.id.HomePageUserPageViewMyPublishButton)
             .setOnClickListener {
                 startActivity(Intent(this, MyPublishActivity::class.java))
@@ -119,6 +124,8 @@ class HomePageActivity : AppCompatActivity() {
             .setOnClickListener {
                 startActivity(Intent(this, MyBoughtActivity::class.java))
             }
+        viewModel.userName.observe(this) { name -> userNameTextView.text = name }
+        viewModel.userAvatar.observe(this) { avatar -> userAvatarImageView.setImageDrawable(avatar) }
     }
 
     /**
