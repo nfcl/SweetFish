@@ -23,7 +23,7 @@ class SweetFishApplication : Application() {
 
         val loginUser: LiveData<User> =
             Transformations.switchMap(mLoginUserId) { userId ->
-                AppDatabase.getDatabase().userDao().findById(userId)
+                AppDatabase.getDatabase().userDao().findByIdReturnLivData(userId)
             }
 
         fun setLoginUserId(id: Long) {

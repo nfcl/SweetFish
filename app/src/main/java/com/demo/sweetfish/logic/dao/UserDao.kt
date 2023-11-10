@@ -61,7 +61,10 @@ interface UserDao {
      * @return 找到的用户信息,如果没找到则返回null
      */
     @Query("select * from User where id=:id")
-    fun findById(id: Long): LiveData<User?>
+    fun findById(id: Long): User?
+
+    @Query("select * from User where id=:id")
+    fun findByIdReturnLivData(id: Long): LiveData<User?>
 
     /**
      * 通过账号和密码查询用户Id(登录)
