@@ -108,6 +108,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/HomePageUserPageViewFollowNumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -121,6 +122,31 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/activity_home_page_userpageview_follow"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/HomePageUserPageViewFanNumTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/activity_home_page_userpageview_fan"
                 android:textSize="16sp" />
 
         </LinearLayout>

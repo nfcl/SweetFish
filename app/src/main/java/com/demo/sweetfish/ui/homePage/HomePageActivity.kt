@@ -124,5 +124,14 @@ class HomePageActivity : AppCompatActivity() {
             }
         viewModel.userName.observe(this) { name -> userNameTextView.text = name }
         viewModel.userAvatar.observe(this) { avatar -> userAvatarImageView.setImageDrawable(avatar) }
+        val userFollowNumTextView =
+            findViewById<TextView>(R.id.HomePageUserPageViewFollowNumTextView)
+        val userFanNumTextView = findViewById<TextView>(R.id.HomePageUserPageViewFanNumTextView)
+        viewModel.userFollowNum.observe(this) { followNum ->
+            userFollowNumTextView.text = followNum.toString()
+        }
+        viewModel.userFanNum.observe(this) { fanNum ->
+            userFanNumTextView.text = fanNum.toString()
+        }
     }
 }
