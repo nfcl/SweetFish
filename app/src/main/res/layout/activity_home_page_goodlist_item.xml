@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     android:orientation="vertical">
 
@@ -13,11 +13,11 @@
         android:orientation="vertical">
 
         <ImageView
-            android:contentDescription="@string/activity_home_page_goodlist_item_goods_preview_description"
             android:id="@+id/GoodsPreviewImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/activity_home_page_goodlist_item_goods_preview_description"
             android:minHeight="200dp"
             android:src="@null" />
 
@@ -51,13 +51,15 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginEnd="5dp"
-            app:radius="8dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:clickable="false"
+            android:src="@drawable/ic_launcher_background"
+            app:radius="8dp" />
 
         <TextView
             android:id="@+id/SellerNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:text="@string/activity_home_page_goodlist_item_seller_name"
             android:textSize="12sp" />
 

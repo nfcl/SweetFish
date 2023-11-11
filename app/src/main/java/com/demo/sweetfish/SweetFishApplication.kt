@@ -21,6 +21,9 @@ class SweetFishApplication : Application() {
 
         private val mLoginUserId: MutableLiveData<Long> = MutableLiveData()
 
+        val loginUserId: LiveData<Long>
+            get() = mLoginUserId
+
         val loginUser: LiveData<User> =
             Transformations.switchMap(mLoginUserId) { userId ->
                 AppDatabase.getDatabase().userDao().findByIdReturnLivData(userId)

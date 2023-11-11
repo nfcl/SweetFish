@@ -49,6 +49,9 @@
             android:name="com.demo.sweetfish.ui.userPage.personal.PersonalUserPageActivity"
             android:exported="false" />
         <activity
+            android:name="com.demo.sweetfish.ui.userPage.others.OthersUserPageActivity"
+            android:exported="false" />
+        <activity
             android:name="com.demo.sweetfish.ui.homePage.HomePageActivity"
             android:exported="false" />
     </application>

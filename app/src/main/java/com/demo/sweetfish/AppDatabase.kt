@@ -41,7 +41,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun registerDao(): RegisterDao
 
-    abstract fun UserFollowDao(): UserFollowDao
+    abstract fun userFollowDao(): UserFollowDao
 
     abstract fun searchHistoryDao(): SearchHistoryDao
 

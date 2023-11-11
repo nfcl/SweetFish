@@ -1,6 +1,7 @@
-package com.demo.sweetfish.ui.userPage.personal
+package com.demo.sweetfish.ui.userPage.others
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,39 +16,42 @@ import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.ui.component.RoundImageView
 import com.demo.sweetfish.ui.component.WithInitEventViewPager2Adapter
 import com.demo.sweetfish.ui.userPage.UserPageTagLayout
-import com.demo.sweetfish.ui.userPage.userInfoEdit.UserInfoEditPageActivity
 import com.example.sweetfish.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlin.concurrent.thread
 
-class PersonalUserPageActivity : AppCompatActivity() {
+class OthersUserPageActivity : AppCompatActivity() {
 
     companion object {
 
-        fun startActivity(appCompatActivity: AppCompatActivity) {
-            val intent = Intent(appCompatActivity, PersonalUserPageActivity::class.java)
+        fun startActivity(appCompatActivity: AppCompatActivity, userId: Long) {
+            val intent = Intent(appCompatActivity, OthersUserPageActivity::class.java)
+            intent.putExtra("UserId", userId)
             appCompatActivity.startActivity(intent)
         }
 
     }
 
-    private val viewModel: PersonalUserPageActivityViewModel by lazy {
+    private val viewModel: OthersUserPageActivityViewModel by lazy {
         ViewModelProvider(
-            this, PersonalUserPageActivityViewModel.PersonalUserPageActivityViewModelFactory()
-        )[PersonalUserPageActivityViewModel::class.java]
+            this, OthersUserPageActivityViewModel.OthersUserPageActivityViewModelFactory()
+        )[OthersUserPageActivityViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_personal_user_page)
+        setContentView(R.layout.activity_others_user_page)
+        val userId = intent.getLongExtra("UserId", -1)
+        thread {
+            viewModel.setUserId(userId)
+        }
         initViewPager()
         initNavigationBar()
         initComponent()
     }
 
     private fun initComponent() {
-        findViewById<TextView>(R.id.PersonalUserPageEditInfoButton1).setOnClickListener { toEditInfoPage() }
-        findViewById<TextView>(R.id.PersonalUserPageEditInfoButton2).setOnClickListener { toEditInfoPage() }
         val userAvatarImageViewMain =
             findViewById<RoundImageView>(R.id.UserPageUserAvatarImageViewMain)
         val userAvatarImageViewTopNavigation =
@@ -91,11 +95,51 @@ class PersonalUserPageActivity : AppCompatActivity() {
         viewModel.userFanNum.observe(this) { fanNum ->
             userFanNumTextView.text = fanNum.toString()
         }
+        fun initFollowButton() {
+            val userFollowButtonMain = findViewById<TextView>(R.id.OthersUserPageFollowButtonMain)
+            val userFollowButtonTopNavigation =
+                findViewById<TextView>(R.id.OthersUserPageFollowButtonTopNavigation)
+            val followedText = getString(R.string.OthersUserPageFollowButton_Followed_Text)
+            val unFollowedText = getString(R.string.OthersUserPageFollowButton_UnFollowed_Text)
+            val followedBackgroundTint =
+                ColorStateList.valueOf(getColor(R.color.OthersUserPageFollowButton_Followed_BackgroundTint))
+            val unFollowedBackgroundTint =
+                ColorStateList.valueOf(getColor(R.color.OthersUserPageFollowButton_UnFollowed_BackgroundTint))
+            val followedTextColor =
+                ColorStateList.valueOf(getColor(R.color.OthersUserPageFollowButton_Followed_TextColor))
+            val unFollowedTextColor =
+                ColorStateList.valueOf(getColor(R.color.OthersUserPageFollowButton_UnFollowed_TextColor))
+            viewModel.isFollowed.observe(this) { isFollowed ->
+                if (isFollowed == 1) {
+                    userFollowButtonMain.text = followedText
+                    userFollowButtonTopNavigation.text = followedText
+                    userFollowButtonMain.backgroundTintList = followedBackgroundTint
+                    userFollowButtonTopNavigation.backgroundTintList = followedBackgroundTint
+                    userFollowButtonMain.setTextColor(followedTextColor)
+                    userFollowButtonTopNavigation.setTextColor(followedTextColor)
+                } else {
+                    userFollowButtonMain.text = unFollowedText
+                    userFollowButtonTopNavigation.text = unFollowedText
+                    userFollowButtonMain.backgroundTintList = unFollowedBackgroundTint
+                    userFollowButtonTopNavigation.backgroundTintList = unFollowedBackgroundTint
+                    userFollowButtonMain.setTextColor(unFollowedTextColor)
+                    userFollowButtonTopNavigation.setTextColor(unFollowedTextColor)
+                }
+            }
+            userFollowButtonMain.setOnClickListener { clickFollowButton() }
+            userFollowButtonTopNavigation.setOnClickListener { clickFollowButton() }
+        }
+        initFollowButton()
     }
 
-    private fun toEditInfoPage() {
-        val newIntent = Intent(this, UserInfoEditPageActivity::class.java)
-        startActivity(newIntent)
+    private fun clickFollowButton() {
+        thread {
+            if (viewModel.isFollowed.value!! == 1) {
+                viewModel.unFollowUser()
+            } else {
+                viewModel.followUser()
+            }
+        }
     }
 
     private fun initViewPager() {

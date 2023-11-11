@@ -23,9 +23,9 @@
                     android:layout_height="150dp">
 
                     <ImageView
+                        android:id="@+id/UserPageUserBackgroundImageView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:alpha="0.5"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_launcher_background" />
 
@@ -41,19 +41,22 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="10dp"
-                        android:gravity="center"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="120dp"
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/UserPageUserFollowNum"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:lines="1"
                                 android:text="0"
+                                android:textColor="@color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -67,15 +70,18 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/UserPageUserFanNum"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:lines="1"
                                 android:text="0"
+                                android:textColor="@color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -89,16 +95,16 @@
                         </LinearLayout>
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/OthersUserPageFollowButtonMain"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
                             android:layout_marginHorizontal="20dp"
-                            android:background="@drawable/activity_home_page_searchbutton_background"
+                            android:background="@drawable/rectangle_radius20dp"
+                            android:backgroundTint="@color/OthersUserPageFollowButton_UnFollowed_BackgroundTint"
                             android:gravity="center"
-                            android:paddingHorizontal="18dp"
-                            android:paddingVertical="5dp"
-                            android:text="@string/activity_personal_user_page_follow"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
+                            android:text="@string/OthersUserPageFollowButton_UnFollowed_Text"
+                            android:textColor="@color/OthersUserPageFollowButton_UnFollowed_TextColor"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -111,31 +117,37 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/UserPageUserNameTextViewMain"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="用户名称"
                             android:textColor="@color/black"
-                            android:textSize="25sp"
+                            android:textSize="24sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/UserPageUserDescribeTextView"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="个人简介"
                             android:textColor="@color/black" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/UserPageUserSexTextView"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:lines="1"
                             android:text="性别"
                             android:textColor="@color/black" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/UserPageUserIdTextView"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:lines="1"
                             android:text="用户ID"
                             android:textColor="@color/black" />
 
@@ -146,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginTop="20dp"
-                        android:src="@drawable/activity_personal_user_page_divideline" />
+                        android:src="@drawable/activity_user_page_divideline" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -155,12 +167,12 @@
                         android:orientation="vertical">
 
                         <com.google.android.material.tabs.TabLayout
-                            android:id="@+id/activity_personal_user_page_userrelations_viewpage_tablayout"
+                            android:id="@+id/activity_user_page_user_relations_viewpage_tablayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
                         <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/activity_personal_user_page_userrelations_viewpage"
+                            android:id="@+id/activity_user_page_user_relations_viewpage"
                             android:layout_width="match_parent"
                             android:layout_height="600dp" />
 
@@ -171,10 +183,12 @@
             </LinearLayout>
 
             <com.demo.sweetfish.ui.component.RoundImageView
+                android:id="@+id/UserPageUserAvatarImageViewMain"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="120dp"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"
                 app:radius="50dp" />
 
@@ -186,7 +200,8 @@
         android:id="@+id/UserPageTopNavigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/UserPageNavigationBarReturnButton"
@@ -199,40 +214,38 @@
             android:src="@drawable/arrow_left" />
 
         <com.demo.sweetfish.ui.component.RoundImageView
+            android:id="@+id/UserPageUserAvatarImageViewTopNavigation"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="10dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:id="@+id/UserPageUserNameTextViewTopNavigation"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:lines="1"
             android:text="用户名称"
             android:textColor="@color/black"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="end|center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/activity_home_page_searchbutton_background"
-                android:gravity="center"
-                android:paddingHorizontal="18dp"
-                android:paddingVertical="5dp"
-                android:text="@string/activity_personal_user_page_follow"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/OthersUserPageFollowButtonTopNavigation"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/rectangle_radius20dp"
+            android:backgroundTint="@color/OthersUserPageFollowButton_Followed_BackgroundTint"
+            android:gravity="center"
+            android:text="@string/OthersUserPageFollowButton_Followed_Text"
+            android:textColor="@color/OthersUserPageFollowButton_Followed_TextColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

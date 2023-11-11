@@ -1,18 +1,25 @@
 package com.demo.sweetfish.ui.loginPage
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.WorkerThread
+import androidx.appcompat.app.AppCompatActivity
 import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
+import com.demo.sweetfish.logic.model.Goods
+import com.demo.sweetfish.logic.model.GoodsPreviewImage
+import com.demo.sweetfish.logic.model.User
 import com.demo.sweetfish.ui.homePage.HomePageActivity
 import com.demo.sweetfish.ui.registerPage.RegisterPageActivity
 import com.example.sweetfish.R
+import utils.DrawableUtils
+import java.time.Instant
 import kotlin.concurrent.thread
+import kotlin.math.abs
+import kotlin.random.Random
 
 class LoginPageActivity : AppCompatActivity() {
 
@@ -23,6 +30,7 @@ class LoginPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_page)
         initComponent()
+//        listTest()
     }
 
     private fun initComponent() {
@@ -70,5 +78,92 @@ class LoginPageActivity : AppCompatActivity() {
         }
         SweetFishApplication.setLoginUserId(userId)
         return true
+    }
+
+    /**
+     * 测试用数据生成
+     */
+    private fun listTest() {
+        fun userInit(num: Int): List<User> {
+            val result = ArrayList<User>()
+            val random = Random(Instant.now().epochSecond)
+            for (i in 1..num) {
+                result.add(
+                    User(
+                        i.toString(), i.toString(), DrawableUtils.getGradientDrawable(
+                            100, 100, intArrayOf(
+                                random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
+                            )
+                        ), DrawableUtils.getGradientDrawable(
+                            100, 100, intArrayOf(
+                                random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
+                            )
+                        )
+                    )
+                )
+            }
+            return result
+        }
+
+        fun goodsInit(num: Int, users: List<User>): List<Goods> {
+            val result = ArrayList<Goods>()
+            val random = Random(Instant.now().epochSecond)
+            for (i in 1..num) {
+                result.add(
+                    Goods(
+                        "商品名称$i",
+                        (((random.nextDouble() * 100).toInt()) % 1000).toDouble() / 100,
+                        users[abs(random.nextInt()) % users.size].id
+                    )
+                )
+            }
+            return result
+        }
+
+        fun goodsPreviewImageInit(goods: List<Goods>): List<GoodsPreviewImage> {
+            val result = ArrayList<GoodsPreviewImage>()
+            val random = Random(Instant.now().epochSecond)
+            for (good in goods) {
+                result.add(
+                    GoodsPreviewImage(
+                        good.id, DrawableUtils.getGradientDrawable(
+                            abs(random.nextInt()) % 100 + 500,
+                            abs(random.nextInt()) % 100 + 500,
+                            intArrayOf(
+                                random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
+                            )
+                        )
+                    )
+                )
+            }
+            return result
+        }
+
+        thread {
+            val userDao = AppDatabase.getDatabase().userDao()
+            val goodsDao = AppDatabase.getDatabase().goodsDao()
+            val goodsPreviewImageDao = AppDatabase.getDatabase().goodsPreviewImageDao()
+
+            userDao.deleteAll()
+            goodsDao.deleteAll()
+
+            val userList = userInit(10)
+
+            for (data in userList) {
+                data.id = userDao.insert(data)
+            }
+
+            val goodsList = goodsInit(20, userList)
+
+            for (data in goodsList) {
+                data.id = goodsDao.insert(data)
+            }
+
+            val goodsPreviewImageList = goodsPreviewImageInit(goodsList)
+
+            for (data in goodsPreviewImageList) {
+                data.id = goodsPreviewImageDao.insert(data)
+            }
+        }
     }
 }

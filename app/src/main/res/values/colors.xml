@@ -24,4 +24,8 @@
     <color name="UserPageTagLayoutItemUnSelectText">#A2A2A2</color>
     <color name="UserInfoEditPageSexDialogSelectTextColor">#FF000000</color>
     <color name="UserInfoEditPageSexDialogUnSelectTextColor">#888888</color>
+    <color name="OthersUserPageFollowButton_Followed_BackgroundTint">#F0F0F0</color>
+    <color name="OthersUserPageFollowButton_Followed_TextColor">#A2A2A2</color>
+    <color name="OthersUserPageFollowButton_UnFollowed_TextColor">#000000</color>
+    <color name="OthersUserPageFollowButton_UnFollowed_BackgroundTint">#FFFEE50F</color>
 </resources>

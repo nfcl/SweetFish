@@ -1,5 +1,6 @@
 package com.demo.sweetfish.logic.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -35,5 +36,20 @@ interface UserFollowDao {
      */
     @Query("select fanId from UserFollow where followId=:followId")
     fun findByFollowId(followId: Long): List<Long>
+
+    @Query("select count(*) from UserFollow where fanId=:fanId")
+    fun getFollowsNum(fanId: Long): Int
+
+    @Query("select count(*) from UserFollow where fanId=:fanId")
+    fun getFollowsNumReturnLiveData(fanId: Long): LiveData<Int>
+
+    @Query("select count(*) from UserFollow where followId=:followId")
+    fun getFansNum(followId: Long): Int
+
+    @Query("select count(*) from UserFollow where followId=:followId")
+    fun getFansNumReturnLiveData(followId: Long): LiveData<Int>
+
+    @Query("select count(*) from UserFollow where followId=:followId and fanId=:fanId")
+    fun isFollowed(followId: Long, fanId: Long): LiveData<Int>
 
 }

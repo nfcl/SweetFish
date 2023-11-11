@@ -9,23 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.demo.sweetfish.AppDatabase
-import com.demo.sweetfish.logic.model.Goods
-import com.demo.sweetfish.logic.model.GoodsPreviewImage
-import com.demo.sweetfish.logic.model.User
+import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.ui.component.RoundImageView
 import com.demo.sweetfish.ui.goodsPublishPage.GoodsPublishPageActivity
 import com.demo.sweetfish.ui.searchPage.SearchPageActivity
 import com.demo.sweetfish.ui.tradePage.MyBoughtActivity
 import com.demo.sweetfish.ui.tradePage.MyPublishActivity
 import com.demo.sweetfish.ui.tradePage.MySoldActivity
+import com.demo.sweetfish.ui.userPage.others.OthersUserPageActivity
 import com.demo.sweetfish.ui.userPage.personal.PersonalUserPageActivity
 import com.example.sweetfish.R
-import utils.DrawableUtils
-import java.time.Instant
-import kotlin.concurrent.thread
-import kotlin.math.abs
-import kotlin.random.Random
 
 class HomePageActivity : AppCompatActivity() {
 
@@ -47,7 +40,6 @@ class HomePageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_page)
         initViewPager()
         initNavigation()
-//        listTest()
         viewModel.refreshGoodsList()
     }
 
@@ -84,9 +76,15 @@ class HomePageActivity : AppCompatActivity() {
             val goodsList: RecyclerView = homePageView.findViewById(R.id.HomePageGoodsList)
             goodsList.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            goodsList.adapter = HomePageGoodsListAdapter(ArrayList())
+            goodsList.adapter = HomePageGoodsListAdapter(ArrayList(), {}, { userId ->
+                if (userId == SweetFishApplication.loginUserId.value!!) {
+                    PersonalUserPageActivity.startActivity(this)
+                } else {
+                    OthersUserPageActivity.startActivity(this, userId)
+                }
+            })
             viewModel.goodsList.observe(this) { listData ->
-                goodsList.adapter = HomePageGoodsListAdapter(listData)
+                (goodsList.adapter as HomePageGoodsListAdapter).setListData(listData)
             }
         }
 
@@ -126,97 +124,5 @@ class HomePageActivity : AppCompatActivity() {
             }
         viewModel.userName.observe(this) { name -> userNameTextView.text = name }
         viewModel.userAvatar.observe(this) { avatar -> userAvatarImageView.setImageDrawable(avatar) }
-    }
-
-    /**
-     * 测试用数据生成
-     */
-    private fun listTest() {
-        fun userInit(num: Int): List<User> {
-            val result = ArrayList<User>()
-            val random = Random(Instant.now().epochSecond)
-            for (i in 1..num) {
-                result.add(
-                    User(
-                        i.toString(),
-                        i.toString(),
-                        DrawableUtils.getGradientDrawable(
-                            100, 100, intArrayOf(
-                                random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
-                            )
-                        ),
-                        DrawableUtils.getGradientDrawable(
-                            100, 100, intArrayOf(
-                                random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
-                            )
-                        )
-                    )
-                )
-            }
-            return result
-        }
-
-        fun goodsInit(num: Int, users: List<User>): List<Goods> {
-            val result = ArrayList<Goods>()
-            val random = Random(Instant.now().epochSecond)
-            for (i in 1..num) {
-                result.add(
-                    Goods(
-                        "商品名称$i",
-                        (((random.nextDouble() * 100).toInt()) % 1000).toDouble() / 100,
-                        users[abs(random.nextInt()) % users.size].id
-                    )
-                )
-            }
-            return result
-        }
-
-        fun goodsPreviewImageInit(goods: List<Goods>): List<GoodsPreviewImage> {
-            val result = ArrayList<GoodsPreviewImage>()
-            val random = Random(Instant.now().epochSecond)
-            for (good in goods) {
-                result.add(
-                    GoodsPreviewImage(
-                        good.id,
-                        DrawableUtils.getGradientDrawable(
-                            abs(random.nextInt()) % 100 + 500,
-                            abs(random.nextInt()) % 100 + 500,
-                            intArrayOf(
-                                random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
-                            )
-                        )
-                    )
-                )
-            }
-            return result
-        }
-
-        thread {
-            val userDao = AppDatabase.getDatabase().userDao()
-            val goodsDao = AppDatabase.getDatabase().goodsDao()
-            val goodsPreviewImageDao = AppDatabase.getDatabase().goodsPreviewImageDao()
-
-            userDao.deleteAll()
-            goodsDao.deleteAll()
-
-            val userList = userInit(10)
-
-            for (data in userList) {
-                data.id = userDao.insert(data)
-            }
-
-            val goodsList = goodsInit(20, userList)
-
-            for (data in goodsList) {
-                data.id = goodsDao.insert(data)
-            }
-
-            val goodsPreviewImageList = goodsPreviewImageInit(goodsList)
-
-            for (data in goodsPreviewImageList) {
-                data.id = goodsPreviewImageDao.insert(data)
-            }
-            viewModel.refreshGoodsList()
-        }
     }
 }

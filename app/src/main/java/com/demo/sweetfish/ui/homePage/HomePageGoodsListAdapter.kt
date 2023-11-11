@@ -12,9 +12,9 @@ import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
 import com.example.sweetfish.R
 
 class HomePageGoodsListAdapter(
-    private val goodsList: List<GoodsWithSellerInfo>,
-    private var onGoodsClickEvent: (goods: GoodsWithSellerInfo) -> Unit = {},
-    private var onSellerClickEvent: (sellerId: Long) -> Unit = {},
+    private var mGoodsList: List<GoodsWithSellerInfo>,
+    private var onGoodsClickEvent: (goods: GoodsWithSellerInfo) -> Unit,
+    private var onSellerClickEvent: (sellerId: Long) -> Unit,
 ) :
     Adapter<HomePageGoodsListAdapter.ViewHolder>() {
 
@@ -33,28 +33,29 @@ class HomePageGoodsListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val goods = goodsList[position]
+        val goods = mGoodsList[position]
         holder.previewImage.setImageDrawable(goods.goodsPreviewPic)
         holder.nameText.text = goods.goodsTitle
         holder.priceText.text = "￥${goods.goodsPrice}"
         holder.sellerAvatarImage.setImageDrawable(goods.sellerAvatarPic)
         holder.sellerNameText.text = goods.sellerName ?: goods.sellerId.toString()
         holder.itemView.findViewById<LinearLayout>(R.id.GoodsInfoButton)
-            .setOnClickListener { onGoodsClickEvent(goods) }
+            .setOnClickListener {
+                onGoodsClickEvent(goods)
+            }
         holder.itemView.findViewById<LinearLayout>(R.id.SellerInfoButton)
-            .setOnClickListener { onSellerClickEvent(goods.sellerId) }
+            .setOnClickListener {
+                onSellerClickEvent(goods.sellerId)
+            }
     }
 
     override fun getItemCount(): Int {
-        return goodsList.size
+        return mGoodsList.size
     }
 
-    fun setOnGoodsClickEvent(event: (goods: GoodsWithSellerInfo) -> Unit) {
-        onGoodsClickEvent = event
-    }
-
-    fun setOnSellerClickEvent(event: (sellerId: Long) -> Unit) {
-        onSellerClickEvent = event
+    fun setListData(goodsList: List<GoodsWithSellerInfo>) {
+        mGoodsList = goodsList
+        notifyItemRangeChanged(0, mGoodsList.size)
     }
 
 }
