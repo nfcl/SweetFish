@@ -113,6 +113,7 @@ class LoginPageActivity : AppCompatActivity() {
                     Goods(
                         "商品名称$i",
                         (((random.nextDouble() * 100).toInt()) % 1000).toDouble() / 100,
+                        "",
                         users[abs(random.nextInt()) % users.size].id
                     )
                 )

@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 data class Goods(
     var title: String,
     var price: Double,
-    var sellerId: Long
+    var goodsinfo: String,
+    var sellerId: Long,
 ) {
 
     @PrimaryKey(autoGenerate = true)
