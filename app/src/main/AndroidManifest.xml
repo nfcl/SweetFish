@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:name="com.demo.sweetfish.SweetFishApplication"
@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SweetFish"
         tools:replace="android:label,android:theme">
+        <activity
+            android:name="com.demo.sweetfish.ui.userPage.userFanListPage.UserFanListPageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.demo.sweetfish.ui.userPage.userFollowListPage.UserFollowListPageActivity"
+            android:exported="false" />
         <activity
             android:name="com.demo.sweetfish.ui.userPage.userInfoEdit.UserInfoEditPageActivity"
             android:exported="false" />

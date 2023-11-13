@@ -15,6 +15,8 @@ import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.ui.component.RoundImageView
 import com.demo.sweetfish.ui.component.WithInitEventViewPager2Adapter
 import com.demo.sweetfish.ui.userPage.UserPageTagLayout
+import com.demo.sweetfish.ui.userPage.userFanListPage.UserFanListPageActivity
+import com.demo.sweetfish.ui.userPage.userFollowListPage.UserFollowListPageActivity
 import com.demo.sweetfish.ui.userPage.userInfoEdit.UserInfoEditPageActivity
 import com.example.sweetfish.R
 import com.google.android.material.tabs.TabLayout
@@ -90,6 +92,14 @@ class PersonalUserPageActivity : AppCompatActivity() {
         }
         viewModel.userFanNum.observe(this) { fanNum ->
             userFanNumTextView.text = fanNum.toString()
+        }
+        val followListButton = findViewById<LinearLayout>(R.id.PersonalUserPageFollowListButton)
+        followListButton.setOnClickListener {
+            UserFollowListPageActivity.startActivity(this, viewModel.userId.value!!)
+        }
+        val fanListButton = findViewById<LinearLayout>(R.id.PersonalUserPageFanListButton)
+        fanListButton.setOnClickListener {
+            UserFanListPageActivity.startActivity(this, viewModel.userId.value!!)
         }
     }
 

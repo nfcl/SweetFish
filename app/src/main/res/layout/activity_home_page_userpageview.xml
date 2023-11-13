@@ -102,6 +102,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/HomePageUserPageViewFollowListButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -111,6 +112,7 @@
                 android:id="@+id/HomePageUserPageViewFollowNumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/black"
@@ -120,6 +122,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:gravity="center"
                 android:text="@string/activity_home_page_userpageview_follow"
                 android:textSize="16sp" />
@@ -127,6 +130,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/HomePageUserPageViewFanListButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -136,6 +140,7 @@
                 android:id="@+id/HomePageUserPageViewFanNumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/black"
@@ -145,6 +150,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:gravity="center"
                 android:text="@string/activity_home_page_userpageview_fan"
                 android:textSize="16sp" />

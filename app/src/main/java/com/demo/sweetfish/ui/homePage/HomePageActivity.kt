@@ -18,6 +18,8 @@ import com.demo.sweetfish.ui.tradePage.MyPublishActivity
 import com.demo.sweetfish.ui.tradePage.MySoldActivity
 import com.demo.sweetfish.ui.userPage.others.OthersUserPageActivity
 import com.demo.sweetfish.ui.userPage.personal.PersonalUserPageActivity
+import com.demo.sweetfish.ui.userPage.userFanListPage.UserFanListPageActivity
+import com.demo.sweetfish.ui.userPage.userFollowListPage.UserFollowListPageActivity
 import com.example.sweetfish.R
 
 class HomePageActivity : AppCompatActivity() {
@@ -132,6 +134,19 @@ class HomePageActivity : AppCompatActivity() {
         }
         viewModel.userFanNum.observe(this) { fanNum ->
             userFanNumTextView.text = fanNum.toString()
+        }
+        val userFollowListButton =
+            findViewById<LinearLayout>(R.id.HomePageUserPageViewFollowListButton)
+        userFollowListButton.setOnClickListener {
+            UserFollowListPageActivity.startActivity(
+                this, SweetFishApplication.loginUserId.value!!
+            )
+        }
+        val userFanListButton = findViewById<LinearLayout>(R.id.HomePageUserPageViewFanListButton)
+        userFanListButton.setOnClickListener {
+            UserFanListPageActivity.startActivity(
+                this, SweetFishApplication.loginUserId.value!!
+            )
         }
     }
 }

@@ -45,6 +45,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
+                            android:id="@+id/PersonalUserPageFollowListButton"
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="120dp"
@@ -54,6 +55,7 @@
                                 android:id="@+id/UserPageUserFollowNum"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:clickable="false"
                                 android:lines="1"
                                 android:text="0"
                                 android:textColor="@color/black"
@@ -63,6 +65,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:clickable="false"
                                 android:text="关注"
                                 android:textColor="#AAAAAA"
                                 android:textStyle="bold" />
@@ -70,6 +73,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/PersonalUserPageFanListButton"
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
@@ -79,6 +83,7 @@
                                 android:id="@+id/UserPageUserFanNum"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:clickable="false"
                                 android:lines="1"
                                 android:text="0"
                                 android:textColor="@color/black"
@@ -88,6 +93,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:clickable="false"
                                 android:text="粉丝"
                                 android:textColor="#AAAAAA"
                                 android:textStyle="bold" />
