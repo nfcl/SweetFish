@@ -13,6 +13,7 @@ import com.demo.sweetfish.logic.dao.RegisterDao
 import com.demo.sweetfish.logic.dao.SearchHistoryDao
 import com.demo.sweetfish.logic.dao.UserDao
 import com.demo.sweetfish.logic.dao.UserFollowDao
+import com.demo.sweetfish.logic.dao.UserWithFollowInfoDao
 import com.demo.sweetfish.logic.model.Goods
 import com.demo.sweetfish.logic.model.GoodsPreviewImage
 import com.demo.sweetfish.logic.model.SearchHistory
@@ -46,6 +47,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun searchHistoryDao(): SearchHistoryDao
 
     abstract fun goodsPreviewImageDao(): GoodsPreviewImageDao
+
+    abstract fun userWithFollowInfoDao(): UserWithFollowInfoDao
 
     companion object {
 
