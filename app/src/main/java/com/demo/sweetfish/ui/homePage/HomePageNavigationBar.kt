@@ -24,7 +24,7 @@ class HomePageNavigationBar(context: Context, attrs: AttributeSet) : LinearLayou
     init {
         LayoutInflater.from(context).inflate(R.layout.activity_home_page_navigationbar, this)
         homePageButton = findViewById(R.id.HomePageButton)
-        goodsPublishPageButton = findViewById(R.id.GoodsPublishPageButton)
+        goodsPublishPageButton = findViewById(R.id.ToGoodsPublishPageButton)
         userPageButton = findViewById(R.id.UserPageButton)
     }
 

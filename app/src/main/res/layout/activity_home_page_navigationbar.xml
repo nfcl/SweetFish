@@ -37,7 +37,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/GoodsPublishPageButton"
+            android:id="@+id/ToGoodsPublishPageButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="8dp"
