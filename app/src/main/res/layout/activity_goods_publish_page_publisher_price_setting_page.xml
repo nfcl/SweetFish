@@ -20,7 +20,7 @@ android:layout_height="match_parent">
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/GoodsPriceSettingPagePriceEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
@@ -71,34 +71,34 @@ android:layout_height="match_parent">
                     android:layout_weight="1" >
 
                     <TextView
-                        android:id="@+id/btn_price_1"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarNumber1Button"
                         android:layout_width="68.33dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:text="1"
                         android:gravity="center"
                         />
                     <TextView
-                        android:id="@+id/btn_price_2"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarNumber2Button"
                         android:layout_width="68.33dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:text="2"
                         android:gravity="center"
                         />
 
 
                     <TextView
-                        android:id="@+id/btn_price_3"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarNumber3Button"
                         android:layout_width="68.33dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:text="3"
                         android:gravity="center"
                         />
@@ -115,29 +115,29 @@ android:layout_height="match_parent">
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:gravity="center"
-                        android:id="@+id/btn_price_4"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarNumber4Button"
                         android:text="4" />
 
                     <TextView
-                        android:id="@+id/btn_price_5"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarNumber5Button"
                         android:layout_width="68.33dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:gravity="center"
                         android:text="5" />
 
                     <TextView
-                        android:id="@+id/btn_price_6"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarNumber6Button"
                         android:layout_width="68.33dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:text="6"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:gravity="center"/>
 
                 </LinearLayout>
@@ -149,32 +149,32 @@ android:layout_height="match_parent">
 
 
                     <TextView
-                        android:id="@+id/btn_price_7"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarNumber7Button"
                         android:layout_width="68.33dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:gravity="center"
                         android:text="7" />
 
                     <TextView
-                        android:id="@+id/btn_price_8"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarNumber8Button"
                         android:layout_width="68.33dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:gravity="center"
                         android:text="8" />
 
                     <TextView
-                        android:id="@+id/btn_price_9"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarNumber9Button"
                         android:layout_width="68.33dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:gravity="center"
                         android:text="9" />
 
@@ -187,21 +187,21 @@ android:layout_height="match_parent">
 
 
                     <TextView
-                        android:id="@+id/btn_price_0"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarNumber0Button"
                         android:layout_width="180dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:gravity="center"
                         android:text="0" />
 
                     <TextView
-                        android:id="@+id/btn_price_point"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarPointButton"
                         android:layout_width="68.33dp"
                         android:layout_height="52dp"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="." />
@@ -227,11 +227,11 @@ android:layout_height="match_parent">
                         android:layout_width="match_parent"
                         android:layout_height="51.6dp"
                         android:gravity="center"
-                        android:id="@+id/btn_price_del"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarBackSpaceButton"
                         >
                         <TextView
                             android:id="@+id/btn_price_clear"
-                            android:textSize="25dp"
+                            android:textSize="25sp"
                             android:textColor="@android:color/black"
                             android:text="删除"
                             android:layout_width="wrap_content"
@@ -241,11 +241,11 @@ android:layout_height="match_parent">
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/btn_price_enter"
+                        android:id="@+id/GoodsPriceSettingPageKeyBoarEnterButton"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColor="@android:color/black"
-                        android:textSize="25dp"
+                        android:textSize="25sp"
                         android:gravity="center"
                         android:text="确定" />
                 </LinearLayout>

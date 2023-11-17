@@ -14,7 +14,7 @@
         android:theme="@style/Theme.SweetFish"
         tools:replace="android:label,android:theme">
         <activity
-            android:name="com.demo.sweetfish.ui.goodsPublishPage.GoodsPriceSetting"
+            android:name="com.demo.sweetfish.ui.goodsPublishPage.GoodsPriceSettingPageActivity"
             android:exported="false" />
         <activity
             android:name="com.demo.sweetfish.ui.userPage.userFanListPage.UserFanListPageActivity"

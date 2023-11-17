@@ -38,7 +38,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/GoodsPublishPageButton"
+            android:id="@+id/GoodsPublishPagePublishButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -67,7 +67,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <EditText
-            android:id="@+id/GoodsTitle"
+            android:id="@+id/GoodsPublishPageGoodsTitleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -78,7 +78,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/GoodsInfo"
+            android:id="@+id/GoodsPublishPageGoodsInfoEditText"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="@null"
@@ -156,7 +156,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/settingPrice"
+                android:id="@+id/GoodsPublishPagePriceEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_right_24dp"

@@ -15,25 +15,20 @@ import kotlin.concurrent.thread
 
 class GoodsPublishPageActivity : AppCompatActivity() {
 
-    private val titleEdit: EditText by lazy { findViewById(R.id.GoodsTitle) }
-    private val infoEdit: EditText by lazy { findViewById(R.id.GoodsInfo) }
-    private lateinit var priceEdit: TextView
+    private val titleEdit: EditText by lazy { findViewById(R.id.GoodsPublishPageGoodsTitleEditText) }
+    private val infoEdit: EditText by lazy { findViewById(R.id.GoodsPublishPageGoodsInfoEditText) }
+    private val priceEdit: TextView by lazy { findViewById(R.id.GoodsPublishPagePriceEditText) }
     private var goodsPriceNum: Double = 0.0
 
-    val launcher = registerForActivityResult(
+    private val launcher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ){result->
-        if(result.resultCode == RESULT_OK){
-            val returnData = result.data?.getStringExtra("GoodsPrice")
-            priceEdit = findViewById(R.id.settingPrice)
-            priceEdit.setText("￥" + returnData)
-            priceEdit.setTextSize(16f)
-            priceEdit.setTextColor(getColor(R.color.colo_money))
-            goodsPriceNum = returnData?.toDoubleOrNull() ?: 0.0
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val returnData = result.data?.getDoubleExtra("GoodsPrice", 0.00)!!
+            priceEdit.text = "￥$returnData"
+            goodsPriceNum = returnData
         }
-
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,30 +36,28 @@ class GoodsPublishPageActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.GoodsPublishPageCancelButton).setOnClickListener {
             finish()
         }
-        findViewById<TextView>(R.id.settingPrice).setOnClickListener{
-            launcher.launch(Intent(this, GoodsPriceSetting::class.java))
+        findViewById<TextView>(R.id.GoodsPublishPagePriceEditText).setOnClickListener {
+            launcher.launch(Intent(this, GoodsPriceSettingPageActivity::class.java))
         }
         initComponent()
     }
 
     private fun initComponent() {
-        findViewById<TextView>(R.id.GoodsPublishPageButton).setOnClickListener { onGoodsPublishPageButton() }
+        findViewById<TextView>(R.id.GoodsPublishPagePublishButton).setOnClickListener {
+            onPublishButtonClick()
+        }
     }
 
-    private fun onGoodsPublishPageButton() {
+    private fun onPublishButtonClick() {
         val title: String = titleEdit.text.toString()
         val info: String = infoEdit.text.toString()
 
-        thread {
-            if (title.isEmpty()) {
-                runOnUiThread {
-                    Toast.makeText(this, "请输入标题", Toast.LENGTH_SHORT).show()
-                }
-            } else if (info.isEmpty()) {
-                runOnUiThread {
-                    Toast.makeText(this, "请输入有关商品的描述", Toast.LENGTH_SHORT).show()
-                }
-            } else {
+        if (title.isEmpty()) {
+            Toast.makeText(this, "请输入标题", Toast.LENGTH_SHORT).show()
+        } else if (info.isEmpty()) {
+            Toast.makeText(this, "请输入有关商品的描述", Toast.LENGTH_SHORT).show()
+        } else {
+            thread {
                 AppDatabase.getDatabase(SweetFishApplication.context).goodsDao().insert(
                     Goods(
                         title, goodsPriceNum, info, SweetFishApplication.loginUserId.value!!
@@ -77,5 +70,4 @@ class GoodsPublishPageActivity : AppCompatActivity() {
             }
         }
     }
-
 }
