@@ -1,9 +1,11 @@
 package com.demo.sweetfish.ui.goodsPublishPage
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
@@ -15,13 +17,32 @@ class GoodsPublishPageActivity : AppCompatActivity() {
 
     private val titleEdit: EditText by lazy { findViewById(R.id.GoodsTitle) }
     private val infoEdit: EditText by lazy { findViewById(R.id.GoodsInfo) }
+    private lateinit var priceEdit: TextView
+    private var goodsPriceNum: Double = 0.0
+
+    val launcher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){result->
+        if(result.resultCode == RESULT_OK){
+            val returnData = result.data?.getStringExtra("GoodsPrice")
+            priceEdit = findViewById(R.id.settingPrice)
+            priceEdit.setText("￥" + returnData)
+            priceEdit.setTextSize(16f)
+            priceEdit.setTextColor(getColor(R.color.colo_money))
+            goodsPriceNum = returnData?.toDoubleOrNull() ?: 0.0
+        }
+
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_goods_publish_page)
-
         findViewById<TextView>(R.id.GoodsPublishPageCancelButton).setOnClickListener {
             finish()
+        }
+        findViewById<TextView>(R.id.settingPrice).setOnClickListener{
+            launcher.launch(Intent(this, GoodsPriceSetting::class.java))
         }
         initComponent()
     }
@@ -46,7 +67,7 @@ class GoodsPublishPageActivity : AppCompatActivity() {
             } else {
                 AppDatabase.getDatabase(SweetFishApplication.context).goodsDao().insert(
                     Goods(
-                        title, 10.0, info, SweetFishApplication.loginUserId.value!!
+                        title, goodsPriceNum, info, SweetFishApplication.loginUserId.value!!
                     )
                 )
                 runOnUiThread {
@@ -56,4 +77,5 @@ class GoodsPublishPageActivity : AppCompatActivity() {
             }
         }
     }
+
 }
