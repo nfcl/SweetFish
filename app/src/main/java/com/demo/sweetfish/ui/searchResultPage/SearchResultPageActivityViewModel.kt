@@ -2,27 +2,28 @@ package com.demo.sweetfish.ui.searchResultPage
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.demo.sweetfish.AppDatabase
-import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
-import kotlin.concurrent.thread
+import com.demo.sweetfish.logic.model.User
 
 class SearchResultPageActivityViewModel : ViewModel() {
 
-    private val _goodsList: MutableLiveData<List<GoodsWithSellerInfo>> =
-        MutableLiveData<List<GoodsWithSellerInfo>>()
+    private val searchContent: MutableLiveData<String> = MutableLiveData()
 
-    val goodsList: LiveData<List<GoodsWithSellerInfo>>
-        get() = _goodsList
-
-    fun refreshGoodsList(searchContent: String) {
-        thread {
-            val goodsWithSellerInfoDao =
-                AppDatabase.getDatabase(SweetFishApplication.context).goodsWithSellerInfoDao()
-            _goodsList.postValue(goodsWithSellerInfoDao.findLikeGoodsName(searchContent))
+    val goodsList: LiveData<List<GoodsWithSellerInfo>> =
+        Transformations.switchMap(searchContent) {
+            AppDatabase.getDatabase().goodsWithSellerInfoDao().findLikeGoodsNameReturnLiveData(it)
         }
+
+    val userList: LiveData<List<User>> = Transformations.switchMap(searchContent) {
+        AppDatabase.getDatabase().userDao().findLikeNameReturnLiveData(it)
+    }
+
+    fun setSearchContent(content: String) {
+        searchContent.value = content
     }
 
     class SearchResultPageActivityViewModelFactory() : ViewModelProvider.Factory {

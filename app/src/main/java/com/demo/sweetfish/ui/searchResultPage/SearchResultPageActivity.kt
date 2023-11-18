@@ -88,7 +88,7 @@ class SearchResultPageActivity : AppCompatActivity() {
         val searchContent = intent.getStringExtra("SearchContent") ?: ""
         val searchBarTextView: TextView = findViewById(R.id.SearchContent_EditText)
         searchBarTextView.text = searchContent
-        viewModel.refreshGoodsList(searchContent)
+        viewModel.setSearchContent(searchContent)
     }
 
 }
