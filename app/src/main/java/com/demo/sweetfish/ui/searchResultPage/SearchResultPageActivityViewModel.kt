@@ -7,20 +7,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
-import com.demo.sweetfish.logic.model.User
+import com.demo.sweetfish.logic.model.SearchResultPageUserInfo
 
 class SearchResultPageActivityViewModel : ViewModel() {
 
     private val searchContent: MutableLiveData<String> = MutableLiveData()
 
-    val goodsList: LiveData<List<GoodsWithSellerInfo>> =
-        Transformations.switchMap(searchContent) {
-            AppDatabase.getDatabase().goodsWithSellerInfoDao().findLikeGoodsNameReturnLiveData(it)
-        }
-
-    val userList: LiveData<List<User>> = Transformations.switchMap(searchContent) {
-        AppDatabase.getDatabase().userDao().findLikeNameReturnLiveData(it)
+    val goodsList: LiveData<List<GoodsWithSellerInfo>> = Transformations.switchMap(searchContent) {
+        AppDatabase.getDatabase().goodsWithSellerInfoDao().findLikeGoodsNameReturnLiveData(it)
     }
+
+    val userList: LiveData<List<SearchResultPageUserInfo>> =
+        Transformations.switchMap(searchContent) {
+            AppDatabase.getDatabase().searchResultPageUserInfoDao()
+                .findLikeUserNameReturnLiveData(it)
+        }
 
     fun setSearchContent(content: String) {
         searchContent.value = content

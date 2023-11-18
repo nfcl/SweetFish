@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -80,8 +81,19 @@ class SearchResultPageActivity : AppCompatActivity() {
         }
     }
 
-    private fun initUserListView(goodsListView: View) {
-
+    private fun initUserListView(userListView: View) {
+        val userList: RecyclerView = userListView.findViewById(R.id.SearchResultPageUserList)
+        userList.layoutManager = LinearLayoutManager(this)
+        userList.adapter = SearchResultPageUserListAdapter(listOf()) { userId ->
+            if (userId == SweetFishApplication.loginUserId.value!!) {
+                PersonalUserPageActivity.startActivity(this)
+            } else {
+                OthersUserPageActivity.startActivity(this, userId)
+            }
+        }
+        viewModel.userList.observe(this) { listData ->
+            (userList.adapter as SearchResultPageUserListAdapter).setListData(listData)
+        }
     }
 
     private fun initViewModel() {
