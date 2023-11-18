@@ -3,6 +3,7 @@ package com.demo.sweetfish.ui.searchResultPage
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -36,15 +37,23 @@ class SearchResultPageActivity : AppCompatActivity() {
     private fun initViewPager() {
         val viewPager = findViewById<ViewPager2>(R.id.SearchResultPageViewPager2)
         val tabLayout = findViewById<TabLayout>(R.id.SearchResultPageViewPager2TabLayout)
+        val goodsListView = LayoutInflater.from(SweetFishApplication.context).inflate(
+            R.layout.activity_search_result_page_goodslist_view, null
+        )
+        goodsListView.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT
+        )
+        val userListView = LayoutInflater.from(SweetFishApplication.context).inflate(
+            R.layout.activity_search_result_page_userlist_view, null
+        )
+        userListView.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT
+        )
         val views: List<Pair<View, (View) -> Unit>> = listOf(
             Pair(
-                LayoutInflater.from(SweetFishApplication.context).inflate(
-                    R.layout.activity_search_result_page_goodslist_view, null
-                ), ::initGoodsListView
+                goodsListView, ::initGoodsListView
             ), Pair(
-                LayoutInflater.from(SweetFishApplication.context).inflate(
-                    R.layout.activity_search_result_page_userlist_view, null
-                ), ::initUserListView
+                userListView, ::initUserListView
             )
         )
         viewPager.adapter = WithInitEventViewPager2Adapter(views)
@@ -59,14 +68,13 @@ class SearchResultPageActivity : AppCompatActivity() {
     private fun initGoodsListView(goodsListView: View) {
         val goodsList: RecyclerView = goodsListView.findViewById(R.id.GoodsListView_RecyclerView)
         goodsList.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        goodsList.adapter =
-            HomePageGoodsListAdapter(ArrayList(), {}, { userId ->
-                if (userId == SweetFishApplication.loginUserId.value!!) {
-                    PersonalUserPageActivity.startActivity(this)
-                } else {
-                    OthersUserPageActivity.startActivity(this, userId)
-                }
-            })
+        goodsList.adapter = HomePageGoodsListAdapter(ArrayList(), {}, { userId ->
+            if (userId == SweetFishApplication.loginUserId.value!!) {
+                PersonalUserPageActivity.startActivity(this)
+            } else {
+                OthersUserPageActivity.startActivity(this, userId)
+            }
+        })
         viewModel.goodsList.observe(this) { listData ->
             (goodsList.adapter as HomePageGoodsListAdapter).setListData(listData)
         }
