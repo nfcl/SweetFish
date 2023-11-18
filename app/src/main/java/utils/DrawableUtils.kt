@@ -5,11 +5,20 @@ import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import java.io.ByteArrayOutputStream
+import java.time.Instant
+import kotlin.random.Random
 
 abstract class DrawableUtils {
 
     companion object {
-        fun getGradientDrawable(sizeX: Int, sizeY: Int, colors: IntArray): Drawable {
+        fun getGradientDrawable(
+            sizeX: Int = 100,
+            sizeY: Int = 100,
+            colors: IntArray = intArrayOf(
+                Random(Instant.now().epochSecond).nextInt() % 0xFFFFFF,
+                Random(Instant.now().epochSecond).nextInt() % 0xFFFFFF
+            ),
+        ): Drawable {
             with(GradientDrawable()) {
                 setSize(sizeX, sizeY)
                 orientation = GradientDrawable.Orientation.TL_BR
