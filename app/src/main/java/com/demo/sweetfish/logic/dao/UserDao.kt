@@ -77,8 +77,11 @@ interface UserDao {
      * 通过name查找拥有相似名称的用户信息
      * @return 返回一个包含拥有相似名称的用户信息列表
      */
-    @Query("select * from user where name like :name")
+    @Query("select * from user where name like '%'||:name||'%'")
     fun findLikeName(name: String): List<User>
+
+    @Query("select * from user where name like '%'||:name||'%'")
+    fun findLikeNameReturnLiveData(name: String): LiveData<List<User>>
 
     /**
      * 删除用户
