@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.demo.sweetfish.logic.convert.Converters
+import com.demo.sweetfish.logic.dao.GoodsBuyDao
+import com.demo.sweetfish.logic.dao.GoodsBuyInfoDao
 import com.demo.sweetfish.logic.dao.GoodsDao
 import com.demo.sweetfish.logic.dao.GoodsPreviewImageDao
 import com.demo.sweetfish.logic.dao.GoodsWithSellerInfoDao
@@ -31,7 +33,7 @@ import com.demo.sweetfish.logic.model.UserFollow
  */
 @Database(
     version = 1,
-    entities = [User::class, Goods::class, UserFollow::class, SearchHistory::class, GoodsPreviewImage::class]
+    entities = [User::class, Goods::class, UserFollow::class, SearchHistory::class, GoodsPreviewImage::class, GoodsBuy::class]
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -51,6 +53,10 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun goodsPreviewImageDao(): GoodsPreviewImageDao
 
     abstract fun userWithFollowInfoDao(): UserWithFollowInfoDao
+
+    abstract fun goodsBuyDao(): GoodsBuyDao
+
+    abstract fun goodsBuyInfoDao(): GoodsBuyInfoDao
 
     abstract fun searchResultPageUserInfoDao(): SearchResultPageUserInfoDao
 
