@@ -60,7 +60,7 @@ class GoodsPublishPageActivity : AppCompatActivity() {
             thread {
                 AppDatabase.getDatabase(SweetFishApplication.context).goodsDao().insert(
                     Goods(
-                        title, goodsPriceNum, info, SweetFishApplication.loginUserId.value!!
+                        title, goodsPriceNum, info, locationString,SweetFishApplication.loginUserId.value!!
                     )
                 )
                 runOnUiThread {
