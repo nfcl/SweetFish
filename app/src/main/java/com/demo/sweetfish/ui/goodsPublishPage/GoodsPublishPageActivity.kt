@@ -2,6 +2,7 @@ package com.demo.sweetfish.ui.goodsPublishPage
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.model.Goods
 import com.example.sweetfish.R
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlin.concurrent.thread
 
 class GoodsPublishPageActivity : AppCompatActivity() {
@@ -19,6 +21,8 @@ class GoodsPublishPageActivity : AppCompatActivity() {
     private val infoEdit: EditText by lazy { findViewById(R.id.GoodsPublishPageGoodsInfoEditText) }
     private val priceEdit: TextView by lazy { findViewById(R.id.GoodsPublishPagePriceEditText) }
     private var goodsPriceNum: Double = 0.0
+    private var locationString: String = ""
+    private lateinit var locationEdit: TextView
 
     private val launcher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -45,6 +49,25 @@ class GoodsPublishPageActivity : AppCompatActivity() {
     private fun initComponent() {
         findViewById<TextView>(R.id.GoodsPublishPagePublishButton).setOnClickListener {
             onPublishButtonClick()
+        }
+        findViewById<TextView>(R.id.locationInfo).setOnClickListener {
+            val bottomSheetDialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
+            bottomSheetDialog.setContentView(
+                LayoutInflater.from(SweetFishApplication.context)
+                    .inflate(R.layout.location_setting, null)
+            )
+            val locationConfirmTextView =
+                bottomSheetDialog.findViewById<TextView>(R.id.locationConfirm)!!
+            val settingLocationEditText =
+                bottomSheetDialog.findViewById<EditText>(R.id.settingLocation)!!
+
+            locationConfirmTextView.setOnClickListener {
+                locationString = settingLocationEditText.text.toString()
+                locationEdit = findViewById(R.id.locationInfo)
+                locationEdit.text = "发货地:$locationString"
+                bottomSheetDialog.hide()
+            }
+            bottomSheetDialog.show()
         }
     }
 
