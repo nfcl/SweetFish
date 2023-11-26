@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- 头像 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/buyertextViewTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="4dp"
+            android:text="12:34 PM"
+            android:textColor="#aaaaaa"
+            android:gravity="center"/>
+    </LinearLayout>
+    <!-- 消息内容 -->
+
+
+    <LinearLayout
+        android:id="@+id/buyerlayoutMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_gravity="end"
+
+
+        android:padding="8dp">
+
+
+        <TextView
+            android:id="@+id/buyertextViewMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:text="Hello, this is my message."
+            android:backgroundTint="#FFFF00"
+            android:background="@drawable/rectangle_radius20dp"
+            android:textColor="#000000"
+            android:gravity="center"/>
+        <!-- 时间戳 -->
+
+        <com.demo.sweetfish.ui.component.RoundImageView
+            android:id="@+id/buyerimageViewAvatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="centerCrop"
+            app:radius="40dp" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
