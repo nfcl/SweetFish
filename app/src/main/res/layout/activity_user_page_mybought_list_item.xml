@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FEFEFE"
+            android:gravity="center|start"
+            android:orientation="horizontal">
+
+            <com.demo.sweetfish.ui.component.RoundImageView
+                android:id="@+id/SellerImage"
+                android:layout_margin="3dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_launcher"
+                android:radius="40dp" />
+
+            <TextView
+                android:id="@+id/SellerNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/activity_home_page_userpageview_username_example"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleX="-1"
+                android:scaleY="1"
+                android:src="@drawable/arrow_left" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="交易成功"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:layout_height="wrap_content">
+            <com.demo.sweetfish.ui.component.RoundImageView
+                android:id="@+id/BoughtItemImage"
+                android:layout_width="80dp"
+                android:layout_margin="5dp"
+                android:layout_height="80dp"/>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/UserPageBoughtItemScrible"
+                    android:text="商品描述"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/UserPageBoughtItemId"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginStart="110dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/Bought_goodsprice"
+                    android:layout_width="wrap_content"
+                    android:text="￥100.00"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center|start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="更多"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/shape_white"
+                android:backgroundTint="@color/white"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                android:layout_marginStart="155dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:text="联系卖家"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/shape_yellow"
+                android:backgroundTint="@color/primary"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                android:layout_marginStart="20dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:text="去评价"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

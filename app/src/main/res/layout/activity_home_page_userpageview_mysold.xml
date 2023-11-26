@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -61,6 +62,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/Sold_All"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="全部">
@@ -75,6 +77,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/Sold_Pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="待付款">
@@ -89,6 +92,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/Sold_Send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="待发货" />
@@ -102,6 +106,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/Sold_Shou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="待收货" />
@@ -115,6 +120,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/Sold_Ping"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="待评价" />
@@ -122,16 +128,25 @@
         </LinearLayout>
 
         <LinearLayout
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/Sold_Tui"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="退款中" />
 
         </LinearLayout>
+
     </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/SoldRecyclerView"
+        android:layout_width="match_parent"
+        tools:itemCount="10"
+        tools:listitem="@layout/activity_user_page_mybought_list_item"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

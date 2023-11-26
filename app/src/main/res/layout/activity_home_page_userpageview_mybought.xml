@@ -18,7 +18,7 @@
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/MyPublishReturnButton"
+                android:id="@+id/MyBoughtReturnButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="40dp"
-                android:text="我发布的"
+                android:text="我买到的"
                 android:textColor="@color/black"
                 android:textSize="20sp">
 
@@ -50,19 +50,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="10dp"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:layout_weight="1">
 
             <TextView
-                android:id="@+id/Publish_Sold"
+                android:id="@+id/Bought_All"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="在卖">
+                android:textColor="#808080"
+                android:textSize="14dp"
+                android:text="全部">
 
             </TextView>
         </LinearLayout>
@@ -70,13 +75,14 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:layout_weight="1">
 
             <TextView
-                android:id="@+id/Publish_Paper"
+                android:id="@+id/Bought_Pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="草稿">
+                android:text="待付款">
 
             </TextView>
         </LinearLayout>
@@ -84,23 +90,63 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:layout_weight="1">
 
             <TextView
-                android:id="@+id/Publish_Down"
+                android:id="@+id/Bought_Send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="已下架">
+                android:text="待发货" />
 
-            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/Bought_Shou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待收货" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/Bought_Ping"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待评价" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/Bought_Tui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退款中" />
+
         </LinearLayout>
     </LinearLayout>
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/PublishRecyclerView"
-        tools:listitem="@layout/activity_user_page_sold_list_item"
+        android:id="@+id/UserBoughtRecyclerView"
         android:layout_width="match_parent"
         tools:itemCount="10"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp" />
+        tools:listitem="@layout/activity_user_page_mybought_list_item"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
