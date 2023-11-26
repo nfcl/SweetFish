@@ -20,4 +20,9 @@
     <string name="OthersUserPageFollowButton_UnFollowed_Text">+ 关注</string>
     <string name="OthersUserPageFollowButton_Followed_Text">取消关注</string>
     <string name="activity_home_page_userpageview_fan">粉丝</string>
+    <string name="activity_home_page_messagelist_item_message_picture">聊天头像</string>
+    <string name="activity_home_page_messagelist_item_message_name">聊天姓名</string>
+    <string name="activity_home_page_messagelist_item_message_content">聊天内容</string>
+    <string name="activity_home_page_messagelist_item_message_time">聊天时间</string>
+    <string name="activity_home_page_messagelist_item_goods_picture">聊天商品照片</string>
 </resources>

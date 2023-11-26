@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colo_bac"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/MessageReturnButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_left">
+
+            </ImageView>
+        </LinearLayout>
+
+        <TextView
+            android:text="@string/activity_home_page_messagelist_item_message_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="106dp"
+        android:gravity="left"
+        android:orientation="horizontal">
+
+        <include
+            layout="@layout/activity_message_page_shopinformation"
+            android:layout_width="244dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_radius20dp"
+            android:backgroundTint="#CCCCCC"
+            android:gravity="right|bottom"
+            android:text="查看钱款"
+            android:textColor="@color/black"
+            android:textSize="20dp">
+
+        </TextView>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></Spinner>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colo_red"
+            android:text="        !引导您脱离闲鱼平台并且联系客服缴费的都是欺诈行为！"
+            android:textColor="@color/white"></TextView>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="515dp">
+        <!-- 这里不需要添加任何子视图，因为它们将通过代码动态添加 -->
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/microphone"
+            android:layout_width="53dp"
+            android:layout_height="46dp"
+            android:layout_margin="8dp"
+            android:gravity="left"
+            android:scaleX="0.9"
+            android:src="@drawable/activity_message_page_chatinterface_microphone" />
+
+        <EditText
+            android:id="@+id/editText"
+
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rectangle_radius20dp"
+            android:hint="想跟TA说点什么....." />
+
+        <ImageView
+            android:id="@+id/smile"
+            android:layout_width="53dp"
+            android:layout_height="46dp"
+            android:layout_margin="8dp"
+            android:gravity="right"
+            android:scaleX="0.9"
+            android:src="@drawable/activity_message_page_chatinterface_smile" />
+
+        <ImageView
+            android:id="@+id/plus"
+            android:layout_width="53dp"
+            android:layout_height="46dp"
+            android:layout_margin="8dp"
+            android:gravity="right"
+            android:scaleX="0.9"
+            android:src="@drawable/activity_message_page_chatinterface_plus" />
+    </LinearLayout>
+
+</LinearLayout>
