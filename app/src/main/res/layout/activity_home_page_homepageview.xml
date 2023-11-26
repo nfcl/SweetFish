@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/HomePageSearchBar"
@@ -60,20 +60,24 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/HomePageMessageButton"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
 
-            <Button
+            <ImageView
                 android:layout_width="40dp"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/primary" />
+                android:layout_marginTop="5dp"
+                android:clickable="false"
+                android:src="@drawable/icon_message" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:gravity="center"
                 android:text="@string/infomationPageButtonName_cn"
                 android:textSize="12sp" />

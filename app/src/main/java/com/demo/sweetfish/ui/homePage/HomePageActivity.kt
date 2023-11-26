@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.ui.component.RoundImageView
 import com.demo.sweetfish.ui.goodsPublishPage.GoodsPublishPageActivity
+import com.demo.sweetfish.ui.messagePage.MessagePageActivity
 import com.demo.sweetfish.ui.searchPage.SearchPageActivity
 import com.demo.sweetfish.ui.tradePage.MyBoughtActivity
 import com.demo.sweetfish.ui.tradePage.MyPublishActivity
@@ -99,6 +100,8 @@ class HomePageActivity : AppCompatActivity() {
                     )
                 )
             }
+            val messageButton: LinearLayout = findViewById(R.id.HomePageMessageButton)
+            messageButton.setOnClickListener { MessagePageActivity.startActivity(this) }
         }
         initGoodsList()
         initSearchBar()
