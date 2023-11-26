@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colo_bac"
@@ -25,108 +24,110 @@
                 android:src="@drawable/arrow_left">
 
             </ImageView>
+
         </LinearLayout>
 
         <TextView
-            android:text="@string/activity_home_page_messagelist_item_message_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:text="@string/activity_home_page_messagelist_item_message_name"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
+
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="106dp"
-        android:gravity="left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <include
             layout="@layout/activity_message_page_shopinformation"
-            android:layout_width="244dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_radius20dp"
             android:backgroundTint="#CCCCCC"
-            android:gravity="right|bottom"
+            android:paddingHorizontal="10dp"
             android:text="查看钱款"
             android:textColor="@color/black"
-            android:textSize="20dp">
+            android:textSize="20sp">
 
         </TextView>
 
         <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></Spinner>
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colo_red"
-            android:text="        !引导您脱离闲鱼平台并且联系客服缴费的都是欺诈行为！"
-            android:textColor="@color/white"></TextView>
+            android:gravity="center"
+            android:text="!引导您脱离闲鱼平台并且联系客服缴费的都是欺诈行为！"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="515dp">
-        <!-- 这里不需要添加任何子视图，因为它们将通过代码动态添加 -->
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
     </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:orientation="horizontal">
+        android:layout_gravity="bottom"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="5dp">
 
         <ImageView
+
             android:id="@+id/microphone"
-            android:layout_width="53dp"
-            android:layout_height="46dp"
-            android:layout_margin="8dp"
-            android:gravity="left"
-            android:scaleX="0.9"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginHorizontal="5dp"
             android:src="@drawable/activity_message_page_chatinterface_microphone" />
 
         <EditText
             android:id="@+id/editText"
-
-            android:layout_width="220dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
             android:background="@drawable/rectangle_radius20dp"
-            android:hint="想跟TA说点什么....." />
+            android:hint="想跟TA说点什么....."
+            android:paddingHorizontal="10dp" />
 
         <ImageView
             android:id="@+id/smile"
-            android:layout_width="53dp"
-            android:layout_height="46dp"
-            android:layout_margin="8dp"
-            android:gravity="right"
-            android:scaleX="0.9"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginHorizontal="5dp"
             android:src="@drawable/activity_message_page_chatinterface_smile" />
 
         <ImageView
             android:id="@+id/plus"
-            android:layout_width="53dp"
-            android:layout_height="46dp"
-            android:layout_margin="8dp"
-            android:gravity="right"
-            android:scaleX="0.9"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="5dp"
             android:src="@drawable/activity_message_page_chatinterface_plus" />
     </LinearLayout>
 
