@@ -17,9 +17,6 @@
             android:name="com.demo.sweetfish.ui.messagePage.MessagePageActivity"
             android:exported="false" />
         <activity
-            android:name="com.demo.sweetfish.ui.goodsPublishPage.GoodsPriceSettingPageActivity"
-            android:exported="false" />
-        <activity
             android:name="com.demo.sweetfish.ui.userPage.userFanListPage.UserFanListPageActivity"
             android:exported="false" />
         <activity
