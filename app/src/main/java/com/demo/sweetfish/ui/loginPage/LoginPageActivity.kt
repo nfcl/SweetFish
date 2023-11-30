@@ -126,17 +126,20 @@ class LoginPageActivity : AppCompatActivity() {
             val result = ArrayList<GoodsPreviewImage>()
             val random = Random(Instant.now().epochSecond)
             for (good in goods) {
-                result.add(
-                    GoodsPreviewImage(
-                        good.id, DrawableUtils.getGradientDrawable(
-                            abs(random.nextInt()) % 100 + 500,
-                            abs(random.nextInt()) % 100 + 500,
-                            intArrayOf(
-                                random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
+                val randomNum = random.nextInt(9) + 1
+                for (i in 0 until randomNum) {
+                    result.add(
+                        GoodsPreviewImage(
+                            good.id, DrawableUtils.getGradientDrawable(
+                                abs(random.nextInt()) % 100 + 500,
+                                abs(random.nextInt()) % 100 + 500,
+                                intArrayOf(
+                                    random.nextInt() % 0xFFFFFF, random.nextInt() % 0xFFFFFF
+                                )
                             )
                         )
                     )
-                )
+                }
             }
             return result
         }

@@ -1,5 +1,6 @@
 package com.demo.sweetfish.logic.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -46,6 +47,9 @@ interface GoodsDao {
      */
     @Query("select * from goods where id = :id")
     fun findByGoodsId(id: Long): Goods?
+
+    @Query("select * from goods where id = :id")
+    fun findByGoodsIdReturnLiveData(id: Long): LiveData<Goods?>
 
     /**
      * 根据卖家id查找商品信息

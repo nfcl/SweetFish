@@ -12,7 +12,7 @@ import com.demo.sweetfish.logic.model.GoodsPreviewImage
 interface GoodsPreviewImageDao {
 
     @Insert
-    fun insert(goodsPreviewImage: GoodsPreviewImage)
+    fun insert(goodsPreviewImage: GoodsPreviewImage): Long
 
     @Insert
     fun insert(goodsPreviewImages: List<GoodsPreviewImage>)

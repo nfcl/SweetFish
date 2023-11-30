@@ -37,7 +37,6 @@ class HomePageActivityViewModel : ViewModel() {
             AppDatabase.getDatabase().userFollowDao().getFansNumReturnLiveData(userInfo.id)
         }
 
-
     fun refreshGoodsList() {
         thread {
             val goodsWithSellerInfoDao =
