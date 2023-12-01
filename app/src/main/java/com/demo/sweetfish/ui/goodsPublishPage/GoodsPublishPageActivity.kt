@@ -40,7 +40,9 @@ class GoodsPublishPageActivity : AppCompatActivity() {
         val priceTextView: TextView = findViewById(R.id.GoodsPublishPagePriceEditText)
         viewModel.goodsPrice.observe(this) { price -> priceTextView.text = "￥$price" }
         val locationTextView: TextView = findViewById(R.id.locationInfo)
-        viewModel.goodsLocation.observe(this) { location -> locationTextView.text = location }
+        viewModel.goodsLocation.observe(this) { location ->
+            locationTextView.text = "发货地址 : $location"
+        }
     }
 
     private fun initComponent() {
@@ -106,20 +108,18 @@ class GoodsPublishPageActivity : AppCompatActivity() {
             var isPointed: Boolean = false
 
             keyBoardPoint?.setOnClickListener {
-                if (isPointed) {
-                    return@setOnClickListener
+                if (!isPointed) {
+                    settingPriceEditText.text.append('.')
+                    isPointed = true
                 }
-                settingPriceEditText.text.append('.')
-                isPointed = true
             }
             keyBoardBackSpace?.setOnClickListener {
-                if (settingPriceEditText.text.isEmpty()) {
-                    return@setOnClickListener
-                }
-                val char = settingPriceEditText.text.last()
-                settingPriceEditText.setText(settingPriceEditText.text.dropLast(1))
-                if (char == '.') {
-                    isPointed = false
+                if (!settingPriceEditText.text.isEmpty()) {
+                    val char = settingPriceEditText.text.last()
+                    settingPriceEditText.setText(settingPriceEditText.text.dropLast(1))
+                    if (char == '.') {
+                        isPointed = false
+                    }
                 }
             }
 
