@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
-import com.demo.sweetfish.logic.model.UserPositionInfo
+import com.demo.sweetfish.logic.model.UserLocation
 
 class UserInfoEditPageActivityViewModel : ViewModel() {
 
@@ -31,7 +31,7 @@ class UserInfoEditPageActivityViewModel : ViewModel() {
     val userDescribe: LiveData<String?> = Transformations.map(SweetFishApplication.loginUser) {
         it.describe
     }
-    val userPosition: LiveData<UserPositionInfo?> =
+    val userPosition: LiveData<UserLocation?> =
         Transformations.map(SweetFishApplication.loginUser) {
             it.position
         }
@@ -60,7 +60,7 @@ class UserInfoEditPageActivityViewModel : ViewModel() {
     @WorkerThread
     fun setPosition(province: String, city: String, district: String) {
         AppDatabase.getDatabase().userDao().updatePosition(
-            SweetFishApplication.loginUser.value!!.id, UserPositionInfo(province, city, district)
+            SweetFishApplication.loginUser.value!!.id, UserLocation(province, city, district)
         )
         SweetFishApplication.forceRefreshUserInfo()
     }

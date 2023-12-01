@@ -8,7 +8,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.demo.sweetfish.logic.model.User
-import com.demo.sweetfish.logic.model.UserPositionInfo
+import com.demo.sweetfish.logic.model.UserLocation
 
 @Dao
 interface UserDao {
@@ -41,7 +41,7 @@ interface UserDao {
     fun updateAvatar(id: Long, avatar: Drawable)
 
     @Query("update user set position=:position where id=:id")
-    fun updatePosition(id: Long, position: UserPositionInfo)
+    fun updatePosition(id: Long, position: UserLocation)
 
     @Query("update user set describe=:describe where id=:id")
     fun updateDescribe(id: Long, describe: String?)

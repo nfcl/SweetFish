@@ -25,7 +25,7 @@ data class User(
     var background: Drawable,
     var name: String? = null,
     var sex: Boolean? = null,
-    var position: UserPositionInfo? = null,
+    var position: UserLocation? = null,
     var describe: String? = null,
 ) {
     @PrimaryKey(autoGenerate = true)
