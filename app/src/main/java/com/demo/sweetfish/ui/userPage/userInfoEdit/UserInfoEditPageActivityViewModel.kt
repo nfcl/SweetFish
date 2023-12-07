@@ -22,7 +22,7 @@ class UserInfoEditPageActivityViewModel : ViewModel() {
         it.sex
     }
     val userAvatar: LiveData<Drawable> = Transformations.map(SweetFishApplication.loginUser) {
-        it.avatarPic
+        it.avatar
     }
     var sexDialogSelect = true
     val userBackground: LiveData<Drawable> = Transformations.map(SweetFishApplication.loginUser) {
@@ -33,7 +33,7 @@ class UserInfoEditPageActivityViewModel : ViewModel() {
     }
     val userPosition: LiveData<UserLocation?> =
         Transformations.map(SweetFishApplication.loginUser) {
-            it.position
+            it.location
         }
 
     @WorkerThread

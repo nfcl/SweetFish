@@ -27,7 +27,7 @@ class OthersUserPageActivityViewModel : ViewModel() {
         info.name
     }
     val userAvatar: LiveData<Drawable> = Transformations.map(userInfo) { info ->
-        info.avatarPic
+        info.avatar
     }
     val userBackground: LiveData<Drawable> = Transformations.map(userInfo) { info ->
         info.background

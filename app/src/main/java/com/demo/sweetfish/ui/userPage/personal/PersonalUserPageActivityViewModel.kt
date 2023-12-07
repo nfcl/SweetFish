@@ -17,7 +17,7 @@ class PersonalUserPageActivityViewModel : ViewModel() {
         it.name
     }
     val userAvatar: LiveData<Drawable> = Transformations.map(SweetFishApplication.loginUser) {
-        it.avatarPic
+        it.avatar
     }
     val userBackground: LiveData<Drawable> = Transformations.map(SweetFishApplication.loginUser) {
         it.background

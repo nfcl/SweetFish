@@ -14,7 +14,7 @@ interface UserWithFollowInfoDao {
             User.id as userId,
             User.name as userName,
             User.describe as userDescribe,
-            User.avatarPic as userAvatar,
+            User.avatar as userAvatar,
             (select count(*) from UserFollow where UserFollow.followId=User.id) as userFanNum,
             (select count(*) from UserFollow where UserFollow.followId=User.id and UserFollow.fanId=:loginId) as isFollowed 
         from 
@@ -29,7 +29,7 @@ interface UserWithFollowInfoDao {
             User.id as userId,
             User.name as userName,
             User.describe as userDescribe,
-            User.avatarPic as userAvatar,
+            User.avatar as userAvatar,
             (select count(*) from UserFollow where UserFollow.followId=User.id) as userFanNum,
             (select count(*) from UserFollow where UserFollow.followId=User.id and UserFollow.fanId=:loginId) as isFollowed 
         from 
@@ -44,7 +44,7 @@ interface UserWithFollowInfoDao {
             User.id as userId,
             User.name as userName,
             User.describe as userDescribe,
-            User.avatarPic as userAvatar,
+            User.avatar as userAvatar,
             (select count(*) from UserFollow where UserFollow.followId=User.id) as userFanNum,
             (select count(*) from UserFollow where UserFollow.followId=User.id and UserFollow.fanId=:loginId) as isFollowed 
         from 
@@ -59,7 +59,7 @@ interface UserWithFollowInfoDao {
             User.id as userId,
             User.name as userName,
             User.describe as userDescribe,
-            User.avatarPic as userAvatar,
+            User.avatar as userAvatar,
             (select count(*) from UserFollow where UserFollow.followId=User.id) as userFanNum,
             (select count(*) from UserFollow where UserFollow.followId=User.id and UserFollow.fanId=:loginId) as isFollowed 
         from 

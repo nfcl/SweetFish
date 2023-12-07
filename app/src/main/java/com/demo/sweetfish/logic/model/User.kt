@@ -13,19 +13,19 @@ import androidx.room.PrimaryKey
  * @property sex        性别 true男 false女
  * @property account    账号
  * @property password   密码
- * @property avatarPic  头像
- * @property position   位置
+ * @property avatar  头像
+ * @property location   位置
  * @property describe   个人简介
  */
 @Entity
 data class User(
     var account: String,
     var password: String,
-    var avatarPic: Drawable,
+    var avatar: Drawable,
     var background: Drawable,
     var name: String? = null,
     var sex: Boolean? = null,
-    var position: UserLocation? = null,
+    var location: UserLocation? = null,
     var describe: String? = null,
 ) {
     @PrimaryKey(autoGenerate = true)

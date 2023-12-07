@@ -3,7 +3,6 @@ package com.demo.sweetfish.logic.dao
 import android.graphics.drawable.Drawable
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -21,13 +20,6 @@ interface UserDao {
     @Insert
     fun insert(user: User): Long
 
-    /**
-     * 插入列表内的所有用户信息
-     * @param userList 新用户信息列表
-     */
-    @Insert
-    fun insert(userList: List<User>)
-
     @Update
     fun update(user: User)
 
@@ -37,10 +29,10 @@ interface UserDao {
     @Query("update user set sex=:sex where id=:id")
     fun updateSex(id: Long, sex: Boolean?)
 
-    @Query("update user set avatarPic=:avatar where id=:id")
+    @Query("update user set avatar=:avatar where id=:id")
     fun updateAvatar(id: Long, avatar: Drawable)
 
-    @Query("update user set position=:position where id=:id")
+    @Query("update user set location=:position where id=:id")
     fun updatePosition(id: Long, position: UserLocation)
 
     @Query("update user set describe=:describe where id=:id")
@@ -48,13 +40,6 @@ interface UserDao {
 
     @Query("update user set background=:background where id=:id")
     fun updateBackground(id: Long, background: Drawable)
-
-    /**
-     * 查找所有的用户信息
-     * @return 包含所有用户信息的列表
-     */
-    @Query("select * from User")
-    fun findAll(): List<User>
 
     /**
      * 通过Id查找用户信息
@@ -82,13 +67,6 @@ interface UserDao {
 
     @Query("select * from user where name like '%'||:name||'%'")
     fun findLikeNameReturnLiveData(name: String): LiveData<List<User>>
-
-    /**
-     * 删除用户
-     * @param user 要删除的用户信息
-     */
-    @Delete
-    fun delete(user: User)
 
     /**
      * 删除所有用户
