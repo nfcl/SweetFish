@@ -22,13 +22,18 @@ interface UserService {
     @GET("ServletUserFindById")
     fun findById(
         @Query("id") id: Long,
-    ): Call<User>
+    ): Call<User?>
 
-    @GET("ServletUserFindById")
+    @GET("ServletUserCheckDuplicateAccount")
+    fun checkDuplicateAccount(
+        @Query("account") account: String,
+    ): Call<Boolean>
+
+    @GET("ServletUserFindByAccountAndPassword")
     fun findByAccountAndPassword(
         @Query("account") account: String,
         @Query("password") password: String,
-    ): Call<User>
+    ): Call<User?>
 
     @GET("ServletUserFindLikeName")
     fun findLikeName(

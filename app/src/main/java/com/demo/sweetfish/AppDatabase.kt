@@ -11,6 +11,7 @@ import com.demo.sweetfish.logic.dao.GoodsBuyInfoDao
 import com.demo.sweetfish.logic.dao.GoodsDao
 import com.demo.sweetfish.logic.dao.GoodsPreviewImageDao
 import com.demo.sweetfish.logic.dao.GoodsWithSellerInfoDao
+import com.demo.sweetfish.logic.dao.ImageSourceDao
 import com.demo.sweetfish.logic.dao.RegisterDao
 import com.demo.sweetfish.logic.dao.SearchHistoryDao
 import com.demo.sweetfish.logic.dao.SearchResultPageUserInfoDao
@@ -20,6 +21,7 @@ import com.demo.sweetfish.logic.dao.UserWithFollowInfoDao
 import com.demo.sweetfish.logic.model.Goods
 import com.demo.sweetfish.logic.model.GoodsBuy
 import com.demo.sweetfish.logic.model.GoodsPreviewImage
+import com.demo.sweetfish.logic.model.ImageSource
 import com.demo.sweetfish.logic.model.SearchHistory
 import com.demo.sweetfish.logic.model.User
 import com.demo.sweetfish.logic.model.UserFollow
@@ -33,7 +35,7 @@ import com.demo.sweetfish.logic.model.UserFollow
  */
 @Database(
     version = 1,
-    entities = [User::class, Goods::class, UserFollow::class, SearchHistory::class, GoodsPreviewImage::class, GoodsBuy::class]
+    entities = [User::class, Goods::class, UserFollow::class, SearchHistory::class, GoodsPreviewImage::class, GoodsBuy::class, ImageSource::class]
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -59,6 +61,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun goodsBuyInfoDao(): GoodsBuyInfoDao
 
     abstract fun searchResultPageUserInfoDao(): SearchResultPageUserInfoDao
+
+    abstract fun imageSourceDao(): ImageSourceDao
 
     companion object {
 

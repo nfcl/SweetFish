@@ -1,6 +1,5 @@
 package com.demo.sweetfish.logic.model
 
-import android.graphics.drawable.Drawable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -21,8 +20,8 @@ import androidx.room.PrimaryKey
 data class User(
     var account: String,
     var password: String,
-    var avatar: Drawable,
-    var background: Drawable,
+    var avatar: Long,
+    var background: Long,
     var name: String? = null,
     var sex: Boolean? = null,
     var location: UserLocation? = null,
