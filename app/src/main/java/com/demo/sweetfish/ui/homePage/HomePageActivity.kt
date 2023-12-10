@@ -34,6 +34,11 @@ class HomePageActivity : AppCompatActivity() {
     companion object {
         const val HOME_PAGE: Int = 0
         const val USER_PAGE: Int = 1
+
+        fun startActivity(appCompatActivity: AppCompatActivity) {
+            appCompatActivity.startActivity(Intent(appCompatActivity, HomePageActivity::class.java))
+        }
+
     }
 
     private lateinit var viewPager: NoScrollViewPager

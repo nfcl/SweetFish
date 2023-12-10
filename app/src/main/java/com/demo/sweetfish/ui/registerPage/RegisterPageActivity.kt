@@ -1,22 +1,32 @@
 package com.demo.sweetfish.ui.registerPage
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import com.demo.sweetfish.AppDatabase
-import com.demo.sweetfish.SweetFishApplication
-import com.demo.sweetfish.logic.dao.RegisterDao
-import com.demo.sweetfish.logic.model.User
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.ViewModelProvider
 import com.example.sweetfish.R
-import kotlin.concurrent.thread
 
 class RegisterPageActivity : AppCompatActivity() {
 
-    private val accountEdit: EditText by lazy { findViewById(R.id.RegisterPageUserAccountEdit) }
-    private val passwordEdit: EditText by lazy { findViewById(R.id.RegisterPageUserPasswordEdit) }
+    private val viewModel: RegisterPageActivityViewModel by lazy {
+        ViewModelProvider(
+            this, RegisterPageActivityViewModel.RegisterPageActivityViewModelFactory()
+        )[RegisterPageActivityViewModel::class.java]
+    }
+
+    companion object {
+        fun startActivity(appCompatActivity: AppCompatActivity) {
+            appCompatActivity.startActivity(
+                Intent(
+                    appCompatActivity, RegisterPageActivity::class.java
+                )
+            )
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,32 +36,32 @@ class RegisterPageActivity : AppCompatActivity() {
 
     private fun initComponent() {
         findViewById<Button>(R.id.RegisterPageRegisterButton).setOnClickListener { onRegisterButtonClick() }
+        findViewById<EditText>(R.id.RegisterPageUserAccountEdit).doAfterTextChanged { account ->
+            viewModel.editAccount(
+                account.toString()
+            )
+        }
+        findViewById<EditText>(R.id.RegisterPageUserPasswordEdit).doAfterTextChanged { password ->
+            viewModel.editPassword(
+                password.toString()
+            )
+        }
     }
 
     private fun onRegisterButtonClick() {
-        val account: String = accountEdit.text.toString()
-        val password: String = passwordEdit.text.toString()
-        thread {
-            val registerDao: RegisterDao =
-                AppDatabase.getDatabase(SweetFishApplication.context).registerDao()
-            if (registerDao.checkMultipleAccount(account) != 0) {
-                runOnUiThread {
-                    Toast.makeText(this, "账号已被注册", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                AppDatabase.getDatabase(SweetFishApplication.context).userDao().insert(
-                    User(
-                        account,
-                        password,
-                        ContextCompat.getDrawable(this, R.mipmap.ic_launcher)!!,
-                        ContextCompat.getDrawable(this, R.mipmap.ic_launcher)!!
-                    )
-                )
-                runOnUiThread {
-                    Toast.makeText(this, "账号注册成功", Toast.LENGTH_SHORT).show()
-                    finish()
+        viewModel.register().onSuccess {
+            it.observe(this) { result ->
+                when (result) {
+                    -1L -> Toast.makeText(this, "未知原因注册失败", Toast.LENGTH_SHORT).show()
+                    -2L -> Toast.makeText(this, "账号已存在", Toast.LENGTH_SHORT).show()
+                    else -> {
+                        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
                 }
             }
+        }.onFailure {
+            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
         }
     }
 }
