@@ -19,16 +19,16 @@ object ImageSourceRepository {
             val byteArray = imageSource.content?.toBytes()!!
             val drawable = DrawableUtils.createDrawableFromByteArray(byteArray, "")
             imageSource.content = drawable
-                val requestFile =
-                    RequestBody.create(MediaType.parse("image/png"), imageSource.content?.toBytes()!!)
-                val body = MultipartBody.Part.createFormData("file", "fileName.png", requestFile)
-                imageSource.id = NetWorkService.imageSourceService().insert(body).await()
-                AppDatabase.getDatabase().imageSourceDao().insert(imageSource)
-                imageSource.id
-            } catch (e: Exception) {
-                e.printStackTrace()
-                -1
-            }
+            val requestFile =
+                RequestBody.create(MediaType.parse("image/png"), imageSource.content?.toBytes()!!)
+            val body = MultipartBody.Part.createFormData("file", "fileName.png", requestFile)
+            imageSource.id = NetWorkService.imageSourceService().insert(body).await()
+            AppDatabase.getDatabase().imageSourceDao().insert(imageSource)
+            imageSource.id
+        } catch (e: Exception) {
+            e.printStackTrace()
+            -1
+        }
     }
 
     fun findById(id: Long) = liveData(Dispatchers.IO) {
@@ -53,6 +53,23 @@ object ImageSourceRepository {
                 null
             }
         )
+    }
+
+    suspend fun findByIdWithSuspend(id: Long): ImageSource? {
+        val imageSourceDao = AppDatabase.getDatabase().imageSourceDao()
+        var result = imageSourceDao.findById(id)
+        if (result == null) {
+            val responseBody = NetWorkService.imageSourceService().findById(id).await()
+            if (responseBody != null) {
+                result = ImageSource(
+                    DrawableUtils.createDrawableFromByteArray(
+                        responseBody.bytes(), id.toString()
+                    ), id
+                )
+                imageSourceDao.insert(result)
+            }
+        }
+        return result
     }
 
 }

@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.model.Goods
 import com.demo.sweetfish.logic.model.GoodsPreviewImage
+import com.demo.sweetfish.logic.repository.GoodsPreviewImageRepository
 import com.demo.sweetfish.logic.repository.GoodsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -61,7 +61,7 @@ class GoodsPublishPageActivityViewModel : ViewModel() {
             for (image in mGoodsPreviewList.value!!) {
                 previewImageList.add(GoodsPreviewImage(goodsId, image))
             }
-            AppDatabase.getDatabase().goodsPreviewImageDao().insert(previewImageList)
+            GoodsPreviewImageRepository.insert(previewImageList)
         }
     }
 

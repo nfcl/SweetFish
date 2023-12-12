@@ -8,7 +8,6 @@ import androidx.room.TypeConverters
 import com.demo.sweetfish.logic.convert.Converters
 import com.demo.sweetfish.logic.dao.GoodsBuyDao
 import com.demo.sweetfish.logic.dao.GoodsBuyInfoDao
-import com.demo.sweetfish.logic.dao.GoodsPreviewImageDao
 import com.demo.sweetfish.logic.dao.ImageSourceDao
 import com.demo.sweetfish.logic.dao.SearchHistoryDao
 import com.demo.sweetfish.logic.dao.SearchResultPageUserInfoDao
@@ -40,8 +39,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userFollowDao(): UserFollowDao
 
     abstract fun searchHistoryDao(): SearchHistoryDao
-
-    abstract fun goodsPreviewImageDao(): GoodsPreviewImageDao
 
     abstract fun userWithFollowInfoDao(): UserWithFollowInfoDao
 
