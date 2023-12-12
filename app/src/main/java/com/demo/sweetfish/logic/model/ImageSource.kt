@@ -5,6 +5,6 @@ import androidx.room.Entity
 
 @Entity(primaryKeys = ["id"])
 data class ImageSource(
-    var id: Long,
-    var content: Drawable,
+    var content: Drawable?,
+    var id: Long = 0,
 )

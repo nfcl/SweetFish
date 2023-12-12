@@ -1,7 +1,7 @@
 package utils
 
 import android.graphics.Bitmap
-import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import java.io.ByteArrayOutputStream
@@ -28,17 +28,9 @@ abstract class DrawableUtils {
         }
 
         fun Drawable.toBytes(): ByteArray {
-            val bitmap = Bitmap
-                .createBitmap(
-                    this.intrinsicWidth,
-                    this.intrinsicHeight,
-                    Bitmap.Config.ARGB_8888
-                )
-            val canvas = Canvas(bitmap)
-            this.setBounds(0, 0, this.intrinsicWidth, this.intrinsicHeight)
-            this.draw(canvas)
+            val bitmap = (this as BitmapDrawable).bitmap
             val stream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
             return stream.toByteArray()
         }
 
