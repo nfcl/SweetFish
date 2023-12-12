@@ -8,18 +8,15 @@ import androidx.room.TypeConverters
 import com.demo.sweetfish.logic.convert.Converters
 import com.demo.sweetfish.logic.dao.GoodsBuyDao
 import com.demo.sweetfish.logic.dao.GoodsBuyInfoDao
-import com.demo.sweetfish.logic.dao.GoodsDao
 import com.demo.sweetfish.logic.dao.GoodsPreviewImageDao
-import com.demo.sweetfish.logic.dao.GoodsWithSellerInfoDao
 import com.demo.sweetfish.logic.dao.ImageSourceDao
-import com.demo.sweetfish.logic.dao.RegisterDao
 import com.demo.sweetfish.logic.dao.SearchHistoryDao
 import com.demo.sweetfish.logic.dao.SearchResultPageUserInfoDao
-import com.demo.sweetfish.logic.dao.UserDao
 import com.demo.sweetfish.logic.dao.UserFollowDao
 import com.demo.sweetfish.logic.dao.UserWithFollowInfoDao
 import com.demo.sweetfish.logic.model.Goods
 import com.demo.sweetfish.logic.model.GoodsBuy
+import com.demo.sweetfish.logic.model.GoodsFavorite
 import com.demo.sweetfish.logic.model.GoodsPreviewImage
 import com.demo.sweetfish.logic.model.ImageSource
 import com.demo.sweetfish.logic.model.SearchHistory
@@ -39,14 +36,6 @@ import com.demo.sweetfish.logic.model.UserFollow
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-
-    abstract fun userDao(): UserDao
-
-    abstract fun goodsDao(): GoodsDao
-
-    abstract fun goodsWithSellerInfoDao(): GoodsWithSellerInfoDao
-
-    abstract fun registerDao(): RegisterDao
 
     abstract fun userFollowDao(): UserFollowDao
 

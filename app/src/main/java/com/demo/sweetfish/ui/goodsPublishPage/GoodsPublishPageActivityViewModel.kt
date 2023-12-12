@@ -10,6 +10,10 @@ import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.model.Goods
 import com.demo.sweetfish.logic.model.GoodsPreviewImage
+import com.demo.sweetfish.logic.repository.GoodsRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class GoodsPublishPageActivityViewModel : ViewModel() {
 
@@ -43,20 +47,22 @@ class GoodsPublishPageActivityViewModel : ViewModel() {
 
     @WorkerThread
     fun publishNewGoods() {
-        val goodsId = AppDatabase.getDatabase().goodsDao().insert(
-            Goods(
-                goodsTitle.value!!,
-                goodsPrice.value!!,
-                goodsDescribe.value!!,
-                goodsLocation.value!!,
-                SweetFishApplication.loginUserId.value!!
+        CoroutineScope(Dispatchers.IO).launch {
+            val goodsId = GoodsRepository.insert(
+                Goods(
+                    goodsTitle.value!!,
+                    goodsPrice.value!!,
+                    goodsDescribe.value!!,
+                    goodsLocation.value!!,
+                    SweetFishApplication.loginUserId.value!!
+                )
             )
-        )
-        val previewImageList = mutableListOf<GoodsPreviewImage>()
-        for (image in mGoodsPreviewList.value!!) {
-            previewImageList.add(GoodsPreviewImage(goodsId, image))
+            val previewImageList = mutableListOf<GoodsPreviewImage>()
+            for (image in mGoodsPreviewList.value!!) {
+                previewImageList.add(GoodsPreviewImage(goodsId, image))
+            }
+            AppDatabase.getDatabase().goodsPreviewImageDao().insert(previewImageList)
         }
-        AppDatabase.getDatabase().goodsPreviewImageDao().insert(previewImageList)
     }
 
     class GoodsPublishPageActivityViewModelFactory : ViewModelProvider.Factory {
