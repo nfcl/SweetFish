@@ -10,6 +10,10 @@ import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.model.UserFollow
 import com.demo.sweetfish.logic.model.UserWithFollowInfo
+import com.demo.sweetfish.logic.repository.UserFollowRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class UseFollowListPageActivityViewModel : ViewModel() {
 
@@ -26,16 +30,26 @@ class UseFollowListPageActivityViewModel : ViewModel() {
 
     @WorkerThread
     fun followUser(userId: Long) {
-        AppDatabase.getDatabase().userFollowDao()
-            .insert(UserFollow(userId, SweetFishApplication.loginUserId.value!!))
-        forceToRefresh()
+        CoroutineScope(Dispatchers.IO).launch {
+            UserFollowRepository.insert(
+                UserFollow(
+                    userId, SweetFishApplication.loginUserId.value!!
+                )
+            )
+            forceToRefresh()
+        }
     }
 
     @WorkerThread
     fun unFollowUser(userId: Long) {
-        AppDatabase.getDatabase().userFollowDao()
-            .delete(UserFollow(userId, SweetFishApplication.loginUserId.value!!))
-        forceToRefresh()
+        CoroutineScope(Dispatchers.IO).launch {
+            UserFollowRepository.delete(
+                UserFollow(
+                    userId, SweetFishApplication.loginUserId.value!!
+                )
+            )
+            forceToRefresh()
+        }
     }
 
     @WorkerThread

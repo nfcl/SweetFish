@@ -4,6 +4,7 @@ import com.demo.sweetfish.logic.network.GoodsPreviewImageService
 import com.demo.sweetfish.logic.network.GoodsService
 import com.demo.sweetfish.logic.network.GoodsWithSellerInfoService
 import com.demo.sweetfish.logic.network.ImageSourceService
+import com.demo.sweetfish.logic.network.UserFollowService
 import com.demo.sweetfish.logic.network.UserService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,5 +32,7 @@ object NetWorkService {
 
     fun goodsPreviewImageService(): GoodsPreviewImageService =
         create(GoodsPreviewImageService::class.java)
+
+    fun userFollowService(): UserFollowService = create(UserFollowService::class.java)
 
 }

@@ -112,7 +112,7 @@ class OthersUserPageActivity : AppCompatActivity() {
             val unFollowedTextColor =
                 ColorStateList.valueOf(getColor(R.color.OthersUserPageFollowButton_UnFollowed_TextColor))
             viewModel.isFollowed.observe(this) { isFollowed ->
-                if (isFollowed == 1) {
+                if (isFollowed) {
                     userFollowButtonMain.text = followedText
                     userFollowButtonTopNavigation.text = followedText
                     userFollowButtonMain.backgroundTintList = followedBackgroundTint
@@ -144,7 +144,7 @@ class OthersUserPageActivity : AppCompatActivity() {
 
     private fun clickFollowButton() {
         thread {
-            if (viewModel.isFollowed.value!! == 1) {
+            if (viewModel.isFollowed.value!!) {
                 viewModel.unFollowUser()
             } else {
                 viewModel.followUser()

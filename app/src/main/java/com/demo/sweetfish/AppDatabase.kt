@@ -11,7 +11,6 @@ import com.demo.sweetfish.logic.dao.GoodsBuyInfoDao
 import com.demo.sweetfish.logic.dao.ImageSourceDao
 import com.demo.sweetfish.logic.dao.SearchHistoryDao
 import com.demo.sweetfish.logic.dao.SearchResultPageUserInfoDao
-import com.demo.sweetfish.logic.dao.UserFollowDao
 import com.demo.sweetfish.logic.dao.UserWithFollowInfoDao
 import com.demo.sweetfish.logic.model.Goods
 import com.demo.sweetfish.logic.model.GoodsBuy
@@ -31,12 +30,10 @@ import com.demo.sweetfish.logic.model.UserFollow
  */
 @Database(
     version = 1,
-    entities = [User::class, Goods::class, UserFollow::class, SearchHistory::class, GoodsPreviewImage::class, GoodsBuy::class, ImageSource::class]
+    entities = [User::class, Goods::class, UserFollow::class, SearchHistory::class, GoodsPreviewImage::class, GoodsBuy::class, GoodsFavorite::class, ImageSource::class]
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-
-    abstract fun userFollowDao(): UserFollowDao
 
     abstract fun searchHistoryDao(): SearchHistoryDao
 

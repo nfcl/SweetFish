@@ -6,13 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.model.ImageSource
 import com.demo.sweetfish.logic.model.User
 import com.demo.sweetfish.logic.model.UserFollow
 import com.demo.sweetfish.logic.repository.ImageSourceRepository
+import com.demo.sweetfish.logic.repository.UserFollowRepository
 import com.demo.sweetfish.logic.repository.UserRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class OthersUserPageActivityViewModel : ViewModel() {
 
@@ -40,15 +43,15 @@ class OthersUserPageActivityViewModel : ViewModel() {
     val userDescribe: LiveData<String?> = Transformations.map(userInfo) { info ->
         info.describe
     }
-    val userFollowNum: LiveData<Int> = Transformations.switchMap(_userId) { id ->
-        AppDatabase.getDatabase().userFollowDao().getFollowsNumReturnLiveData(id)
+    val userFollowNum: LiveData<Long> = Transformations.switchMap(_userId) { id ->
+        UserFollowRepository.getFollowNum(id)
     }
-    val userFanNum: LiveData<Int> = Transformations.switchMap(_userId) { id ->
-        AppDatabase.getDatabase().userFollowDao().getFansNumReturnLiveData(id)
+    val userFanNum: LiveData<Long> = Transformations.switchMap(_userId) { id ->
+        UserFollowRepository.getFanNum(id)
     }
-    val isFollowed: LiveData<Int> = Transformations.switchMap(_userId) { id ->
-        AppDatabase.getDatabase().userFollowDao()
-            .isFollowed(id, SweetFishApplication.loginUserId.value!!)
+    val isFollowed: LiveData<Boolean> = Transformations.switchMap(_userId) { id ->
+        UserFollowRepository
+            .isFollowed(UserFollow(id, SweetFishApplication.loginUserId.value!!))
     }
 
     @WorkerThread
@@ -58,24 +61,28 @@ class OthersUserPageActivityViewModel : ViewModel() {
 
     @WorkerThread
     fun followUser() {
-        val followId = _userId.value
-        val fanId = SweetFishApplication.loginUserId.value
-        if (followId == null || fanId == null) {
-            return
+        CoroutineScope(Dispatchers.IO).launch {
+            val followId = _userId.value
+            val fanId = SweetFishApplication.loginUserId.value
+            if (followId == null || fanId == null) {
+                return@launch
+            }
+            UserFollowRepository.insert(UserFollow(followId, fanId))
+            forceToRefresh()
         }
-        AppDatabase.getDatabase().userFollowDao().insert(UserFollow(followId, fanId))
-        forceToRefresh()
     }
 
     @WorkerThread
     fun unFollowUser() {
-        val followId = _userId.value
-        val fanId = SweetFishApplication.loginUserId.value
-        if (followId == null || fanId == null) {
-            return
+        CoroutineScope(Dispatchers.IO).launch {
+            val followId = _userId.value
+            val fanId = SweetFishApplication.loginUserId.value
+            if (followId == null || fanId == null) {
+                return@launch
+            }
+            UserFollowRepository.delete(UserFollow(followId, fanId))
+            forceToRefresh()
         }
-        AppDatabase.getDatabase().userFollowDao().delete(UserFollow(followId, fanId))
-        forceToRefresh()
     }
 
     private fun forceToRefresh() {

@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.model.ImageSource
 import com.demo.sweetfish.logic.repository.ImageSourceRepository
+import com.demo.sweetfish.logic.repository.UserFollowRepository
 
 class PersonalUserPageActivityViewModel : ViewModel() {
 
@@ -31,11 +31,11 @@ class PersonalUserPageActivityViewModel : ViewModel() {
     val userDescribe: LiveData<String?> = Transformations.map(SweetFishApplication.loginUser) {
         it.describe
     }
-    val userFollowNum: LiveData<Int> = Transformations.switchMap(userId) { id ->
-        AppDatabase.getDatabase().userFollowDao().getFollowsNumReturnLiveData(id)
+    val userFollowNum: LiveData<Long> = Transformations.switchMap(userId) { id ->
+        UserFollowRepository.getFollowNum(id)
     }
-    val userFanNum: LiveData<Int> = Transformations.switchMap(userId) { id ->
-        AppDatabase.getDatabase().userFollowDao().getFansNumReturnLiveData(id)
+    val userFanNum: LiveData<Long> = Transformations.switchMap(userId) { id ->
+        UserFollowRepository.getFanNum(id)
     }
 
     class PersonalUserPageActivityViewModelFactory() : ViewModelProvider.Factory {

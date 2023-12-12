@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
 import com.demo.sweetfish.logic.model.ImageSource
 import com.demo.sweetfish.logic.repository.GoodsWithSellerInfoRepository
 import com.demo.sweetfish.logic.repository.ImageSourceRepository
+import com.demo.sweetfish.logic.repository.UserFollowRepository
 
 class HomePageActivityViewModel : ViewModel() {
 
@@ -22,13 +22,13 @@ class HomePageActivityViewModel : ViewModel() {
         Transformations.map(SweetFishApplication.loginUser) { userInfo ->
             userInfo.name ?: userInfo.id.toString()
         }
-    val userFollowNum: LiveData<Int> =
+    val userFollowNum: LiveData<Long> =
         Transformations.switchMap(SweetFishApplication.loginUser) { userInfo ->
-            AppDatabase.getDatabase().userFollowDao().getFollowsNumReturnLiveData(userInfo.id)
+            UserFollowRepository.getFollowNum(userInfo.id)
         }
-    val userFanNum: LiveData<Int> =
+    val userFanNum: LiveData<Long> =
         Transformations.switchMap(SweetFishApplication.loginUser) { userInfo ->
-            AppDatabase.getDatabase().userFollowDao().getFansNumReturnLiveData(userInfo.id)
+            UserFollowRepository.getFanNum(userInfo.id)
         }
 
     fun getGoodsList(): LiveData<List<GoodsWithSellerInfo>> {
