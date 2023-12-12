@@ -36,16 +36,8 @@ object UserRepository {
         )
     }
 
-    fun updateUserInfo(newUserInfo: User) = liveData(Dispatchers.IO) {
-        emit(
-            try {
-                NetWorkService.userService().update(newUserInfo)
-                true
-            } catch (e: Exception) {
-                e.printStackTrace()
-                false
-            }
-        )
+    suspend fun updateUserInfo(newUserInfo: User) {
+        NetWorkService.userService().update(newUserInfo).await()
     }
 
     fun findUserById(id: Long) = liveData(Dispatchers.IO) {

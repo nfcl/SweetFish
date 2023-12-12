@@ -1,6 +1,7 @@
 package com.demo.sweetfish.logic.network
 
 import com.demo.sweetfish.logic.model.User
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -17,7 +18,7 @@ interface UserService {
     @POST("ServletUserUpdate")
     fun update(
         @Body user: User,
-    )
+    ): Call<ResponseBody>
 
     @GET("ServletUserFindById")
     fun findById(

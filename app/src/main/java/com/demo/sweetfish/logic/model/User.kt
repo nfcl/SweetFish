@@ -2,6 +2,8 @@ package com.demo.sweetfish.logic.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.demo.sweetfish.logic.convert.UserAdapter
+import com.google.gson.annotations.JsonAdapter
 
 /**
  * 用户类
@@ -17,6 +19,7 @@ import androidx.room.PrimaryKey
  * @property describe   个人简介
  */
 @Entity
+@JsonAdapter(UserAdapter::class)
 data class User(
     var account: String,
     var password: String,
