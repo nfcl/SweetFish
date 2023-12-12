@@ -1,6 +1,5 @@
 package com.demo.sweetfish.ui.userPage.others
 
-import android.graphics.drawable.Drawable
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,15 +8,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
+import com.demo.sweetfish.logic.model.ImageSource
 import com.demo.sweetfish.logic.model.User
 import com.demo.sweetfish.logic.model.UserFollow
+import com.demo.sweetfish.logic.repository.ImageSourceRepository
+import com.demo.sweetfish.logic.repository.UserRepository
 
 class OthersUserPageActivityViewModel : ViewModel() {
 
     private val _userId: MutableLiveData<Long> = MutableLiveData()
 
     private val userInfo: LiveData<User> = Transformations.switchMap(_userId) { id ->
-        AppDatabase.getDatabase().userDao().findByIdReturnLivData(id)
+        UserRepository.findUserById(id)
     }
 
     val userId: LiveData<Long>
@@ -26,11 +28,11 @@ class OthersUserPageActivityViewModel : ViewModel() {
     val userName: LiveData<String?> = Transformations.map(userInfo) { info ->
         info.name
     }
-    val userAvatar: LiveData<Drawable> = Transformations.map(userInfo) { info ->
-        info.avatar
+    val userAvatar: LiveData<ImageSource> = Transformations.switchMap(userInfo) { info ->
+        ImageSourceRepository.findById(info.avatar)
     }
-    val userBackground: LiveData<Drawable> = Transformations.map(userInfo) { info ->
-        info.background
+    val userBackground: LiveData<ImageSource> = Transformations.switchMap(userInfo) { info ->
+        ImageSourceRepository.findById(info.background)
     }
     val userSex: LiveData<Boolean?> = Transformations.map(userInfo) { info ->
         info.sex

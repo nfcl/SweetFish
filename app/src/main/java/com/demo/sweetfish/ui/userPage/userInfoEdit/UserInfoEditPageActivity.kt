@@ -61,7 +61,7 @@ class UserInfoEditPageActivity : AppCompatActivity() {
                 false -> "女"
             }
         }
-        viewModel.userAvatar.observe(this) { avatar -> avatarImageView.setImageDrawable(avatar) }
+        viewModel.userAvatar.observe(this) { avatar -> avatarImageView.setImageDrawable(avatar?.content) }
         viewModel.userPosition.observe(this) { position ->
             positionTextView.text = if (position == null) {
                 "选择你所在的地区"
@@ -69,12 +69,9 @@ class UserInfoEditPageActivity : AppCompatActivity() {
                 "${position.province} ${position.city} ${position.district}"
             }
         }
-        viewModel.userDescribe.observe(this) { describe ->
-            describeTextView.text = describe ?: "真诚的简介可以让买卖更有信任"
-        }
         viewModel.userBackground.observe(this) { background ->
             backgroundImageView.setImageDrawable(
-                background
+                background?.content
             )
         }
     }
@@ -102,12 +99,8 @@ class UserInfoEditPageActivity : AppCompatActivity() {
                 bottomSheetDialog.hide()
             }
             diaLogConfirmButton.setOnClickListener {
-                thread {
-                    viewModel.setName(diaLogContentEditText.text.toString())
-                    runOnUiThread {
-                        bottomSheetDialog.hide()
-                    }
-                }
+                viewModel.setName(diaLogContentEditText.text.toString())
+                bottomSheetDialog.hide()
             }
             diaLogContentEditText.text = viewModel.userName.value
             bottomSheetDialog.show()

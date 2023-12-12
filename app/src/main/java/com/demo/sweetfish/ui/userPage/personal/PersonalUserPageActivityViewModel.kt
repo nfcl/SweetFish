@@ -1,12 +1,13 @@
 package com.demo.sweetfish.ui.userPage.personal
 
-import android.graphics.drawable.Drawable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
+import com.demo.sweetfish.logic.model.ImageSource
+import com.demo.sweetfish.logic.repository.ImageSourceRepository
 
 class PersonalUserPageActivityViewModel : ViewModel() {
 
@@ -16,12 +17,14 @@ class PersonalUserPageActivityViewModel : ViewModel() {
     val userName: LiveData<String?> = Transformations.map(SweetFishApplication.loginUser) {
         it.name
     }
-    val userAvatar: LiveData<Drawable> = Transformations.map(SweetFishApplication.loginUser) {
-        it.avatar
-    }
-    val userBackground: LiveData<Drawable> = Transformations.map(SweetFishApplication.loginUser) {
-        it.background
-    }
+    val userAvatar: LiveData<ImageSource> =
+        Transformations.switchMap(SweetFishApplication.loginUser) {
+            ImageSourceRepository.findById(it.avatar)
+        }
+    val userBackground: LiveData<ImageSource> =
+        Transformations.switchMap(SweetFishApplication.loginUser) {
+            ImageSourceRepository.findById(it.background)
+        }
     val userSex: LiveData<Boolean?> = Transformations.map(SweetFishApplication.loginUser) {
         it.sex
     }

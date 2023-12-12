@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.demo.sweetfish.logic.model.User
+import com.demo.sweetfish.logic.repository.UserRepository
 
 /**
  *  Application单例
@@ -26,15 +27,11 @@ class SweetFishApplication : Application() {
 
         val loginUser: LiveData<User> =
             Transformations.switchMap(mLoginUserId) { userId ->
-                AppDatabase.getDatabase().userDao().findByIdReturnLivData(userId)
+                UserRepository.findUserById(userId)
             }
 
         fun setLoginUserId(id: Long) {
             mLoginUserId.postValue(id)
-        }
-
-        fun forceRefreshUserInfo() {
-            mLoginUserId.postValue(mLoginUserId.value)
         }
 
     }

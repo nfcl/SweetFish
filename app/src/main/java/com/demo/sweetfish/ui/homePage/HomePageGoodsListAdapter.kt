@@ -9,14 +9,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
+import com.demo.sweetfish.logic.repository.ImageSourceRepository
 import com.example.sweetfish.R
 
 class HomePageGoodsListAdapter(
     private var mGoodsList: List<GoodsWithSellerInfo>,
-    private var onGoodsClickEvent: (goods: GoodsWithSellerInfo) -> Unit,
+    private var onGoodsClickEvent: (goodsId: Long) -> Unit,
     private var onSellerClickEvent: (sellerId: Long) -> Unit,
-) :
-    Adapter<HomePageGoodsListAdapter.ViewHolder>() {
+) : Adapter<HomePageGoodsListAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val previewImage: ImageView = view.findViewById(R.id.GoodsPreviewImage)
@@ -34,19 +34,17 @@ class HomePageGoodsListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val goods = mGoodsList[position]
-        holder.previewImage.setImageDrawable(goods.goodsPreviewPic)
+        holder.previewImage.setImageDrawable(ImageSourceRepository.findById(goods.goodsPreview).value?.content)
         holder.nameText.text = goods.goodsTitle
         holder.priceText.text = "￥${goods.goodsPrice}"
-        holder.sellerAvatarImage.setImageDrawable(goods.sellerAvatarPic)
+        holder.sellerAvatarImage.setImageDrawable(ImageSourceRepository.findById(goods.sellerAvatar).value?.content)
         holder.sellerNameText.text = goods.sellerName ?: goods.sellerId.toString()
-        holder.itemView.findViewById<LinearLayout>(R.id.GoodsInfoButton)
-            .setOnClickListener {
-                onGoodsClickEvent(goods)
-            }
-        holder.itemView.findViewById<LinearLayout>(R.id.SellerInfoButton)
-            .setOnClickListener {
-                onSellerClickEvent(goods.sellerId)
-            }
+        holder.itemView.findViewById<LinearLayout>(R.id.GoodsInfoButton).setOnClickListener {
+            onGoodsClickEvent(goods.goodsId)
+        }
+        holder.itemView.findViewById<LinearLayout>(R.id.SellerInfoButton).setOnClickListener {
+            onSellerClickEvent(goods.sellerId)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -54,8 +52,9 @@ class HomePageGoodsListAdapter(
     }
 
     fun setListData(goodsList: List<GoodsWithSellerInfo>) {
+        notifyItemRangeRemoved(0, mGoodsList.size)
         mGoodsList = goodsList
-        notifyItemRangeChanged(0, mGoodsList.size)
+        notifyItemRangeInserted(0, mGoodsList.size)
     }
 
 }

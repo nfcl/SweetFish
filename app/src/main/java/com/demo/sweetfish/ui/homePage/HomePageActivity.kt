@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.ui.component.RoundImageView
+import com.demo.sweetfish.ui.goodsPage.GoodsPageActivity
 import com.demo.sweetfish.ui.goodsPublishPage.GoodsPublishPageActivity
 import com.demo.sweetfish.ui.messagePage.MessagePageActivity
 import com.demo.sweetfish.ui.searchPage.SearchPageActivity
@@ -48,7 +49,7 @@ class HomePageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_page)
         initViewPager()
         initNavigation()
-        viewModel.refreshGoodsList()
+        viewModel.getGoodsList()
     }
 
     private fun initNavigation() {
@@ -84,14 +85,16 @@ class HomePageActivity : AppCompatActivity() {
             val goodsList: RecyclerView = homePageView.findViewById(R.id.HomePageGoodsList)
             goodsList.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            goodsList.adapter = HomePageGoodsListAdapter(ArrayList(), {}, { userId ->
+            goodsList.adapter = HomePageGoodsListAdapter(ArrayList(), { goodsId ->
+                GoodsPageActivity.startActivity(this, goodsId)
+            }, { userId ->
                 if (userId == SweetFishApplication.loginUserId.value!!) {
                     PersonalUserPageActivity.startActivity(this)
                 } else {
                     OthersUserPageActivity.startActivity(this, userId)
                 }
             })
-            viewModel.goodsList.observe(this) { listData ->
+            viewModel.getGoodsList().observe(this) { listData ->
                 (goodsList.adapter as HomePageGoodsListAdapter).setListData(listData)
             }
         }
@@ -133,7 +136,7 @@ class HomePageActivity : AppCompatActivity() {
                 startActivity(Intent(this, MyBoughtActivity::class.java))
             }
         viewModel.userName.observe(this) { name -> userNameTextView.text = name }
-        viewModel.userAvatar.observe(this) { avatar -> userAvatarImageView.setImageDrawable(avatar) }
+        viewModel.userAvatar.observe(this) { avatar -> userAvatarImageView.setImageDrawable(avatar.content) }
         val userFollowNumTextView =
             findViewById<TextView>(R.id.HomePageUserPageViewFollowNumTextView)
         val userFanNumTextView = findViewById<TextView>(R.id.HomePageUserPageViewFanNumTextView)

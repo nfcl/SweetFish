@@ -64,8 +64,8 @@ class PersonalUserPageActivity : AppCompatActivity() {
         val userFollowNumTextView = findViewById<TextView>(R.id.UserPageUserFollowNum)
         val userFanNumTextView = findViewById<TextView>(R.id.UserPageUserFanNum)
         viewModel.userAvatar.observe(this) { avatar ->
-            userAvatarImageViewMain.setImageDrawable(avatar)
-            userAvatarImageViewTopNavigation.setImageDrawable(avatar)
+            userAvatarImageViewMain.setImageDrawable(avatar.content)
+            userAvatarImageViewTopNavigation.setImageDrawable(avatar.content)
         }
         viewModel.userName.observe(this) { name ->
             userNameTextViewMain.text = name
@@ -73,7 +73,7 @@ class PersonalUserPageActivity : AppCompatActivity() {
         }
         viewModel.userBackground.observe(this) { background ->
             userBackgroundImageView.setImageDrawable(
-                background
+                background.content
             )
         }
         viewModel.userId.observe(this) { id -> userIdTextView.text = "ID $id" }

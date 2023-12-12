@@ -2,9 +2,9 @@ package com.demo.sweetfish.ui.registerPage
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.ViewModelProvider
@@ -52,16 +52,18 @@ class RegisterPageActivity : AppCompatActivity() {
         viewModel.register().onSuccess {
             it.observe(this) { result ->
                 when (result) {
-                    -1L -> Toast.makeText(this, "未知原因注册失败", Toast.LENGTH_SHORT).show()
-                    -2L -> Toast.makeText(this, "账号已存在", Toast.LENGTH_SHORT).show()
+                    -1L -> Log.d("Mine", "未知原因注册失败")
+                    -2L -> Log.d("Mine", "账号已存在")
                     else -> {
-                        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show()
+                        Log.d("Mine", "注册成功")
                         finish()
                     }
                 }
             }
         }.onFailure {
-            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+            if (it.message != null) {
+                Log.d("Mine", it.message!!)
+            }
         }
     }
 }

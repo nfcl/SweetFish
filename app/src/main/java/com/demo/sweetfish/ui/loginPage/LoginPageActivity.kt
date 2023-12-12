@@ -1,9 +1,9 @@
 package com.demo.sweetfish.ui.loginPage
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.ViewModelProvider
@@ -43,15 +43,17 @@ class LoginPageActivity : AppCompatActivity() {
 
     private fun onLoginButtonClick() {
         viewModel.login().onFailure {
-            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+            if (it.message != null) {
+                Log.d("Mine", it.message!!)
+            }
         }.onSuccess {
             it.observe(this) { loginUser ->
                 if (loginUser != null) {
-                    Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
+                    Log.d("Mine", "登录成功")
                     SweetFishApplication.setLoginUserId(loginUser.id)
                     HomePageActivity.startActivity(this)
                 } else {
-                    Toast.makeText(this, "账号或密码错误", Toast.LENGTH_SHORT).show()
+                    Log.d("Mine", "账号或密码错误")
                 }
             }
         }
