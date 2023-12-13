@@ -8,7 +8,7 @@ class MessageInfo(
     var chatId: Long,
     //User
     var chatAvatarPic: Drawable,
-    var chatName :String,
+    var chatName: String,
     //Message
     var chatMessage: String,
     var chatTime: Date,

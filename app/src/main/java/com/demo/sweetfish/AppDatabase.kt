@@ -6,20 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.demo.sweetfish.logic.convert.Converters
-import com.demo.sweetfish.logic.dao.GoodsBuyDao
-import com.demo.sweetfish.logic.dao.GoodsBuyInfoDao
 import com.demo.sweetfish.logic.dao.ImageSourceDao
 import com.demo.sweetfish.logic.dao.SearchHistoryDao
-import com.demo.sweetfish.logic.dao.SearchResultPageUserInfoDao
-import com.demo.sweetfish.logic.dao.UserWithFollowInfoDao
-import com.demo.sweetfish.logic.model.Goods
-import com.demo.sweetfish.logic.model.GoodsBuy
-import com.demo.sweetfish.logic.model.GoodsFavorite
-import com.demo.sweetfish.logic.model.GoodsPreviewImage
 import com.demo.sweetfish.logic.model.ImageSource
 import com.demo.sweetfish.logic.model.SearchHistory
-import com.demo.sweetfish.logic.model.User
-import com.demo.sweetfish.logic.model.UserFollow
 
 /**
  * 使用单例模式的数据库类
@@ -30,20 +20,12 @@ import com.demo.sweetfish.logic.model.UserFollow
  */
 @Database(
     version = 1,
-    entities = [User::class, Goods::class, UserFollow::class, SearchHistory::class, GoodsPreviewImage::class, GoodsBuy::class, GoodsFavorite::class, ImageSource::class]
+    entities = [SearchHistory::class, ImageSource::class]
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun searchHistoryDao(): SearchHistoryDao
-
-    abstract fun userWithFollowInfoDao(): UserWithFollowInfoDao
-
-    abstract fun goodsBuyDao(): GoodsBuyDao
-
-    abstract fun goodsBuyInfoDao(): GoodsBuyInfoDao
-
-    abstract fun searchResultPageUserInfoDao(): SearchResultPageUserInfoDao
 
     abstract fun imageSourceDao(): ImageSourceDao
 

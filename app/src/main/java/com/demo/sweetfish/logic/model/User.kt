@@ -1,7 +1,5 @@
 package com.demo.sweetfish.logic.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.demo.sweetfish.logic.convert.UserAdapter
 import com.google.gson.annotations.JsonAdapter
 
@@ -18,7 +16,6 @@ import com.google.gson.annotations.JsonAdapter
  * @property location   位置
  * @property describe   个人简介
  */
-@Entity
 @JsonAdapter(UserAdapter::class)
 data class User(
     var account: String,
@@ -29,7 +26,5 @@ data class User(
     var sex: Boolean? = null,
     var location: UserLocation? = null,
     var describe: String? = null,
-) {
-    @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
-}
+    var id: Long = 0,
+)

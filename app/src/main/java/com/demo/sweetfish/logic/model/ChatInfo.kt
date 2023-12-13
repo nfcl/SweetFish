@@ -1,17 +1,15 @@
 package com.demo.sweetfish.logic.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 /**
  * @property goodsId 商品Id
  * @property buyerId 买家Id
+ * @property buyerReadMessageId 买家已读的消息Id
+ * @property sellerReadMessageId 卖家已读的消息Id
  */
-@Entity
 data class ChatInfo(
     val goodsId: Long,
     val buyerId: Long,
-) {
-
-    @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
-}
+    val buyerReadMessageId: Long,
+    val sellerReadMessageId: Long,
+    var id: Long = 0,
+)

@@ -1,7 +1,5 @@
 package com.demo.sweetfish.logic.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import java.util.Date
 
 /**
@@ -9,14 +7,9 @@ import java.util.Date
  * @property sendTime 发送时间
  * @property chatId 聊天记录Id
  */
-@Entity
 data class Message(
     val content: String,
     val sendTime: Date,
     val chatId: Long,
-) {
-
-    @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
-
-}
+    var id: Long = 0,
+)
