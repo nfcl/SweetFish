@@ -4,13 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.demo.sweetfish.logic.model.SearchResultPageUserInfo
+import com.demo.sweetfish.logic.repository.ImageSourceRepository
 import com.demo.sweetfish.ui.component.RoundImageView
 import com.example.sweetfish.R
 
 class SearchResultPageUserListAdapter(
+    private val appCompatActivity: AppCompatActivity,
     private var userList: List<SearchResultPageUserInfo>,
     private val onClickUserEvent: (Long) -> Unit,
 ) : Adapter<SearchResultPageUserListAdapter.ViewHolder>() {
@@ -40,7 +43,9 @@ class SearchResultPageUserListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = userList[position]
         holder.itemView.setOnClickListener { onClickUserEvent(info.userId) }
-        holder.userAvatarImageView.setImageDrawable(info.userAvatar)
+        ImageSourceRepository.findById(info.userAvatar).observe(appCompatActivity) {
+            holder.userAvatarImageView.setImageDrawable(it?.content)
+        }
         holder.userNameTextView.text = info.userName
         holder.userIdTextView.text = "Id : ${info.userId}"
         holder.userFanNumTextView.text = "粉丝 : ${info.userFanNum}"

@@ -4,6 +4,7 @@ import com.demo.sweetfish.logic.network.GoodsPreviewImageService
 import com.demo.sweetfish.logic.network.GoodsService
 import com.demo.sweetfish.logic.network.GoodsWithSellerInfoService
 import com.demo.sweetfish.logic.network.ImageSourceService
+import com.demo.sweetfish.logic.network.SearchResultPageUserInfoService
 import com.demo.sweetfish.logic.network.UserFollowService
 import com.demo.sweetfish.logic.network.UserService
 import retrofit2.Retrofit
@@ -34,5 +35,8 @@ object NetWorkService {
         create(GoodsPreviewImageService::class.java)
 
     fun userFollowService(): UserFollowService = create(UserFollowService::class.java)
+
+    fun searchResultPageUserInfoService(): SearchResultPageUserInfoService =
+        create(SearchResultPageUserInfoService::class.java)
 
 }

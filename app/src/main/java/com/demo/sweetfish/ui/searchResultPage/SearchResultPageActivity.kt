@@ -84,7 +84,7 @@ class SearchResultPageActivity : AppCompatActivity() {
     private fun initUserListView(userListView: View) {
         val userList: RecyclerView = userListView.findViewById(R.id.SearchResultPageUserList)
         userList.layoutManager = LinearLayoutManager(this)
-        userList.adapter = SearchResultPageUserListAdapter(listOf()) { userId ->
+        userList.adapter = SearchResultPageUserListAdapter(this, listOf()) { userId ->
             if (userId == SweetFishApplication.loginUserId.value!!) {
                 PersonalUserPageActivity.startActivity(this)
             } else {
