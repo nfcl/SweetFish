@@ -44,6 +44,7 @@ class UserFanListPageActivity : AppCompatActivity() {
         val followList = findViewById<RecyclerView>(R.id.UserFanListPageFanListRecyclerView)
         followList.layoutManager = LinearLayoutManager(this)
         followList.adapter = UserFollowListPageFollowListAdapter(
+            this,
             listOf(),
             { id ->
                 if (id == SweetFishApplication.loginUserId.value!!) {
@@ -68,7 +69,7 @@ class UserFanListPageActivity : AppCompatActivity() {
             ColorStateList.valueOf(getColor(R.color.OthersUserPageFollowButton_Followed_TextColor)),
             ColorStateList.valueOf(getColor(R.color.OthersUserPageFollowButton_UnFollowed_TextColor))
         )
-        viewModel.followList.observe(this) { data ->
+        viewModel.fanList.observe(this) { data ->
             (followList.adapter as UserFollowListPageFollowListAdapter).setListData(data)
         }
     }

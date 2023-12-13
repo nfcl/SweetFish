@@ -43,6 +43,7 @@ class UserFollowListPageActivity : AppCompatActivity() {
         val followList = findViewById<RecyclerView>(R.id.UserFollowListPageFollowListRecyclerView)
         followList.layoutManager = LinearLayoutManager(this)
         followList.adapter = UserFollowListPageFollowListAdapter(
+            this,
             listOf(),
             { id ->
                 if (id == SweetFishApplication.loginUserId.value!!) {

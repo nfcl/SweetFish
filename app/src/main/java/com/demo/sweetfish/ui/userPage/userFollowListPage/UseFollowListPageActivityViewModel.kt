@@ -6,11 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.demo.sweetfish.AppDatabase
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.model.UserFollow
 import com.demo.sweetfish.logic.model.UserWithFollowInfo
 import com.demo.sweetfish.logic.repository.UserFollowRepository
+import com.demo.sweetfish.logic.repository.UserWithFollowInfoRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,8 +20,7 @@ class UseFollowListPageActivityViewModel : ViewModel() {
     private val _userId: MutableLiveData<Long> = MutableLiveData()
 
     val followList: LiveData<List<UserWithFollowInfo>> = Transformations.switchMap(_userId) { id ->
-        AppDatabase.getDatabase().userWithFollowInfoDao()
-            .getFollowUserReturnLivData(id, SweetFishApplication.loginUserId.value!!)
+        UserWithFollowInfoRepository.getFollowUser(id, SweetFishApplication.loginUserId.value!!)
     }
 
     fun setUserId(userId: Long) {
