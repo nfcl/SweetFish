@@ -10,17 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.demo.sweetfish.logic.model.GoodsBuyInfo
 import com.example.sweetfish.R
-import utils.DrawableUtils
-import java.time.Instant
-import java.util.Date
 
 
 class MySoldActivity : AppCompatActivity() {
     private val boughtlist = ArrayList<GoodsBuyInfo>()
 
-    private lateinit var tagitems:Map<SoldTag,TextView>
+    private lateinit var tagitems: Map<SoldTag, TextView>
 
-    enum class SoldTag{
+    enum class SoldTag {
         All,
         Pay,
         Send,
@@ -28,20 +25,18 @@ class MySoldActivity : AppCompatActivity() {
         Shou,
         Ping
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page_userpageview_mysold)
         initComponent()
-        listinit()
-
-
     }
 
-    private fun initComponent(){
+    private fun initComponent() {
         findViewById<ImageView>(R.id.MySoldReturnButton).setOnClickListener { finish() }
         val recyclerView = findViewById<RecyclerView>(R.id.SoldRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = BoughtAdapter(boughtlist)
+        recyclerView.adapter = BoughtAdapter(this, boughtlist)
 
         val Sold_All = findViewById<TextView>(R.id.Sold_All)
         val Sold_Pay = findViewById<TextView>(R.id.Sold_Pay)
@@ -57,28 +52,11 @@ class MySoldActivity : AppCompatActivity() {
             SoldTag.Tui to Sold_Tui,
             SoldTag.Ping to Sold_Ping
         )
-        for (item in tagitems){
-            item.value.setOnClickListener{ select (item.key)}
+        for (item in tagitems) {
+            item.value.setOnClickListener { select(item.key) }
         }
     }
 
-    private fun listinit(){
-        for (i in 1..10){
-            boughtlist.add(
-                GoodsBuyInfo(
-                    i.toLong(),
-                    Date(Instant.now().epochSecond),
-                    i.toLong(),
-                    "用户$i",
-                    DrawableUtils.getGradientDrawable(),
-                    i.toLong(),
-                    "商品$i",
-                    DrawableUtils.getGradientDrawable(),
-                    i.toDouble()
-                )
-                )
-        }
-    }
     private fun setTagUnSelect(tagTextView: TextView) {
         tagTextView.setTextColor(getColor(R.color.UserPageTagLayoutItemUnSelectText))
         tagTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
@@ -89,13 +67,14 @@ class MySoldActivity : AppCompatActivity() {
         tagTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
         tagTextView.setTypeface(null, Typeface.BOLD)
     }
-   private fun select(tag:SoldTag){
-       for (items in tagitems){
-           if (items.key == tag){
-               setTagSelect(items.value)
-           }else{
-               setTagUnSelect(items.value)
-           }
-       }
-   }
+
+    private fun select(tag: SoldTag) {
+        for (items in tagitems) {
+            if (items.key == tag) {
+                setTagSelect(items.value)
+            } else {
+                setTagUnSelect(items.value)
+            }
+        }
+    }
 }

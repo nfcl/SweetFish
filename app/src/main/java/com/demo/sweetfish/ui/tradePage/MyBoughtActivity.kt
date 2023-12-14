@@ -6,78 +6,60 @@ import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.demo.sweetfish.logic.model.GoodsBuyInfo
 import com.example.sweetfish.R
-import utils.DrawableUtils
-import java.time.Instant
-import java.util.Date
 
 class MyBoughtActivity : AppCompatActivity() {
-    private val boughtlist = ArrayList<GoodsBuyInfo>()
-    private lateinit var tagItems:Map<BoughtTag, TextView>
-    private lateinit var recyclerView:RecyclerView
+
+    private val viewModel: MyBoughtPageActivityViewModel by lazy {
+        ViewModelProvider(
+            this, MyBoughtPageActivityViewModel.MyBoughtPageActivityViewModelFactory()
+        )[MyBoughtPageActivityViewModel::class.java]
+    }
+
+    private lateinit var tagItems: Map<MyBoughtPageActivityViewModel.BuyState, TextView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page_userpageview_mybought)
         initComponent()
-        initlist()
     }
-    enum class BoughtTag{
-        All,
-        Pay,
-        Send,
-        Shou,
-        Ping,
-        Tui
-    }
-    private fun initComponent(){
-        findViewById<ImageView>(R.id.MyBoughtReturnButton).setOnClickListener{finish()}
-        recyclerView = findViewById<RecyclerView>(R.id.UserBoughtRecyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = BoughtAdapter(boughtlist)
-        val Bought_All = findViewById<TextView>(R.id.Bought_All)
-        val Bought_Pay = findViewById<TextView>(R.id.Bought_Pay)
-        val Bought_Send = findViewById<TextView>(R.id.Bought_Send)
-        val Bought_Shou = findViewById<TextView>(R.id.Bought_Shou)
-        val Bought_Ping = findViewById<TextView>(R.id.Bought_Ping)
-        val Bought_Tui = findViewById<TextView>(R.id.Bought_Tui)
 
-        tagItems = mapOf<BoughtTag, TextView>(
-            BoughtTag.All to Bought_All,
-            BoughtTag.Pay to Bought_Pay,
-            BoughtTag.Send to Bought_Send,
-            BoughtTag.Shou to Bought_Shou,
-            BoughtTag.Ping to Bought_Ping,
-            BoughtTag.Tui to Bought_Tui
+    private fun initComponent() {
+        findViewById<ImageView>(R.id.MyBoughtReturnButton).setOnClickListener { finish() }
+        val goodsList = findViewById<RecyclerView>(R.id.UserBoughtRecyclerView)
+        val layoutManager = LinearLayoutManager(this)
+        goodsList.layoutManager = layoutManager
+        goodsList.adapter = BoughtAdapter(this, listOf())
+
+        viewModel.buyList.observe(this) { list ->
+            (goodsList.adapter as BoughtAdapter).setList(list)
+        }
+
+        val boughtAllTag = findViewById<TextView>(R.id.Bought_All)
+        val boughtPayTag = findViewById<TextView>(R.id.Bought_Pay)
+        val boughtSendTag = findViewById<TextView>(R.id.Bought_Send)
+        val boughtShouTag = findViewById<TextView>(R.id.Bought_Shou)
+        val boughtPingTag = findViewById<TextView>(R.id.Bought_Ping)
+        val boughtTuiTag = findViewById<TextView>(R.id.Bought_Tui)
+
+        tagItems = mapOf<MyBoughtPageActivityViewModel.BuyState, TextView>(
+            MyBoughtPageActivityViewModel.BuyState.All to boughtAllTag,
+            MyBoughtPageActivityViewModel.BuyState.Pay to boughtPayTag,
+            MyBoughtPageActivityViewModel.BuyState.Send to boughtSendTag,
+            MyBoughtPageActivityViewModel.BuyState.Shou to boughtShouTag,
+            MyBoughtPageActivityViewModel.BuyState.Ping to boughtPingTag,
+            MyBoughtPageActivityViewModel.BuyState.Tui to boughtTuiTag
         )
 
-        for (item in tagItems){
-            item.value.setOnClickListener{select(item.key)}
+        for (item in tagItems) {
+            item.value.setOnClickListener { select(item.key) }
         }
     }
 
-    private fun initlist(){
-        for (i in 1..10) {
-            boughtlist.add(
-                GoodsBuyInfo(
-                    i.toLong(),
-                    Date(Instant.now().epochSecond),
-                    i.toLong(),
-                    "用户$i",
-                    DrawableUtils.getGradientDrawable(),
-                    i.toLong(),
-                    "商品$i",
-                    DrawableUtils.getGradientDrawable(),
-                    i.toDouble()
-                )
-            )
-        }
-    }
-    private fun select(tag: BoughtTag) {
+    private fun select(tag: MyBoughtPageActivityViewModel.BuyState) {
         for (item in tagItems) {
             if (item.key == tag) {
                 setTagSelect(item.value)
@@ -85,6 +67,7 @@ class MyBoughtActivity : AppCompatActivity() {
                 setTagUnSelect(item.value)
             }
         }
+        viewModel.setSearchBuyState(tag)
     }
 
     private fun setTagUnSelect(tagTextView: TextView) {

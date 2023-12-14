@@ -1,19 +1,19 @@
 package com.demo.sweetfish.logic.model
 
-import android.graphics.drawable.Drawable
 import java.util.Date
 
 data class GoodsBuyInfo(
     //GoodsBuy
     val goodsBuyId: Long,
+    val goodsBuyState: GoodsState,
     val goodsBuyTime: Date,
     //User
     val sellerId: Long,
     val sellerName: String?,
-    val sellerAvatar: Drawable,
+    val sellerAvatar: Long,
     //Goods
     val goodsId: Long,
     val goodsName: String,
-    val goodsPreview: Drawable,
+    val goodsPreview: Long,
     val goodsPrice: Double,
 )

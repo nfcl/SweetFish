@@ -1,5 +1,6 @@
 package com.demo.sweetfish
 
+import com.demo.sweetfish.logic.network.GoodsBuyInfoService
 import com.demo.sweetfish.logic.network.GoodsPreviewImageService
 import com.demo.sweetfish.logic.network.GoodsService
 import com.demo.sweetfish.logic.network.GoodsWithSellerInfoService
@@ -42,5 +43,7 @@ object NetWorkService {
 
     fun userWithFollowInfoService(): UserWithFollowInfoService =
         create(UserWithFollowInfoService::class.java)
+
+    fun goodsBuyInfoService(): GoodsBuyInfoService = create(GoodsBuyInfoService::class.java)
 
 }

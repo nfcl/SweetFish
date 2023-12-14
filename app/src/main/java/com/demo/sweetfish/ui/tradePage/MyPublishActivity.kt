@@ -10,9 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.demo.sweetfish.logic.model.GoodsBuyInfo
 import com.example.sweetfish.R
-import utils.DrawableUtils
-import java.time.Instant
-import java.util.Date
 
 class MyPublishActivity : AppCompatActivity() {
 
@@ -24,7 +21,6 @@ class MyPublishActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page_userpageview_mypublish)
         initComponent()
-        listInit()
     }
 
     enum class PublishTag {
@@ -39,7 +35,7 @@ class MyPublishActivity : AppCompatActivity() {
 
         val recyclerview = findViewById<RecyclerView>(R.id.PublishRecyclerView)
         recyclerview.layoutManager = LinearLayoutManager(this)
-        recyclerview.adapter = PublishAdapter(goodsBuyList)
+        recyclerview.adapter = PublishAdapter(this, goodsBuyList)
 
         val publishTagItemSold = findViewById<TextView>(R.id.Publish_Sold)
         val publishTagItemPaper = findViewById<TextView>(R.id.Publish_Paper)
@@ -53,24 +49,6 @@ class MyPublishActivity : AppCompatActivity() {
             item.value.setOnClickListener { select(item.key) }
         }
 
-    }
-
-    private fun listInit() {
-        for (i in 1..10) {
-            goodsBuyList.add(
-                GoodsBuyInfo(
-                    i.toLong(),
-                    Date(Instant.now().epochSecond),
-                    i.toLong(),
-                    "用户$i",
-                    DrawableUtils.getGradientDrawable(),
-                    i.toLong(),
-                    "商品$i",
-                    DrawableUtils.getGradientDrawable(),
-                    i.toDouble()
-                )
-            )
-        }
     }
 
     private fun select(tag: PublishTag) {
