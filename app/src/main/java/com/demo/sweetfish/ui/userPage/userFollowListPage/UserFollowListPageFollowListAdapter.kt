@@ -59,7 +59,7 @@ class UserFollowListPageFollowListAdapter(
         }
         if (info.userId == SweetFishApplication.loginUserId.value!!) {
             holder.followButton.alpha = 0f
-        } else if (info.isFollowed == 1) {
+        } else if (info.isFollowed) {
             holder.followButton.text = followedText
             holder.followButton.backgroundTintList = followedBackgroundTint
             holder.followButton.setTextColor(followedTextColor)

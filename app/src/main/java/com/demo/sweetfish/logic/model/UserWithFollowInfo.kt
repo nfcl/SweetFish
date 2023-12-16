@@ -6,5 +6,5 @@ data class UserWithFollowInfo(
     val userDescribe: String?,
     val userAvatar: Long,
     val userFanNum: Int,
-    val isFollowed: Int,
+    val isFollowed: Boolean,
 )

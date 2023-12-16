@@ -85,7 +85,7 @@ class HomePageActivity : AppCompatActivity() {
             val goodsList: RecyclerView = homePageView.findViewById(R.id.HomePageGoodsList)
             goodsList.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            goodsList.adapter = HomePageGoodsListAdapter(ArrayList(), { goodsId ->
+            goodsList.adapter = HomePageGoodsListAdapter(this, ArrayList(), { goodsId ->
                 GoodsPageActivity.startActivity(this, goodsId)
             }, { userId ->
                 if (userId == SweetFishApplication.loginUserId.value!!) {

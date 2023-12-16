@@ -96,11 +96,11 @@ class UserInfoEditPageActivity : AppCompatActivity() {
             val diaLogContentEditText =
                 bottomSheetDialog.findViewById<TextView>(R.id.UserInfoEditPageNameEditDialogContentEditText)!!
             diaLogCancelButton.setOnClickListener {
-                bottomSheetDialog.hide()
+                bottomSheetDialog.dismiss()
             }
             diaLogConfirmButton.setOnClickListener {
                 viewModel.setName(diaLogContentEditText.text.toString())
-                bottomSheetDialog.hide()
+                bottomSheetDialog.dismiss()
             }
             diaLogContentEditText.text = viewModel.userName.value
             bottomSheetDialog.show()
@@ -121,13 +121,13 @@ class UserInfoEditPageActivity : AppCompatActivity() {
             val diaLogFeMaleTextView =
                 bottomSheetDialog.findViewById<TextView>(R.id.UserInfoEditPageNameEditDialogSexFeMaleTextView)!!
             diaLogCancelButton.setOnClickListener {
-                bottomSheetDialog.hide()
+                bottomSheetDialog.dismiss()
             }
             diaLogConfirmButton.setOnClickListener {
                 thread {
                     viewModel.setSex(viewModel.sexDialogSelect)
                     runOnUiThread {
-                        bottomSheetDialog.hide()
+                        bottomSheetDialog.dismiss()
                     }
                 }
             }
@@ -258,13 +258,13 @@ class UserInfoEditPageActivity : AppCompatActivity() {
             val diaLogContentEditText =
                 bottomSheetDialog.findViewById<TextView>(R.id.UserInfoEditPageNameEditDialogContentEditText)!!
             diaLogCancelButton.setOnClickListener {
-                bottomSheetDialog.hide()
+                bottomSheetDialog.dismiss()
             }
             diaLogConfirmButton.setOnClickListener {
                 thread {
                     viewModel.setDescribe(diaLogContentEditText.text.toString())
                     runOnUiThread {
-                        bottomSheetDialog.hide()
+                        bottomSheetDialog.dismiss()
                     }
                 }
             }

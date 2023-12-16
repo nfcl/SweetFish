@@ -54,7 +54,7 @@ class UserFollowListPageActivity : AppCompatActivity() {
             },
             { info ->
                 thread {
-                    if (info.isFollowed == 1) {
+                    if (info.isFollowed) {
                         viewModel.unFollowUser(info.userId)
                     } else {
                         viewModel.followUser(info.userId)

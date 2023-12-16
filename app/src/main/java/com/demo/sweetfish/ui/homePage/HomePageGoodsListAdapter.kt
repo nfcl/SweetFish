@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
@@ -13,6 +14,7 @@ import com.demo.sweetfish.logic.repository.ImageSourceRepository
 import com.example.sweetfish.R
 
 class HomePageGoodsListAdapter(
+    private val appCompatActivity: AppCompatActivity,
     private var mGoodsList: List<GoodsWithSellerInfo>,
     private var onGoodsClickEvent: (goodsId: Long) -> Unit,
     private var onSellerClickEvent: (sellerId: Long) -> Unit,
@@ -34,10 +36,14 @@ class HomePageGoodsListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val goods = mGoodsList[position]
-        holder.previewImage.setImageDrawable(ImageSourceRepository.findById(goods.goodsPreview).value?.content)
+        ImageSourceRepository.findById(goods.goodsPreview).observe(appCompatActivity) {
+            holder.previewImage.setImageDrawable(it?.content)
+        }
         holder.nameText.text = goods.goodsTitle
         holder.priceText.text = "￥${goods.goodsPrice}"
-        holder.sellerAvatarImage.setImageDrawable(ImageSourceRepository.findById(goods.sellerAvatar).value?.content)
+        ImageSourceRepository.findById(goods.sellerAvatar).observe(appCompatActivity) {
+            holder.sellerAvatarImage.setImageDrawable(it?.content)
+        }
         holder.sellerNameText.text = goods.sellerName ?: goods.sellerId.toString()
         holder.itemView.findViewById<LinearLayout>(R.id.GoodsInfoButton).setOnClickListener {
             onGoodsClickEvent(goods.goodsId)
