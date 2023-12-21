@@ -17,6 +17,9 @@
         android:theme="@style/Theme.SweetFish"
         tools:replace="android:label,android:theme">
         <activity
+            android:name="com.demo.sweetfish.ui.goodsPage.GoodsPageActivity"
+            android:exported="false" />
+        <activity
             android:name="com.demo.sweetfish.ui.messagePage.MessagePageActivity"
             android:exported="false" />
         <activity
