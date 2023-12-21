@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_goods_page_preview_list_horizontal_padding">3dp</dimen>
+    <dimen name="activity_goods_page_preview_list_vertical_padding">3dp</dimen>
+</resources>
