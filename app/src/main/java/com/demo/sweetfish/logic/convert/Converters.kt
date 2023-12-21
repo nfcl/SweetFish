@@ -4,8 +4,19 @@ import android.graphics.drawable.Drawable
 import androidx.room.TypeConverter
 import utils.DrawableUtils
 import utils.DrawableUtils.Companion.toBytes
+import java.util.Date
 
 class Converters {
+
+    @TypeConverter
+    fun timestampToDate(value: Long?): Date? {
+        return value?.let { Date(it) }
+    }
+
+    @TypeConverter
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time?.toLong()
+    }
 
     @TypeConverter
     fun byteArrayToDrawable(value: ByteArray?): Drawable? {
