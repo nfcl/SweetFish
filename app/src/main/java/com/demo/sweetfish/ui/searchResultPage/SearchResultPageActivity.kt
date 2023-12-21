@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.ui.component.WithInitEventViewPager2Adapter
+import com.demo.sweetfish.ui.goodsPage.GoodsPageActivity
 import com.demo.sweetfish.ui.homePage.HomePageGoodsListAdapter
 import com.demo.sweetfish.ui.userPage.others.OthersUserPageActivity
 import com.demo.sweetfish.ui.userPage.personal.PersonalUserPageActivity
@@ -69,13 +70,15 @@ class SearchResultPageActivity : AppCompatActivity() {
     private fun initGoodsListView(goodsListView: View) {
         val goodsList: RecyclerView = goodsListView.findViewById(R.id.GoodsListView_RecyclerView)
         goodsList.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        goodsList.adapter = HomePageGoodsListAdapter(this, ArrayList(), {}, { userId ->
+        goodsList.adapter = HomePageGoodsListAdapter(this, listOf(), { goodsId ->
+            GoodsPageActivity.startActivity(this, goodsId)
+        }) { userId ->
             if (userId == SweetFishApplication.loginUserId.value!!) {
                 PersonalUserPageActivity.startActivity(this)
             } else {
                 OthersUserPageActivity.startActivity(this, userId)
             }
-        })
+        }
         viewModel.goodsList.observe(this) { listData ->
             (goodsList.adapter as HomePageGoodsListAdapter).setListData(listData)
         }
