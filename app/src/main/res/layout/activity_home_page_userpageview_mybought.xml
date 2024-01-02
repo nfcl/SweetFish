@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,9 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:src="@drawable/arrow_left">
-
-            </ImageView>
+                android:src="@drawable/arrow_left" />
 
         </LinearLayout>
 
@@ -40,9 +38,8 @@
                 android:layout_marginEnd="40dp"
                 android:text="我买到的"
                 android:textColor="@color/black"
-                android:textSize="20sp">
+                android:textSize="20sp" />
 
-            </TextView>
         </LinearLayout>
 
     </LinearLayout>
@@ -58,95 +55,111 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="6dp">
 
             <TextView
                 android:id="@+id/Bought_All"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="全部"
                 android:textColor="#808080"
-                android:textSize="14dp"
-                android:text="全部">
+                android:textSize="14sp" />
 
-            </TextView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="6dp">
 
             <TextView
                 android:id="@+id/Bought_Pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待付款">
+                android:text="待付款"
+                android:textColor="#808080"
+                android:textSize="14sp" />
 
-            </TextView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="6dp">
 
             <TextView
                 android:id="@+id/Bought_Send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待发货" />
+                android:text="待发货"
+                android:textColor="#808080"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="6dp">
 
             <TextView
                 android:id="@+id/Bought_Shou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待收货" />
+                android:text="待收货"
+                android:textColor="#808080"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="6dp">
 
             <TextView
                 android:id="@+id/Bought_Ping"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待评价" />
+                android:text="待评价"
+                android:textColor="#808080"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="6dp">
 
             <TextView
                 android:id="@+id/Bought_Tui"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="退款中" />
+                android:text="退款中"
+                android:textColor="#808080"
+                android:textSize="14sp" />
 
         </LinearLayout>
+
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/UserBoughtRecyclerView"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         tools:itemCount="10"
-        tools:listitem="@layout/activity_user_page_mybought_list_item"
-        android:layout_height="wrap_content"/>
+        tools:listitem="@layout/activity_user_page_mybought_list_item" />
 </LinearLayout>

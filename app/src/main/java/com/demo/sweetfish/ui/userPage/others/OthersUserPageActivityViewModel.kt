@@ -7,9 +7,11 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.demo.sweetfish.SweetFishApplication
+import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
 import com.demo.sweetfish.logic.model.ImageSource
 import com.demo.sweetfish.logic.model.User
 import com.demo.sweetfish.logic.model.UserFollow
+import com.demo.sweetfish.logic.repository.GoodsWithSellerInfoRepository
 import com.demo.sweetfish.logic.repository.ImageSourceRepository
 import com.demo.sweetfish.logic.repository.UserFollowRepository
 import com.demo.sweetfish.logic.repository.UserRepository
@@ -50,8 +52,10 @@ class OthersUserPageActivityViewModel : ViewModel() {
         UserFollowRepository.getFanNum(id)
     }
     val isFollowed: LiveData<Boolean> = Transformations.switchMap(_userId) { id ->
-        UserFollowRepository
-            .isFollowed(UserFollow(id, SweetFishApplication.loginUserId.value!!))
+        UserFollowRepository.isFollowed(UserFollow(id, SweetFishApplication.loginUserId.value!!))
+    }
+    val goodsList: LiveData<List<GoodsWithSellerInfo>> = Transformations.switchMap(_userId) { id ->
+        GoodsWithSellerInfoRepository.findBySellerId(id)
     }
 
     @WorkerThread

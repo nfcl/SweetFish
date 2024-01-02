@@ -10,6 +10,9 @@ interface GoodsWithSellerInfoService {
     @GET("ServletGoodsWithSellerInfoFindAll")
     fun findAll(): Call<List<GoodsWithSellerInfo>>
 
+    @GET("ServletGoodsWithSellerInfoFindBySellerId")
+    fun findBySellerId(@Query("sellerId") sellerId: Long): Call<List<GoodsWithSellerInfo>>
+
     @GET("ServletGoodsWithSellerInfoFindLikeGoodsTitle")
     fun findLikeGoodsTitle(@Query("goodsTitle") goodsTitle: String): Call<List<GoodsWithSellerInfo>>
 

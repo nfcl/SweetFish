@@ -7,13 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.demo.sweetfish.logic.model.GoodsBuyInfo
+import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
 import com.demo.sweetfish.logic.repository.ImageSourceRepository
 import com.example.sweetfish.R
 
 class PublishAdapter(
     private val appCompatActivity: AppCompatActivity,
-    val publishlish: List<GoodsBuyInfo>,
+    private var publishlish: List<GoodsWithSellerInfo>,
 ) :
     RecyclerView.Adapter<PublishAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -30,9 +30,8 @@ class PublishAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = publishlish[position]
-
-        holder.goodsprice.text = "$" + item.goodsPrice.toString()
-        holder.goodsName.text = item.goodsName
+        holder.goodsprice.text = "￥$item.goodsPrice"
+        holder.goodsName.text = item.goodsTitle
         ImageSourceRepository.findById(item.goodsPreview).observe(appCompatActivity) {
             holder.goodsPreview.setImageDrawable(it?.content)
         }
@@ -41,5 +40,11 @@ class PublishAdapter(
 
     override fun getItemCount(): Int {
         return publishlish.size
+    }
+
+    fun setListData(goodsList: List<GoodsWithSellerInfo>) {
+        notifyItemRangeRemoved(0, publishlish.size)
+        publishlish = goodsList
+        notifyItemRangeInserted(0, publishlish.size)
     }
 }

@@ -1,17 +1,14 @@
 package com.demo.sweetfish.logic.model
 
-import android.graphics.drawable.Drawable
-import java.util.Date
-
 class MessageInfo(
     //ChatInfo
     var chatId: Long,
     //User
-    var chatAvatarPic: Drawable,
+    var chatAvatarPic: Long,
     var chatName: String,
     //Message
     var chatMessage: String,
-    var chatTime: Date,
+    var chatTime: Long?,
     //Goods
-    var goodsPreviewPic: Drawable,
+    var goodsPreviewPic: Long,
 )

@@ -6,10 +6,12 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.demo.sweetfish.SweetFishApplication
+import com.demo.sweetfish.logic.model.Chat
 import com.demo.sweetfish.logic.model.Goods
 import com.demo.sweetfish.logic.model.ImageSource
 import com.demo.sweetfish.logic.model.User
 import com.demo.sweetfish.logic.model.UserFollow
+import com.demo.sweetfish.logic.repository.ChatRepository
 import com.demo.sweetfish.logic.repository.GoodsPreviewImageRepository
 import com.demo.sweetfish.logic.repository.GoodsRepository
 import com.demo.sweetfish.logic.repository.ImageSourceRepository
@@ -83,12 +85,20 @@ class GoodsPageActivityViewModel : ViewModel() {
         }
     }
 
-    fun messageSeller() {
-
-    }
-
-    fun wantGoods() {
-
+    fun wantGoods(toMessagePageEvent: (id: Long) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val goodsId = mGoodsId.value
+            val buyerId = SweetFishApplication.loginUserId.value
+            if (goodsId == null || buyerId == null) {
+                return@launch
+            }
+            var chatId = ChatRepository.isExisted(Chat(goodsId, buyerId))
+            if (chatId == -1L) {
+                chatId = ChatRepository.insert(Chat(goodsId, buyerId))
+            }
+            toMessagePageEvent(chatId)
+            forceRefresh()
+        }
     }
 
     private fun forceRefresh() {

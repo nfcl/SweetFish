@@ -18,6 +18,12 @@ object GoodsWithSellerInfoRepository {
         )
     }
 
+    fun findBySellerId(sellerId: Long) = liveData(Dispatchers.IO) {
+        emit(
+            NetWorkService.goodsWithSellerInfoService().findBySellerId(sellerId).await()
+        )
+    }
+
     fun findLikeGoodsTitle(goodsTitle: String) = liveData(Dispatchers.IO) {
         emit(
             try {

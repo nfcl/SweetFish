@@ -1,7 +1,5 @@
 package com.demo.sweetfish.logic.model
 
-import java.util.Date
-
 /**
  * @property content 消息内容
  * @property sendTime 发送时间
@@ -9,7 +7,8 @@ import java.util.Date
  */
 data class Message(
     val content: String,
-    val sendTime: Date,
+    val sendTime: Long,
+    val senderId : Long,
     val chatId: Long,
     var id: Long = 0,
 )

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colo_bac"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -24,21 +24,132 @@
                 android:src="@drawable/arrow_left">
 
             </ImageView>
+
         </LinearLayout>
 
-        <Button
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:text="清理消息"
+            android:text="@string/activity_home_page_messagelist_item_message_name"
             android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/MessagePageGoodsPageButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/GoodsPreviewImage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/activity_home_page_goodlist_item_goods_preview_description" />
+
+            <LinearLayout
+                android:id="@+id/sellerlayoutMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/goodsName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="商品名称"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="￥612.00"
+                    android:textColor="#FF0000"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/MessagePagePayButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rectangle_radius20dp"
+                android:backgroundTint="@color/primary"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="6dp"
+                android:text="购买"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colo_red"
+            android:gravity="center"
+            android:text="!引导您脱离闲鱼平台并且联系客服缴费的都是欺诈行为！"
+            android:textColor="@color/white" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        tools:itemCount="10"
-        tools:listitem="@layout/activity_message_page_item"/>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_radius20dp"
+            android:hint="想跟TA说点什么....."
+            android:paddingHorizontal="10dp" />
+
+        <TextView
+            android:id="@+id/MessagePageMessagePublishButton"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:background="@drawable/rectangle_radius20dp"
+            android:backgroundTint="@color/primary"
+            android:gravity="center"
+            android:text="发送"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
 </LinearLayout>

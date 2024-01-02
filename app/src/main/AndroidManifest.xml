@@ -20,7 +20,7 @@
             android:name="com.demo.sweetfish.ui.goodsPage.GoodsPageActivity"
             android:exported="false" />
         <activity
-            android:name="com.demo.sweetfish.ui.messagePage.MessagePageActivity"
+            android:name="com.demo.sweetfish.ui.chatPage.ChatPageActivity"
             android:exported="false" />
         <activity
             android:name="com.demo.sweetfish.ui.userPage.userFanListPage.UserFanListPageActivity"
@@ -68,6 +68,9 @@
             android:exported="false" />
         <activity
             android:name="com.demo.sweetfish.ui.homePage.HomePageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.demo.sweetfish.ui.messagePage.MessagePageActivity"
             android:exported="false" />
     </application>
 

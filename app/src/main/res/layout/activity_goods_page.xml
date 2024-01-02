@@ -103,61 +103,27 @@
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:orientation="horizontal">
+                android:layout_marginVertical="10dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="￥"
-                        android:textColor="@color/colo_red"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/GoodsPageGoodsPriceTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="商品价格"
-                        android:textColor="@color/colo_red"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="horizontal">
+                    android:text="￥"
+                    android:textColor="@color/colo_red"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/GoodsPageGoodsViewsNumTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="浏览量" />
+                <TextView
+                    android:id="@+id/GoodsPageGoodsPriceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商品价格"
+                    android:textColor="@color/colo_red"
+                    android:textSize="24sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="5dp"
-                        android:text="|" />
-
-                    <TextView
-                        android:id="@+id/GoodsPageGoodsWantNumTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="想要数" />
-
-                </LinearLayout>
-
-            </RelativeLayout>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/GoodsPageGoodsDescribeTextView"
@@ -335,29 +301,7 @@
         android:orientation="horizontal"
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp">
-
-        <LinearLayout
-            android:id="@+id/GoodsPageSellerMessageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:clickable="false"
-                android:src="@drawable/icon_message" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:text="留言"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
+        
         <TextView
             android:id="@+id/GoodsPageWantBotton"
             android:layout_width="wrap_content"

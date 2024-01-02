@@ -1,10 +1,14 @@
 package com.demo.sweetfish
 
+import com.demo.sweetfish.logic.network.ChatInfoService
+import com.demo.sweetfish.logic.network.ChatService
 import com.demo.sweetfish.logic.network.GoodsBuyInfoService
 import com.demo.sweetfish.logic.network.GoodsPreviewImageService
 import com.demo.sweetfish.logic.network.GoodsService
 import com.demo.sweetfish.logic.network.GoodsWithSellerInfoService
 import com.demo.sweetfish.logic.network.ImageSourceService
+import com.demo.sweetfish.logic.network.MessageInfoService
+import com.demo.sweetfish.logic.network.MessageService
 import com.demo.sweetfish.logic.network.SearchResultPageUserInfoService
 import com.demo.sweetfish.logic.network.UserFollowService
 import com.demo.sweetfish.logic.network.UserService
@@ -15,7 +19,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object NetWorkService {
 
-    private const val BASE_URL = "http://10.0.2.2:8085/SweetFish_war_exploded/"
+    private const val BASE_URL = "http://192.168.137.1:8085/SweetFish_war_exploded/"
 
     private val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL)
         .addConverterFactory(ScalarsConverterFactory.create())//获取返回的字符串
@@ -45,5 +49,13 @@ object NetWorkService {
         create(UserWithFollowInfoService::class.java)
 
     fun goodsBuyInfoService(): GoodsBuyInfoService = create(GoodsBuyInfoService::class.java)
+
+    fun chatService(): ChatService = create(ChatService::class.java)
+
+    fun chatInfoService(): ChatInfoService = create(ChatInfoService::class.java)
+
+    fun messageService(): MessageService = create(MessageService::class.java)
+
+    fun messageInfoService(): MessageInfoService = create(MessageInfoService::class.java)
 
 }

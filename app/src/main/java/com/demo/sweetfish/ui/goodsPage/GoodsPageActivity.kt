@@ -12,6 +12,7 @@ import androidx.lifecycle.liveData
 import com.demo.sweetfish.SweetFishApplication
 import com.demo.sweetfish.logic.repository.ImageSourceRepository
 import com.demo.sweetfish.ui.component.RoundImageView
+import com.demo.sweetfish.ui.messagePage.MessagePageActivity
 import com.demo.sweetfish.ui.userPage.others.OthersUserPageActivity
 import com.demo.sweetfish.ui.userPage.personal.PersonalUserPageActivity
 import com.example.sweetfish.R
@@ -110,11 +111,14 @@ class GoodsPageActivity : AppCompatActivity() {
                 }
             }
         }
-        val goodsViewsNumTextView = findViewById<TextView>(R.id.GoodsPageGoodsViewsNumTextView)
-        val goodsWantedNumTextView = findViewById<TextView>(R.id.GoodsPageGoodsWantNumTextView)
-        val messageSellerButton = findViewById<LinearLayout>(R.id.GoodsPageSellerMessageButton)
-        messageSellerButton.setOnClickListener { viewModel.messageSeller() }
+
         val wantButton = findViewById<TextView>(R.id.GoodsPageWantBotton)
-        wantButton.setOnClickListener { viewModel.wantGoods() }
+        wantButton.setOnClickListener {
+            viewModel.wantGoods { chatId ->
+                MessagePageActivity.startActivity(
+                    this, chatId
+                )
+            }
+        }
     }
 }

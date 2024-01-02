@@ -3,24 +3,20 @@ package com.demo.sweetfish.ui.userPage.others
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
-import com.demo.sweetfish.SweetFishApplication
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.demo.sweetfish.ui.component.RoundImageView
-import com.demo.sweetfish.ui.component.WithInitEventViewPager2Adapter
-import com.demo.sweetfish.ui.userPage.UserPageTagLayout
+import com.demo.sweetfish.ui.goodsPage.GoodsPageActivity
+import com.demo.sweetfish.ui.homePage.HomePageGoodsListAdapter
 import com.demo.sweetfish.ui.userPage.userFanListPage.UserFanListPageActivity
 import com.demo.sweetfish.ui.userPage.userFollowListPage.UserFollowListPageActivity
 import com.example.sweetfish.R
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import kotlin.concurrent.thread
 
 class OthersUserPageActivity : AppCompatActivity() {
@@ -153,43 +149,15 @@ class OthersUserPageActivity : AppCompatActivity() {
     }
 
     private fun initViewPager() {
-        val viewPager: ViewPager2 = findViewById(R.id.activity_user_page_user_relations_viewpage)
-        val tabLayout: TabLayout =
-            findViewById(R.id.activity_user_page_user_relations_viewpage_tablayout)
-        val views: List<Pair<View, (View) -> Unit>> = listOf(
-            Pair(
-                LayoutInflater.from(SweetFishApplication.context).inflate(
-                    R.layout.activity_personal_user_page_userrelations_viewpage_goodsview, null
-                ), ::initRelationGoodsView
-            ), Pair(
-                LayoutInflater.from(SweetFishApplication.context).inflate(
-                    R.layout.activity_personal_user_page_userrelations_viewpage_appriseview, null
-                ), ::initRelationAppraiseView
-            )
-        )
-        viewPager.adapter = WithInitEventViewPager2Adapter(views)
-        val tabTextList: List<String> = listOf("宝贝", "评价")
-        TabLayoutMediator(
-            tabLayout, viewPager
-        ) { tab, position ->
-            tab.text = tabTextList[position]
-        }.attach()
-    }
-
-    private fun initRelationGoodsView(viewItem: View) {
-        val tagLayout = viewItem.findViewById<UserPageTagLayout>(R.id.UserPageGoodsTagLayout)
-        tagLayout.init(mutableMapOf("All" to "全部", "InSell" to "在卖", "SoldOut" to "卖光")) {
-
+        val goodsList = findViewById<RecyclerView>(R.id.UserPageGoodsList)
+        goodsList.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        val adapter = HomePageGoodsListAdapter(this, ArrayList(), { goodsId ->
+            GoodsPageActivity.startActivity(this, goodsId)
+        }, {})
+        goodsList.adapter = adapter
+        viewModel.goodsList.observe(this) { data ->
+            adapter.setListData(data)
         }
-        tagLayout.forceSelectWithEvent("All")
-    }
-
-    private fun initRelationAppraiseView(viewItem: View) {
-        val tagLayout = viewItem.findViewById<UserPageTagLayout>(R.id.UserPageAppriseTagLayout)
-        tagLayout.init(mutableMapOf()) {
-
-        }
-//        tagLayout.forceSelectWithEvent("")
     }
 
     private fun initNavigationBar() {

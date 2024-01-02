@@ -6,14 +6,22 @@ import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.demo.sweetfish.logic.model.GoodsBuyInfo
+import com.demo.sweetfish.logic.model.GoodsWithSellerInfo
+import com.demo.sweetfish.ui.goodsPublishPage.MyPublishActivityViewModel
 import com.example.sweetfish.R
 
 class MyPublishActivity : AppCompatActivity() {
 
-    private val goodsBuyList = ArrayList<GoodsBuyInfo>()
+    private val viewModel: MyPublishActivityViewModel by lazy {
+        ViewModelProvider(
+            this, MyPublishActivityViewModel.MyPublishPageActivityViewModelFactory()
+        )[MyPublishActivityViewModel::class.java]
+    }
+
+    private val goodsBuyList = ArrayList<GoodsWithSellerInfo>()
 
     private lateinit var tagItems: Map<PublishTag, TextView>
 
@@ -36,6 +44,9 @@ class MyPublishActivity : AppCompatActivity() {
         val recyclerview = findViewById<RecyclerView>(R.id.PublishRecyclerView)
         recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.adapter = PublishAdapter(this, goodsBuyList)
+        viewModel.getGoodsList().observe(this) { listData ->
+            (recyclerview.adapter as PublishAdapter).setListData(listData)
+        }
 
         val publishTagItemSold = findViewById<TextView>(R.id.Publish_Sold)
         val publishTagItemPaper = findViewById<TextView>(R.id.Publish_Paper)

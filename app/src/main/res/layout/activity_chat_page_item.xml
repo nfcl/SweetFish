@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <com.demo.sweetfish.ui.component.RoundImageView
+        android:id="@+id/MessageImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        android:contentDescription="@string/activity_home_page_messagelist_item_message_picture" />
+
+    <LinearLayout
+        android:id="@+id/MessageInfoButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/MessageName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="@string/activity_home_page_messagelist_item_message_name"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/MessageContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/activity_home_page_messagelist_item_message_content"
+            android:textColor="#A8A8A8" />
+
+        <TextView
+            android:id="@+id/MessageTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:maxLines="1"
+            android:text="@string/activity_home_page_messagelist_item_message_time"
+            android:textColor="#A8A8A8"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end">
+
+        <ImageView
+            android:id="@+id/MessageGoodImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/activity_home_page_messagelist_item_goods_picture"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+    </LinearLayout>
+
+</LinearLayout>
